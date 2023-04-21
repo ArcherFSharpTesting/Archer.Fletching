@@ -11,6 +11,7 @@
     <Compile Include="TestResultFailureBuilder.fs" />
     <Compile Include="SetupTeardownResultFailureBuilder.fs" />
     <Compile Include="GeneralFailureBuilder.fs" />
+    <Compile Include="TestExecutionResultFailureBuilder SetupExecutionFailure.fs" />
     <Compile Include="RunHelpers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

@@ -13,5 +13,6 @@ framework
     TestResultFailureBuilder.``Test Cases``
     SetupTeardownResultFailureBuilder.``Test Cases``
     GeneralFailureBuilder.``Test Cases``
+    ``TestExecutionResultFailureBuilder SetupExecutionFailure``.``Test Cases``
 ]
 |> runAndReport

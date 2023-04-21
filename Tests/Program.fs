@@ -3,7 +3,6 @@
 open Archer.Bow
 open Archer.Fletching.Tests
 open Archer.Fletching.Tests.RunHelpers
-open Archer.Fletching.Types.Internal
 
 printfn "Hello from F#"
 
@@ -13,5 +12,6 @@ framework
 |> addManyTests [
     TestResultFailureBuilder.``Test Cases``
     SetupTeardownResultFailureBuilder.``Test Cases``
+    GeneralFailureBuilder.``Test Cases``
 ]
 |> runAndReport

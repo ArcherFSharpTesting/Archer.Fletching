@@ -1,19 +1,19 @@
-﻿module Archer.Fletching.Tests.SetupTeardownResultFailureBuilder
+﻿module Archer.Fletching.Tests.GeneralFailureBuilder
 
 open Archer
 open Archer.Arrows
 open Archer.Fletching.Types.Internal
 
 let private feature = Arrow.NewFeature (
-    Setup (fun _ -> Called |> SetupTeardownResultFailureBuilder |> Ok)
+    Setup (fun _ -> Called |> GeneralFailureBuilder |> Ok)
 )
 
 let ``ExceptionFailure should convert an exception into a failure`` =
     feature.Test (
         fun builder _ ->
-            let ex = System.ArgumentOutOfRangeException "I refuse to argue"
+            let ex = System.Exception "HA! HA! HA! Batman."
             let (Called result) = builder.ExceptionFailure ex
-            let expected = SetupTeardownExceptionFailure ex
+            let expected = GeneralExceptionFailure ex
             
             if result = expected then
                 TestSuccess
@@ -25,7 +25,7 @@ let ``CancelFailure should return a failure`` =
     feature.Test (
         fun builder _ ->
             let (Called result) = builder.CancelFailure ()
-            let expected = SetupTeardownCanceledFailure
+            let expected = GeneralCancelFailure
             
             if result = expected then
                 TestSuccess
@@ -36,8 +36,8 @@ let ``CancelFailure should return a failure`` =
 let ``GeneralFailure should convert a message into a failure`` =
     feature.Test (
         fun builder _ ->
-            let (Called result) = builder.GeneralFailure ("Why did I fail", "T:\\some\\file.abc", 33)
-            let expected = GeneralSetupTeardownFailure ("Why did I fail", { FilePath = "T:\\some"; FileName = "file.abc"; LineNumber = 33 })
+            let (Called result) = builder.GeneralFailure "This Fails"
+            let expected = GeneralFailure "This Fails"
             
             if result = expected then
                 TestSuccess

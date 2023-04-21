@@ -5,14 +5,14 @@ open Archer.Arrows
 open Archer.Fletching.Types.Internal
 
 let private feature = Arrow.NewFeature (
-    Setup (fun _ -> TestExecutionResultFailureBuilder () |> Ok)
+    Setup (fun _ -> TestExecutionResultFailureBuilder().SetupExecutionFailure |> Ok)
 )
 
 let ``ExceptionFailure should convert an exception into a Failure`` =
     feature.Test (
         fun builder _ ->
             let ex = System.ApplicationException "Sure why not"
-            let result = builder.SetupExecutionFailure.ExceptionFailure ex
+            let result = builder.ExceptionFailure ex
             let expected = SetupExecutionFailure (SetupTeardownExceptionFailure ex)
             
             if result = expected then
@@ -24,7 +24,7 @@ let ``ExceptionFailure should convert an exception into a Failure`` =
 let ``CancelFailure should return a failure`` =
     feature.Test (
         fun builder _ ->
-            let result = builder.SetupExecutionFailure.CancelFailure ()
+            let result = builder.CancelFailure ()
             let expected = SetupExecutionFailure SetupTeardownCanceledFailure
             
             if result = expected then
@@ -36,7 +36,7 @@ let ``CancelFailure should return a failure`` =
 let ``GeneralFailure should convert a message into a failure`` =
     feature.Test (
         fun builder _ ->
-            let result = builder.SetupExecutionFailure.GeneralFailure ("Yep I am a failure", "B:\\or\\not\\toBe.question", 20)
+            let result = builder.GeneralFailure ("Yep I am a failure", "B:\\or\\not\\toBe.question", 20)
             let expected = SetupExecutionFailure (GeneralSetupTeardownFailure ("Yep I am a failure", { FilePath = "B:\\or\\not"; FileName = "toBe.question"; LineNumber = 20 }))
             
             if result = expected then

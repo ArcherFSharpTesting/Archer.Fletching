@@ -1,6 +1,5 @@
 ﻿module Archer.Fletching.Tests.``TestExecutionResultFailureBuilder TestExecutionResult``
 
-open System.Security.Authentication.ExtendedProtection
 open Archer
 open Archer.Arrows
 open Archer.Fletching.Types.Internal

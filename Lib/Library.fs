@@ -1,9 +1,6 @@
 ﻿namespace Archer.Fletching.Lib
-
-
 (*
 + Should
-|   + Modifiers
 |   + Dictionary
 |   |   + {dictionary} |> should.HaveKey {key}
 |   |   + {dictionary} |> should.NotHaveKey {key} 
@@ -64,7 +61,6 @@
 |   |   + should.Fail {string}
 |   |   + {value} |> should.BeIgnored {string}
 |   |   + {value} |> should.BeIgnored ()
-
 *)
 
 module Say =

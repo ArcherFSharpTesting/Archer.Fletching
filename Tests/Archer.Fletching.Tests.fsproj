@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="TypeHelpers.fs" />
+    <Compile Include="TestHelpers.fs" />
     <Compile Include="TestResultFailureBuilder.fs" />
+    <Compile Include="SetupTeardownResultFailureBuilder.fs" />
     <Compile Include="RunHelpers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

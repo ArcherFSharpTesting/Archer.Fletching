@@ -1,5 +1,5 @@
 ﻿[<AutoOpen>]
-module Archer.Fletching.Tests.TypeHelpers
+module Archer.Fletching.Tests.TestHelpers
 
 open Archer
 open System.IO
@@ -17,3 +17,5 @@ type Location =
             FileName = fileName
             LineNumber = lineNumber 
         }
+        
+type WasCalled<'a> = | Called of 'a

@@ -238,7 +238,7 @@ let ``NotBeSameAs should return success both are equivalent Boolean Tuples`` =
     )
 
 // --------------------------------- BeOfType ---------------------------------
-let ``BeOfType<string> return success if it is a string`` =
+let ``BeOfType<string> should return success if it is a string`` =
     feature.Test (
         fun _ ->
             let thing = "A thing"
@@ -247,7 +247,7 @@ let ``BeOfType<string> return success if it is a string`` =
             |> Should.BeOfType<string>
     )
     
-let ``BeOfType<obj> return success if it is an object`` =
+let ``BeOfType<obj> should return success if it is an object`` =
     feature.Test (
         fun _ ->
             let thing = obj ()
@@ -256,7 +256,7 @@ let ``BeOfType<obj> return success if it is an object`` =
             |> Should.BeOfType<obj>
     )
     
-let ``BeOfType<int> return failure if it is a float`` =
+let ``BeOfType<int> should return failure if it is a float`` =
     feature.Test (
         fun _ ->
             let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{typeof<int>}"; Actual = $"%A{(1.0).GetType ()}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
@@ -266,6 +266,13 @@ let ``BeOfType<int> return failure if it is a float`` =
             
             result
             |> Should.BeEqualTo expected
+    )
+    
+let ``BeOfType<IEnumerable> should return success of it is a string`` =
+    feature.Test(
+        fun _ ->
+            "Hello"
+            |> Should.BeOfType<System.Collections.IEnumerable>
     )
 
 let ``Test Cases`` = feature.GetTests ()

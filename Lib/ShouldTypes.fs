@@ -32,4 +32,10 @@ type Should =
         check (checkReference expected >> not) fullPath lineNumber (ReferenceOf >> Not) expected
         
     static member BeOfType<'expected> (actual, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        TestSuccess
+        let tType = typeof<'expected>
+        
+        if tType.IsInstanceOfType actual then
+            TestSuccess
+        else
+            failureBuilder.ValidationFailure (tType, actual.GetType (), fullPath, lineNumber)
+            

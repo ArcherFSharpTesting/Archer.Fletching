@@ -246,5 +246,26 @@ let ``BeOfType<string> return success if it is a string`` =
             thing
             |> Should.BeOfType<string>
     )
+    
+let ``BeOfType<obj> return success if it is an object`` =
+    feature.Test (
+        fun _ ->
+            let thing = obj ()
+            
+            thing
+            |> Should.BeOfType<obj>
+    )
+    
+let ``BeOfType<int> return failure if it is a float`` =
+    feature.Test (
+        fun _ ->
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{typeof<int>}"; Actual = $"%A{(1.0).GetType ()}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            
+            let result =
+                Should.BeOfType<int> (1.0, "W:\\thingTest.tst", -24)
+            
+            result
+            |> Should.BeEqualTo expected
+    )
 
 let ``Test Cases`` = feature.GetTests ()

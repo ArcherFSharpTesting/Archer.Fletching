@@ -6,6 +6,7 @@ open Archer.Fletching.Types.Internal
 
 let private feature = Arrow.NewFeature ()
 
+// -------------------------------- BeEqualTo --------------------------------
 let ``BeEqualTo should return success if both items are the same string`` =
     feature.Test (
         fun _ ->
@@ -57,6 +58,7 @@ let ``BeEqualTo should return success if both are equivalent lists of strings`` 
             |> Should.BeEqualTo b
     )
     
+// ------------------------------- NotBeEqualTo -------------------------------
 let ``NotBeEqualTo should return failure of both objects are the same string`` =
     feature.Test (
         fun _ ->
@@ -118,6 +120,26 @@ let ``NotBeEqualTo should return failure if both are equivalent Booleans`` =
                 
             result
             |> Should.BeEqualTo expected
+    )
+
+// --------------------------------- BeSameAs =--------------------------------
+let ``BeSameAs should return success if both objects are the same`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = obj ()
+            let thing2 = thing1
+            
+            thing1
+            |> Should.BeSameAs thing2
+    )
+    
+let ``BeSameAs should return success of both strings are the same`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = "A thing like no other"
+            
+            thing1
+            |> Should.BeSameAs thing1
     )
 
 let ``Test Cases`` = feature.GetTests ()

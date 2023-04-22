@@ -7,21 +7,16 @@ open Archer.Fletching.Types.Internal
 
 let private failureBuilder = TestResultFailureBuilder id
 
+let private check fCheck fullPath lineNumber modifier expected actual =
+    if actual |> fCheck expected then
+        TestSuccess
+    else
+        failureBuilder.ValidationFailure (modifier expected, actual, fullPath, lineNumber)
+
 type Should =
     //Object Checks
     static member BeEqualTo<'a when 'a : equality> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        let check (actual: 'a) =
-            if actual = expected then
-                TestSuccess
-            else
-                failureBuilder.ValidationFailure (expected, actual, fullPath, lineNumber)
-        check
+        check (=) fullPath lineNumber id expected
         
     static member NotBeEqualTo<'a when 'a : equality> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        let check (actual: 'a) =
-            if actual = expected then
-                failureBuilder.ValidationFailure (Not expected, actual, fullPath, lineNumber)
-            else
-                TestSuccess
-        
-        check
+        check (<>) fullPath lineNumber Not expected

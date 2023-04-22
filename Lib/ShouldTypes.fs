@@ -8,6 +8,9 @@ open Archer.Fletching.Types.Internal
 
 let private failureBuilder = TestResultFailureBuilder id
 
+let private checkReference<'a> (expected: 'a) (actual: 'a) =
+    Object.ReferenceEquals (actual, expected)
+
 let private check fCheck fullPath lineNumber modifier expected actual =
     if actual |> fCheck then
         TestSuccess
@@ -23,7 +26,7 @@ type Should =
         check ((<>) expected) fullPath lineNumber Not expected
         
     static member BeSameAs<'a> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        check (fun (actual: 'a) -> Object.ReferenceEquals (actual, expected)) fullPath lineNumber ReferenceOf expected
+        check (checkReference expected) fullPath lineNumber ReferenceOf expected
         
     static member NotBeSameAs<'a> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        check (fun (actual: 'a) -> Object.ReferenceEquals (actual, expected) |> not) fullPath lineNumber (ReferenceOf >> Not) expected
+        check (checkReference expected >> not) fullPath lineNumber (ReferenceOf >> Not) expected

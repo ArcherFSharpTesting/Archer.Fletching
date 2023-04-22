@@ -19,7 +19,7 @@ type Should =
         
     static member NotBeEqualTo<'a when 'a : equality> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         let check (actual: 'a) =
-            if actual = expected |> not then
+            if actual = expected then
                 failureBuilder.ValidationFailure (Not expected, actual, fullPath, lineNumber)
             else
                 TestSuccess

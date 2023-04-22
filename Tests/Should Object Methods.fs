@@ -114,7 +114,7 @@ let ``NotBeEqualTo should return failure if both are equivalent Booleans`` =
             let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not thing1}"; Actual = $"%A{thing2}" }), { FilePath = "R:\\"; FileName = "ringTest.tst"; LineNumber = 100 }))
             let result =
                 thing1
-                |> Should.NotBeEqualTo thing2
+                |> Should.NotBeEqualTo (thing2, "R:\\ringTest.tst", 100)
                 
             result
             |> Should.BeEqualTo expected

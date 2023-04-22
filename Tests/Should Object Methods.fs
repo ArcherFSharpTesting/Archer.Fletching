@@ -237,4 +237,14 @@ let ``NotBeSameAs should return success both are equivalent Boolean Tuples`` =
             |> Should.NotBeSameAs thing2
     )
 
+// -------------------------------- NotBeSameAs --------------------------------
+// let ``BeOfType<string> return success if it is a string`` =
+//     feature.Test (
+//         fun _ ->
+//             let thing = "A thing"
+//             
+//             thing
+//             |> Should.BeOfType<string>
+//     )
+
 let ``Test Cases`` = feature.GetTests ()

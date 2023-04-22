@@ -22,4 +22,4 @@ type Should =
         check ((<>) expected) fullPath lineNumber Not expected
         
     static member BeSameAs<'a when 'a : equality> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        check ((=) expected) fullPath lineNumber id expected
+        check ((=) expected) fullPath lineNumber ReferenceOf expected

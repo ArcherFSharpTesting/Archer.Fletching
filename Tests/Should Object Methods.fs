@@ -148,7 +148,7 @@ let ``BeSameAs should return failure if both are different objects`` =
             let thing1 = obj()
             let thing2 = obj()
             
-            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{ReferenceOf thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
             
             let result =
                 thing1
@@ -164,7 +164,7 @@ let ``BeSameAs should return failure if both are different strings`` =
             let thing1 = "Hello"
             let thing2 = "Good Bye"
             
-            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{ReferenceOf thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
             
             let result =
                 thing1
@@ -173,5 +173,16 @@ let ``BeSameAs should return failure if both are different strings`` =
             result
             |> Should.BeEqualTo expected
     )
+    
+// let ``BeSameAs should return failure if both are equivalent Booleans`` =
+//     feature.Test (
+//         fun _ ->
+//             let thing1 = 5
+//             let thing2 = 5
+//             
+//             let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+//             
+//             
+//     )
 
 let ``Test Cases`` = feature.GetTests ()

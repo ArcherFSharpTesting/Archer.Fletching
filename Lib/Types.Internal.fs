@@ -6,6 +6,7 @@ open Archer
 
 type Modifiers<'a> =
     | Not of 'a
+    | ReferenceOf of 'a
 
 let buildLocation fullFileName lineNumber =
     let info = System.IO.FileInfo fullFileName

@@ -275,4 +275,44 @@ let ``BeOfType<IEnumerable> should return success of it is a string`` =
             |> Should.BeOfType<System.Collections.IEnumerable>
     )
 
+// -------------------------------- NotBeOfType --------------------------------
+let ``NotBeOfType<string> should return success if item is an int`` =
+    feature.Test (
+        fun _ ->
+            1
+            |> Should.NotBeTypeOf<string>
+    )
+    
+let ``NotBeOfType<string list> should return success if item is a char list`` =
+    feature.Test (
+        fun _ ->
+            "hello"
+            |> List.ofSeq
+            |> Should.NotBeTypeOf<string list>
+    )
+    
+let ``NotBeOfType<int> should return failure if item is 5`` =
+    feature.Test (
+        fun _ ->
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not typeof<int>}"; Actual = $"%A{(5).GetType ()}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            
+            let result =
+                Should.NotBeTypeOf<int> (5, "W:\\thingTest.tst", -24)
+                
+            result
+            |> Should.BeEqualTo expected
+    )
+
+let ``NotBeOfType<IEnumerable<char>> should return failure if item is a string`` =
+    feature.Test (
+        fun _ ->
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not typeof<System.Collections.Generic.IEnumerable<char>>}"; Actual = $"%A{typeof<string>}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            
+            let result =
+                Should.NotBeTypeOf<System.Collections.Generic.IEnumerable<char>> ("hello", "W:\\thingTest.tst", -24)
+                
+            result
+            |> Should.BeEqualTo expected
+    )
+
 let ``Test Cases`` = feature.GetTests ()

@@ -17,5 +17,6 @@ framework
     ``TestExecutionResultFailureBuilder TestExecutionResult``.``Test Cases``
     ``TestExecutionResultFailureBuilder TeardownExecutionFailure``.``Test Cases``
     ``TestExecutionResultFailureBuilder GeneralExecutionFailure``.``Test Cases``
+    ``Should Object Methods``.``Test Cases``
 ]
 |> runAndReport

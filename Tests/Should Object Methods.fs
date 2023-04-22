@@ -190,4 +190,51 @@ let ``BeSameAs should return failure if both are equivalent Booleans`` =
             |> Should.BeEqualTo expected
     )
 
+// -------------------------------- NotBeSameAs --------------------------------
+let ``NotBeSameAs should return success if both are different`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = obj ()
+            let thing2 = obj ()
+            
+            thing1
+            |> Should.NotBeSameAs thing2
+    )
+    
+let ``NotBeSameAs should return true if both are different strings`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = "Hello Thing"
+            let thing2 = "Goodbye Hulk"
+            
+            thing1
+            |> Should.NotBeSameAs thing2
+    )
+    
+let ``NotBeSameAs should return failure if both are same object`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = obj ()
+            let thing2 = thing1
+            
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not (ReferenceOf thing2)}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            
+            let result =
+                thing1
+                |> Should.NotBeSameAs (thing2, "W:\\thingTest.tst", -24)
+                
+            result
+            |> Should.BeEqualTo expected
+    )
+    
+let ``NotBeSameAs should return success both are equivalent Boolean Tuples`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = (true, false)
+            let thing2 = (true, false)
+            
+            thing1
+            |> Should.NotBeSameAs thing2
+    )
+
 let ``Test Cases`` = feature.GetTests ()

@@ -28,7 +28,7 @@ A test verification Framework for Archer
   - [x] {value} |> should.BeEqualTo {value}
   - [x] {value} |> should.NotBeEqualTo {value}
   - [x] {value} |> should.BeSameAs {value}
-  - [ ] {value} |> should.NotBeSameAs {value}
+  - [x] {value} |> should.NotBeSameAs {value}
   - [ ] {value} |> should.BeOfType\<Type\>
   - [ ] {value} |> should.NotBeOfType\<Type\>
   - [ ] {value} |> should.BeNull

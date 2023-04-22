@@ -24,3 +24,6 @@ type Should =
         
     static member BeSameAs<'a> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         check (fun (actual: 'a) -> Object.ReferenceEquals (actual, expected)) fullPath lineNumber ReferenceOf expected
+        
+    static member NotBeSameAs<'a> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        check (fun (actual: 'a) -> Object.ReferenceEquals (actual, expected) |> not) fullPath lineNumber (ReferenceOf >> Not) expected

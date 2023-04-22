@@ -13,6 +13,7 @@
     <Compile Include="GeneralFailureBuilder.fs" />
     <Compile Include="TestExecutionResultFailureBuilder SetupExecutionFailure.fs" />
     <Compile Include="TestExecutionResultFailureBuilder TestExecutionResult.fs" />
+    <Compile Include="TestExecutionResultFailureBuilder TeardownExecutionFailure.fs" />
     <Compile Include="RunHelpers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

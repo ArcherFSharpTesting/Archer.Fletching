@@ -84,5 +84,25 @@ let ``NotBeEqualTo should return failure if both items are the same object`` =
             result
             |> Should.BeEqualTo expected
     )
+    
+let ``NotBeEqualTo should return success if both are different objects`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = obj ()
+            let thing2 = obj ()
+            
+            thing1
+            |> Should.NotBeEqualTo thing2
+    )
+    
+let ``NotBeEqualTo should return success if both lists contain different strings`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = ["Hello"; " world"]
+            let thing2 = ["Bye"; " world"]
+            
+            thing1
+            |> Should.NotBeEqualTo thing2
+    )
 
 let ``Test Cases`` = feature.GetTests ()

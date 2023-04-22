@@ -104,5 +104,20 @@ let ``NotBeEqualTo should return success if both lists contain different strings
             thing1
             |> Should.NotBeEqualTo thing2
     )
+    
+let ``NotBeEqualTo should return failure if both are equivalent Booleans`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = true
+            let thing2 = true
+            
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not thing1}"; Actual = $"%A{thing2}" }), { FilePath = "R:\\"; FileName = "ringTest.tst"; LineNumber = 100 }))
+            let result =
+                thing1
+                |> Should.NotBeEqualTo thing2
+                
+            result
+            |> Should.BeEqualTo expected
+    )
 
 let ``Test Cases`` = feature.GetTests ()

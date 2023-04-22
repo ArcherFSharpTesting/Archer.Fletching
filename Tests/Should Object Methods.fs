@@ -141,5 +141,37 @@ let ``BeSameAs should return success of both strings are the same`` =
             thing1
             |> Should.BeSameAs thing1
     )
+    
+let ``BeSameAs should return failure if both are different objects`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = obj()
+            let thing2 = obj()
+            
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            
+            let result =
+                thing1
+                |> Should.BeSameAs (thing2, "W:\\thingTest.tst", -24)
+                
+            result
+            |> Should.BeEqualTo expected
+    )
+    
+let ``BeSameAs should return failure if both are different strings`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = "Hello"
+            let thing2 = "Good Bye"
+            
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            
+            let result =
+                thing1
+                |> Should.BeSameAs (thing2, "W:\\thingTest.tst", -24)
+                
+            result
+            |> Should.BeEqualTo expected
+    )
 
 let ``Test Cases`` = feature.GetTests ()

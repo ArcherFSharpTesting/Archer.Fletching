@@ -35,5 +35,25 @@ let ``BeEqualTo should return a validation failure if they are different`` =
             else
                 failureBuilder.ValidationFailure (expected, result)
     )
+    
+let ``BeEqualTo should return success if both are equivalent numbers`` =
+    feature.Test (
+        fun _ ->
+            let a = 5
+            let b = 5
+            
+            a
+            |> Should.BeEqualTo b
+    )
+    
+let ``BeEqual to should return success if both are equivalent lists of strings`` =
+    feature.Test (
+        fun _ ->
+            let a = ["Hello"; " world"]
+            let b = ["Hello"; " world"]
+            
+            a
+            |> Should.BeEqualTo b
+    )
 
 let ``Test Cases`` = feature.GetTests ()

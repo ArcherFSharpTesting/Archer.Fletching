@@ -1,6 +1,7 @@
 ﻿[<AutoOpen>]
 module Archer.ShouldTypes
 
+open System
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 open Archer.Fletching.Types.Internal
@@ -21,5 +22,5 @@ type Should =
     static member NotBeEqualTo<'a when 'a : equality> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         check ((<>) expected) fullPath lineNumber Not expected
         
-    static member BeSameAs<'a when 'a : equality> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        check ((=) expected) fullPath lineNumber ReferenceOf expected
+    static member BeSameAs<'a> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        check (fun (actual: 'a) -> Object.ReferenceEquals (actual, expected)) fullPath lineNumber ReferenceOf expected

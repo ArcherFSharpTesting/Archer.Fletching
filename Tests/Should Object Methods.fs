@@ -174,15 +174,20 @@ let ``BeSameAs should return failure if both are different strings`` =
             |> Should.BeEqualTo expected
     )
     
-// let ``BeSameAs should return failure if both are equivalent Booleans`` =
-//     feature.Test (
-//         fun _ ->
-//             let thing1 = 5
-//             let thing2 = 5
-//             
-//             let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
-//             
-//             
-//     )
+let ``BeSameAs should return failure if both are equivalent Booleans`` =
+    feature.Test (
+        fun _ ->
+            let thing1 = 5
+            let thing2 = 5
+            
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{ReferenceOf thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            
+            let result =
+                thing1
+                |> Should.BeSameAs (thing2, "W:\\thingTest.tst", -24)
+                
+            result
+            |> Should.BeEqualTo expected
+    )
 
 let ``Test Cases`` = feature.GetTests ()

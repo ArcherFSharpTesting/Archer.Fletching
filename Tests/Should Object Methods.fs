@@ -2,6 +2,7 @@
 
 open Archer
 open Archer.Arrows
+open Archer.Fletching.Types.Internal
 
 let private feature = Arrow.NewFeature ()
 
@@ -46,7 +47,7 @@ let ``BeEqualTo should return success if both are equivalent numbers`` =
             |> Should.BeEqualTo b
     )
     
-let ``BeEqual to should return success if both are equivalent lists of strings`` =
+let ``BeEqualTo should return success if both are equivalent lists of strings`` =
     feature.Test (
         fun _ ->
             let a = ["Hello"; " world"]
@@ -54,6 +55,34 @@ let ``BeEqual to should return success if both are equivalent lists of strings``
             
             a
             |> Should.BeEqualTo b
+    )
+    
+let ``NotBeEqualTo should return failure of both objects are the same string`` =
+    feature.Test (
+        fun _ ->
+            let thing = "a thing"
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not thing}"; Actual = $"%A{thing}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+            
+            let result = 
+                thing
+                |> Should.NotBeEqualTo (thing, "W:\\thingTest.tst", -24)
+                
+            result
+            |> Should.BeEqualTo expected
+    )
+    
+let ``NotBeEqualTo should return failure if both items are the same object`` =
+    feature.Test (
+        fun _ ->
+            let thing = obj ()
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not thing}"; Actual = $"%A{thing}" }), { FilePath = "X:\\"; FileName = "wingTest.tst"; LineNumber = -86 }))
+
+            let result =
+                thing
+                |> Should.NotBeEqualTo (thing, "X:\\wingTest.tst", -86)
+            
+            result
+            |> Should.BeEqualTo expected
     )
 
 let ``Test Cases`` = feature.GetTests ()

@@ -16,3 +16,9 @@ type Should =
             else
                 failureBuilder.ValidationFailure (expected, actual, fullPath, lineNumber)
         check
+        
+    static member NotBeEqualTo<'a when 'a : equality> (expected: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        let check (actual: 'a) =
+            failureBuilder.ValidationFailure (Not expected, actual, fullPath, lineNumber)
+        
+        check

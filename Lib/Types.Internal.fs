@@ -4,6 +4,9 @@ open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 open Archer
 
+type Modifiers<'a> =
+    | Not of 'a
+
 let buildLocation fullFileName lineNumber =
     let info = System.IO.FileInfo fullFileName
     let path = info.Directory.FullName

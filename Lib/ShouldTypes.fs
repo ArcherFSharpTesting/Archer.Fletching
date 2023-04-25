@@ -46,3 +46,6 @@ type Should =
         
     static member BeNull<'expectedType when 'expectedType: null> (actual: 'expectedType, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         check (fun v -> match v with | null -> true | _ -> false) fullPath lineNumber id id null actual
+        
+    static member NotBeNull<'expectedType when 'expectedType: null> (actual: 'expectedType, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        check (fun v -> match v with | null -> false | _ -> true) fullPath lineNumber id id (Not null) actual

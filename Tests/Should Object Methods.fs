@@ -344,4 +344,27 @@ let ``BeNull should return a failure if item is an instantiated object`` =
             |> Should.BeEqualTo expected
     )
 
+// --------------------------------- NotBeNull ---------------------------------
+let ``NotBeNull Should return Success if object is not null`` =
+    feature.Test (
+        fun _ ->
+            let thing = obj ()
+            
+            thing
+            |> Should.NotBeNull
+    )
+    
+let ``NotBeNull Should return failure if object is null`` =
+    feature.Test (
+        fun _ ->
+            let thing: obj = null
+            
+            let expected = failureBuilder.ValidationFailure ({ ExpectedValue = Not null; ActualValue = null; }, "F:\\ull\\path.com", 58)
+            
+            let result = Should.NotBeNull (thing, "F:\\ull\\path.com", 58)
+            
+            result
+            |> Should.BeEqualTo expected
+    )
+
 let ``Test Cases`` = feature.GetTests ()

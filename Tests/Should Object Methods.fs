@@ -315,4 +315,33 @@ let ``NotBeOfType<IEnumerable<char>> should return failure if item is a string``
             |> Should.BeEqualTo expected
     )
 
+// ---------------------------------- BeNull ----------------------------------
+let ``BeNull should return success if item is null`` =
+    feature.Test (
+        fun _ ->
+            let thing: obj = null
+            thing
+            |> Should.BeNull
+    )
+    
+let ``BeNull should return success if string is null`` =
+    feature.Test (
+        fun _ ->
+            let message: string = null
+            message
+            |> Should.BeNull
+    )
+    
+let ``BeNull should return a failure if item is an instantiated object`` =
+    feature.Test (
+        fun _ ->
+            let thing = obj ()
+            
+            let expected = failureBuilder.ValidationFailure (null, thing, "B:\\oy.txt", 35)
+            let result = Should.BeNull (thing, "B:\\oy.txt", 35)
+            
+            result
+            |> Should.BeEqualTo expected
+    )
+
 let ``Test Cases`` = feature.GetTests ()

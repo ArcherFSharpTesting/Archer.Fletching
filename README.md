@@ -31,7 +31,7 @@ A test verification Framework for Archer
   - [x] {value} |> should.NotBeSameAs {value}
   - [x] {value} |> should.BeOfType\<Type\>
   - [x] {value} |> should.NotBeOfType\<Type\>
-  - [ ] {value} |> should.BeNull
+  - [x] {value} |> should.BeNull
   - [ ] {value} |> should.NotBeNull
   - [ ] {value} |> should.BeDefaultOf\<Type\>
   - [ ] {value} |> should.NotBeDefaultOf\<Type\>

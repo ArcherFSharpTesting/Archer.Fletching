@@ -10,7 +10,7 @@ let private feature = Arrow.NewFeature (
 
 let ``ExceptionFailure should convert an exception into a Failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let ex = System.ApplicationException "Sure why not"
             let result = builder.ExceptionFailure ex
             let expected = SetupExecutionFailure (SetupTeardownExceptionFailure ex)
@@ -23,7 +23,7 @@ let ``ExceptionFailure should convert an exception into a Failure`` =
     
 let ``CancelFailure should return a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.CancelFailure ()
             let expected = SetupExecutionFailure SetupTeardownCanceledFailure
             
@@ -35,7 +35,7 @@ let ``CancelFailure should return a failure`` =
     
 let ``GeneralFailure should convert a message into a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.GeneralFailure ("Yep I am a failure", "B:\\or\\not\\toBe.question", 20)
             let expected = SetupExecutionFailure (GeneralSetupTeardownFailure ("Yep I am a failure", { FilePath = "B:\\or\\not"; FileName = "toBe.question"; LineNumber = 20 }))
             

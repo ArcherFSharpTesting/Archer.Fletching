@@ -10,7 +10,7 @@ let private feature = Arrow.NewFeature (
 
 let ``ExceptionFailure should convert an Exception into a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let ex = System.ArgumentNullException "Your argument means nothing"
             let result = builder.ExceptionFailure ex
             let expected = GeneralExecutionFailure (GeneralExceptionFailure ex)
@@ -23,7 +23,7 @@ let ``ExceptionFailure should convert an Exception into a failure`` =
     
 let ``CancelFailure should return a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.CancelFailure ()
             let expected = GeneralExecutionFailure GeneralCancelFailure
             
@@ -35,7 +35,7 @@ let ``CancelFailure should return a failure`` =
     
 let ``GeneralFailure should convert a message into a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.GeneralFailure "Some Failure"
             let expected = GeneralExecutionFailure (GeneralFailure "Some Failure")
             

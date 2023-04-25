@@ -10,7 +10,7 @@ let private feature = Arrow.NewFeature (
 
 let ``ValidationFailure should convert ExpectationInfo into a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let a = Ok "Its Good"
             let result = builder.ValidationFailure ({ ExpectedValue = a; ActualValue = Called 33 }, "H:\\f.th", 25)
             let expected = TestExecutionResult (TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{a}"; Actual = $"%A{Called 33}" }), { FilePath = "H:\\"; FileName = "f.th"; LineNumber = 25 })))
@@ -23,7 +23,7 @@ let ``ValidationFailure should convert ExpectationInfo into a failure`` =
     
 let ``ValidationFailure should convert expected and actual into a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let a = ("are you good?", true)
             let result = builder.ValidationFailure (a, [], "L:\\456\\q.com", 99)
             let expected = TestExecutionResult (TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{a}"; Actual = $"%A{[]}" }), { FilePath = "L:\\456"; FileName = "q.com"; LineNumber = 99 })))
@@ -48,7 +48,7 @@ let ``GeneralTestExpectationFailure should convert a message into a failure`` =
     
 let ``IgnoreFailure should convert a message into a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.IgnoreFailure ("I ignore you", "U:\\Ing.pxl", 11)
             let expected = TestExecutionResult (TestFailure (TestIgnored (Some "I ignore you", { FilePath = "U:\\"; FileName = "Ing.pxl"; LineNumber = 11 })))
             
@@ -60,7 +60,7 @@ let ``IgnoreFailure should convert a message into a failure`` =
     
 let ``IgnoreFailure should convert Some (message) into a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.IgnoreFailure (Some "Yep I am ignoring you", "I:\\ignore.u", 40)
             let expected = TestExecutionResult (TestFailure (TestIgnored (Some "Yep I am ignoring you", { FilePath = "I:\\"; FileName = "ignore.u"; LineNumber = 40 })))
             
@@ -72,7 +72,7 @@ let ``IgnoreFailure should convert Some (message) into a failure`` =
     
 let ``IgnoreFailure should convert None into a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.IgnoreFailure (None, "W:\\ho\\r.u", 77)
             let expected = TestExecutionResult (TestFailure (TestIgnored (None, { FilePath = "W:\\ho"; FileName = "r.u"; LineNumber = 77 })))
             
@@ -84,7 +84,7 @@ let ``IgnoreFailure should convert None into a failure`` =
     
 let ``IgnoreFailure should return a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.IgnoreFailure ("S:\\o\\what.duh", lineNumber = 83)
             let expected = TestExecutionResult (TestFailure (TestIgnored (None, { FilePath = "S:\\o"; FileName = "what.duh"; LineNumber = 83 })))
             
@@ -96,7 +96,7 @@ let ``IgnoreFailure should return a failure`` =
     
 let ``ExceptionFailure should convert an exception into a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let ex = System.RankException "This is rank"
             let result = builder.ExceptionFailure ex
             let expected = TestExecutionResult (TestFailure (TestExceptionFailure ex))

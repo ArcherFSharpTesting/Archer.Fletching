@@ -10,7 +10,7 @@ let private feature = Arrow.NewFeature (
 
 let ``ExceptionFailure should convert exception to failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let ex = System.OverflowException "So many exception tests"
             let result = builder.ExceptionFailure ex
             let expected = TeardownExecutionFailure (SetupTeardownExceptionFailure ex)
@@ -23,7 +23,7 @@ let ``ExceptionFailure should convert exception to failure`` =
     
 let ``CancelFailure should return a failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.CancelFailure ()
             let expected = TeardownExecutionFailure SetupTeardownCanceledFailure
             
@@ -35,7 +35,7 @@ let ``CancelFailure should return a failure`` =
     
 let ``GeneralFailure should convert message to failure`` =
     feature.Test (
-        fun builder _ ->
+        fun builder ->
             let result = builder.GeneralFailure ("teardown failed", "Y:\\aho.gif", 75)
             let expected = TeardownExecutionFailure (GeneralSetupTeardownFailure ("teardown failed", { FilePath = "Y:\\"; FileName = "aho.gif"; LineNumber = 75 }))
             

@@ -34,7 +34,7 @@ A test verification Framework for Archer
   - [x] {value} |> should.BeNull
   - [x] {value} |> should.NotBeNull
   - [x] {value} |> should.BeDefaultOf\<Type\>
-  - [ ] {value} |> should.NotBeDefaultOf\<Type\>
+  - [x] {value} |> should.NotBeDefaultOf\<Type\>
   - [ ] {value} |> should.PassTestOf {predicate}
   - [ ] {value} |> should.NotPassTestOf {predicate}
 - Functions

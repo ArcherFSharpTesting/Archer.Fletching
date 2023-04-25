@@ -420,4 +420,15 @@ let ``BeDefaultOf<int> should return success for 100`` =
             Should.NotBeDefaultOf<int> 100
     )
     
+// -------------------------------- PassTestOf --------------------------------
+let ``PassTestOf should return successful if predicate returns true`` =
+    feature.Test (
+        fun _ ->
+            "Hello"
+            |> Should.PassTestOf (fun _ -> true)
+    )
+    
+let ``PassTestOf should pass the given item to the predicate`` =
+    feature.Test (
+    )
 let ``Test Cases`` = feature.GetTests ()

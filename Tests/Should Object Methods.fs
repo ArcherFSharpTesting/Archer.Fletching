@@ -367,4 +367,57 @@ let ``NotBeNull Should return failure if object is null`` =
             |> Should.BeEqualTo expected
     )
 
+// -------------------------------- BeDefaultOf --------------------------------
+let ``BeDefaultOf<string> should return success for null`` =
+    feature.Test (
+        fun _ ->
+            null
+            |> Should.BeDefaultOf<string>
+    )
+    
+let ``BeDefaultOf<int> should return success for Unchecked.defaultOf<int>`` =
+    feature.Test (
+        fun _ ->
+            Unchecked.defaultof<int>
+            |> Should.BeDefaultOf<int>
+    )
+    
+let ``BeDefaultOf<int> should return failure for 100`` =
+    feature.Test (
+        fun _ ->
+            let expected = failureBuilder.ValidationFailure (Unchecked.defaultof<int>, 100, "F:\\ull\\Path.p", 16)
+            let result = Should.BeDefaultOf<int> (100, "F:\\ull\\Path.p", 16)
+            
+            result
+            |> Should.BeEqualTo expected
+    )
+
+
+// ------------------------------ NotBeDefaultOf ------------------------------
+let ``BeDefaultOf<string> should return failure for null`` =
+    feature.Test (
+        fun _ ->
+            let expected = failureBuilder.ValidationFailure(Not null, null, "F:\\ull\\Path.io", 98)
+            let result = Should.NotBeDefaultOf<string> (null, "F:\\ull\Path.io", 98)
+            
+            result
+            |> Should.BeEqualTo expected
+    )
+    
+let ``BeDefaultOf<int> should return Failure for Unchecked.defaultOf<int>`` =
+    feature.Test (
+        fun _ ->
+            let expected = failureBuilder.ValidationFailure (Not Unchecked.defaultof<int>, Unchecked.defaultof<int>, "F:\\ull\\Path.c", 41)
+            let result = Should.NotBeDefaultOf<int> (Unchecked.defaultof<int>, "F:\\ull\\Path.c", 41)
+            
+            result
+            |> Should.BeEqualTo expected
+    )
+    
+let ``BeDefaultOf<int> should return success for 100`` =
+    feature.Test (
+        fun _ ->
+            Should.NotBeDefaultOf<int> 100
+    )
+    
 let ``Test Cases`` = feature.GetTests ()

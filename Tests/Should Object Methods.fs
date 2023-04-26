@@ -430,5 +430,71 @@ let ``PassTestOf should return successful if predicate returns true`` =
     
 let ``PassTestOf should pass the given item to the predicate`` =
     feature.Test (
+        fun _ ->
+            let thing = obj ()
+            let mutable testResult = failureBuilder.ValidationFailure ("To be changed", "Was not changed")
+            
+            thing
+            |> Should.PassTestOf (fun value ->
+                testResult <-
+                    value
+                    |> Should.BeSameAs thing
+                true
+            )
+            |> ignore
+            
+            testResult
     )
+    
+let ``PassTestOf should fail if the item does not pass the test`` =
+    feature.Test (
+        fun _ ->
+            let expected = failureBuilder.ValidationFailure (PassesTest 5, FailsTest 5, "G:\\ood\\test.c", 28)
+            let result =
+                5
+                |> Should.PassTestOf ((fun _ -> false), "G:\\ood\\test.c", 28)
+                
+            result
+            |> Should.BeEqualTo expected
+    )
+    
+// ------------------------------- NotPassTestOf -------------------------------
+let ``NotPassTestOf should pass if item does not satisfy the predicate`` =
+    feature.Test (
+        fun _ ->
+            42
+            |> Should.NotPassTestOf (fun _ -> false)
+    )
+    
+let ``NotPassTestOf should pass the item to the predicate`` =
+    feature.Test (
+        fun _ ->
+            let mutable testResult = failureBuilder.ValidationFailure ("To have changed", "Did not change")
+            let thing = "A good thing"
+            
+            thing
+            |> Should.NotPassTestOf (fun value ->
+                testResult <-
+                    value
+                    |> Should.BeSameAs thing
+                true
+            )
+            |> ignore
+                
+            testResult
+    )
+    
+let ``NotPassTestOf should fail if item satisfies predicate`` =
+    feature.Test (
+        fun _ ->
+            let thing = obj ()
+            let expected = failureBuilder.ValidationFailure ((FailsTest thing), (PassesTest thing), "G:\\ood\\thin.gs", 77)
+            let result =
+                thing
+                |> Should.NotPassTestOf ((fun _ -> true), "G:\\ood\\thin.gs", 77)
+                
+            result
+            |> Should.BeEqualTo expected
+    )
+
 let ``Test Cases`` = feature.GetTests ()

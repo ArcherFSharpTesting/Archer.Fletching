@@ -55,3 +55,15 @@ type Should =
         
     static member NotBeDefaultOf<'expectedType when 'expectedType: equality> (actual: 'expectedType, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         check ((<>) Unchecked.defaultof<'expectedType>) fullPath lineNumber id id (Not Unchecked.defaultof<'expectedType>) actual
+        
+    static member PassTestOf (predicate: 'a -> bool, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        let checkIt actual =
+            check predicate fullPath lineNumber id FailsTest (PassesTest actual) actual
+            
+        checkIt
+        
+    static member NotPassTestOf (predicate: 'a -> bool, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        let checkIt actual =
+            check (predicate >> not) fullPath lineNumber id PassesTest (FailsTest actual) actual
+            
+        checkIt

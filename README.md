@@ -35,8 +35,8 @@ A test verification Framework for Archer
   - [x] {value} |> should.NotBeNull
   - [x] {value} |> should.BeDefaultOf\<Type\>
   - [x] {value} |> should.NotBeDefaultOf\<Type\>
-  - [ ] {value} |> should.PassTestOf {predicate}
-  - [ ] {value} |> should.NotPassTestOf {predicate}
+  - [x] {value} |> should.PassTestOf {predicate}
+  - [x] {value} |> should.NotPassTestOf {predicate}
 - Functions
   - [ ] {action} |> should.Return {value}
   - [ ] {action} |> should.NotReturnValue {value}

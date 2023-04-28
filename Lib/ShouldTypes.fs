@@ -6,6 +6,9 @@ open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 open Archer.Fletching.Types.Internal
 
+type FailMessage =
+    | Failure of string
+
 let private failureBuilder = TestResultFailureBuilder id
 
 let private checkReference<'a> (expected: 'a) (actual: 'a) =
@@ -74,3 +77,22 @@ type Should =
         
     static member BeFalse (actual: bool, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         check not fullPath lineNumber id id false actual
+
+    // --- Other Methods ---------------------------------------------------------------------------------------------
+    static member Fail ([<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        failureBuilder.GeneralTestExpectationFailure ("", fullPath, lineNumber)
+        
+    static member Fail (Failure message, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        failureBuilder.GeneralTestExpectationFailure (message, fullPath, lineNumber)
+        
+    static member BeIgnored ([<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        let ignorer _ =
+            failureBuilder.IgnoreFailure (fullPath, lineNumber)
+            
+        ignorer
+        
+    static member BeIgnored (message: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        let ignorer _ =
+            failureBuilder.IgnoreFailure (message, fullPath, lineNumber)
+            
+        ignorer

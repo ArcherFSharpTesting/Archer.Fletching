@@ -38,5 +38,6 @@ framework
     ``TestExecutionResultFailureBuilder GeneralExecutionFailure``.``Test Cases``
     ``Should Object Methods``.``Test Cases``
     ``Should Boolean Methods``.``Test Cases``
+    ``Should Other Methods``.``Test Cases``
 ]
 |> runAndReport

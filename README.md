@@ -59,7 +59,7 @@ A test verification Framework for Archer
   - [x] {bool} |> should.BeTrue
   - [x] {bool} |> should.BeFalse
 - Other
-  - [ ] should.Fail ()
-  - [ ] {string} |> should.Fail
-  - [ ] {value} |> should.BeIgnored {string}
-  - [ ] {value} |> should.BeIgnored
+  - [x] should.Fail ()
+  - [x] {string} |> should.Fail
+  - [x] {value} |> should.BeIgnored {string}
+  - [x] {value} |> should.BeIgnored

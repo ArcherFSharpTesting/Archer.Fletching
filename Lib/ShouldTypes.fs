@@ -6,9 +6,6 @@ open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 open Archer.Fletching.Types.Internal
 
-type FailMessage =
-    | Failure of string
-
 let private failureBuilder = TestResultFailureBuilder id
 
 let private checkReference<'a> (expected: 'a) (actual: 'a) =
@@ -79,10 +76,7 @@ type Should =
         check not fullPath lineNumber id id false actual
 
     // --- Other Methods ---------------------------------------------------------------------------------------------
-    static member Fail ([<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        failureBuilder.GeneralTestExpectationFailure ("", fullPath, lineNumber)
-        
-    static member Fail (Failure message, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member Fail (message: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         failureBuilder.GeneralTestExpectationFailure (message, fullPath, lineNumber)
         
     static member BeIgnored ([<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =

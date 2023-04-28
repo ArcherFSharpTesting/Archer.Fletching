@@ -5,20 +5,11 @@ open Archer.Arrows
 
 let private feature = Arrow.NewFeature ()
 
-let ``Fail should return a failure with an empty message`` =
-    feature.Test (
-        fun _ ->
-            let expected = failureBuilder.GeneralTestExpectationFailure ("", "C:\\Test.fs", 11)
-            let result = Should.Fail ("C:\\Test.fs", 11)
-            result
-            |> Should.BeEqualTo expected
-    )
-
 let ``Fail should return a failure with specified message`` =
     feature.Test (
         fun _ ->
             let expected = failureBuilder.GeneralTestExpectationFailure ("My Message", "C:\\Test.fs", 11)
-            let result = Should.Fail (Failure "My Message", "C:\\Test.fs", 11)
+            let result = Should.Fail ("My Message", "C:\\Test.fs", 11)
             result
             |> Should.BeEqualTo expected
     )

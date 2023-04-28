@@ -67,3 +67,10 @@ type Should =
             check (predicate >> not) fullPath lineNumber id PassesTest (FailsTest actual) actual
             
         checkIt
+
+    // --- Boolean Checks ---------------------------------------------------------------------------------------------
+    static member BeTrue (actual: bool, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        check id fullPath lineNumber id id true actual
+        
+    static member BeFalse (actual: bool, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        check not fullPath lineNumber id id false actual

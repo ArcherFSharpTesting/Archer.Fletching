@@ -62,4 +62,4 @@ A test verification Framework for Archer
   - [ ] should.Fail ()
   - [ ] {string} |> should.Fail
   - [ ] {value} |> should.BeIgnored {string}
-  - [ ] {value} |> should.BeIgnored ()
+  - [ ] {value} |> should.BeIgnored

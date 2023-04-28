@@ -56,8 +56,8 @@ A test verification Framework for Archer
   - [ ] {number} |> should.BeBetween ({number}, {number})
   - [ ] {number} |> should.BeCloseTo {number} |> byDelta {number}
 - Boolean
-  - [ ] {bool} |> should.BeTrue
-  - [ ] {bool} |> should.BeFalse
+  - [x] {bool} |> should.BeTrue
+  - [x] {bool} |> should.BeFalse
 - Other
   - [ ] should.Fail ()
   - [ ] {string} |> should.Fail

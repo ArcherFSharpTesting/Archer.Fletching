@@ -28,7 +28,7 @@ framework.FrameworkLifecycleEvent
 )
 
 framework
-|> addManyTests [
+|> addMany [
     TestResultFailureBuilder.``Test Cases``
     SetupTeardownResultFailureBuilder.``Test Cases``
     GeneralFailureBuilder.``Test Cases``

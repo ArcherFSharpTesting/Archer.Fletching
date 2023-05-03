@@ -67,6 +67,14 @@ type Should =
             check (predicate >> not) fullPath lineNumber id PassesTest (FailsTest actual) actual
             
         checkIt
+        
+    static member PassAllOf (predicates: ('a -> TestResult) list, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        let checkIt actual =
+            predicates
+            |> List.map (fun f -> f actual)
+            |> List.reduce (+)
+            
+        checkIt
 
     // --- Boolean Checks ---------------------------------------------------------------------------------------------
     static member BeTrue (actual: bool, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =

@@ -3,17 +3,17 @@
 open Archer
 open Archer.Bow
 open Archer.CoreTypes.InternalTypes
-open Archer.CoreTypes.InternalTypes.FrameworkTypes
+open Archer.CoreTypes.InternalTypes.RunnerTypes
 open Archer.Fletching.Tests
 open Archer.Fletching.Tests.RunHelpers
 
-let framework = bow.Framework ()
+let framework = bow.Runner ()
 
-framework.FrameworkLifecycleEvent
+framework.RunnerLifecycleEvent
 |> Event.add (fun args ->
     match args with
-    | FrameworkStartExecution _ -> ()
-    | FrameworkTestLifeCycle (test, testEventLifecycle, _) ->
+    | RunnerStartExecution _ -> ()
+    | RunnerTestLifeCycle (test, testEventLifecycle, _) ->
         match testEventLifecycle with
         | TestEndExecution testExecutionResult ->
             let successMsg =
@@ -23,7 +23,7 @@ framework.FrameworkLifecycleEvent
                 
             printfn $"%A{test}: (%s{successMsg})"
         | _ -> ()
-    | FrameworkEndExecution ->
+    | RunnerEndExecution ->
         printfn "\n"
 )
 

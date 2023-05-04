@@ -2,7 +2,7 @@
 
 open Archer
 open Archer.CoreTypes.InternalTypes
-open Archer.CoreTypes.InternalTypes.FrameworkTypes
+open Archer.CoreTypes.InternalTypes.RunnerTypes
 open System
 
 let reportFailures (failures: TestFailContainer list) =
@@ -190,7 +190,7 @@ let countIgnored ignored =
     0
     |> countIgnored ignored
 
-let runAndReport (framework: IFramework) =
+let runAndReport (framework: IRunner) =
     let startTime = DateTime.Now
     printfn $"Started at %s{startTime.ToShortTimeString ()}"
     let results = framework.Run ()

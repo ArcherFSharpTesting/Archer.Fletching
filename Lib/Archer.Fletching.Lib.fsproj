@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <Compile Include="Types.Internal.fs" />
-    <Compile Include="ShouldTypes.fs" />
+    <Compile Include="ShouldTypeHelpers.fs" />
+    <Compile Include="ShouldType.Objects.fs" />
+    <Compile Include="ShouldType.Boolean.fs" />
+    <Compile Include="SholdType.Other.fs" />
   </ItemGroup>
 
   <ItemGroup>

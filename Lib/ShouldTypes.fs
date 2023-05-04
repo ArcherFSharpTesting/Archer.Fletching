@@ -70,9 +70,12 @@ type Should =
         
     static member PassAllOf (predicates: ('a -> TestResult) list, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         let checkIt actual =
-            predicates
-            |> List.map (fun f -> f actual)
-            |> List.reduce (+)
+            if 0 < predicates.Length then
+                predicates
+                |> List.map (fun f -> f actual)
+                |> List.reduce (+)
+            else
+                failureBuilder.GeneralTestExpectationFailure ("Should.PassAllOf needs to be passed at least one verification function", fullPath, lineNumber)
             
         checkIt
 

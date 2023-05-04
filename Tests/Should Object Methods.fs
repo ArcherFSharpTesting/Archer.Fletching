@@ -548,5 +548,20 @@ let ``PassAllOf should return all the failures even if middle last`` =
         result
         |> Should.BeEqualTo expected
     )
+    
+let ``PassAllOf should fail if no verification functions are passed`` =
+    feature.Test (fun _ ->
+        let original = "Bye"
+        
+        let expected = failureBuilder.GeneralTestExpectationFailure ("Should.PassAllOf needs to be passed at least one verification function", "Q:\\uake.shoot", 26)
+        
+        let result =
+            original
+            |> Should.PassAllOf ([
+            ], "Q:\\uake.shoot", 26)
+            
+        result
+        |> Should.BeEqualTo expected
+    )
 
 let ``Test Cases`` = feature.GetTests ()

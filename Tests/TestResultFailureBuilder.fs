@@ -12,15 +12,18 @@ let ``ValidationFailure should convertExpectationInfo into a ValidationFailure``
     feature.Test (
         fun builder ->
             let (Called result) = builder.ValidationFailure ({ ExpectedValue = 4; ActualValue = "Not four" }, "X:/Test/this.fs", -110)
-            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = "4"; Actual = "\"Not four\"" }), { FilePath = "X:\\Test"; FileName = "this.fs"; LineNumber = -110 }))
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = 4; ActualValue = "Not four" }), { FilePath = "X:\\Test"; FileName = "this.fs"; LineNumber = -110 }))
             if result = expected then
                 TestSuccess
             else
                 (
                     {
-                        Expected = $"%A{expected}"
-                        Actual = $"%A{result}" 
-                    } |> ExpectationVerificationFailure,
+                        ExpectedValue = expected
+                        ActualValue = result 
+                    }
+                    |> toVerificationInfo
+                    |> ExpectationVerificationFailure,
+                    
                     Location.Get ()
                 )
                 |> TestExpectationFailure
@@ -31,16 +34,18 @@ let ``ValidationFailure should take an expected and an actual and return a Valid
     feature.Test (
         fun builder ->
             let (Called result) = builder.ValidationFailure ("45", false, "Z:/Test/blah.fs", 99)
-            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = "\"45\""; Actual = "false" }), { FilePath = "Z:\\Test"; FileName = "blah.fs"; LineNumber = 99 }))
+            let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = "45"; ActualValue = false }), { FilePath = "Z:\\Test"; FileName = "blah.fs"; LineNumber = 99 }))
             
             if result = expected then
                 TestSuccess
             else
                 (
                     {
-                        Expected = $"%A{expected}"
-                        Actual = $"%A{result}" 
-                    } |> ExpectationVerificationFailure,
+                        ExpectedValue = expected
+                        ActualValue = result 
+                    }
+                    |> toVerificationInfo
+                    |> ExpectationVerificationFailure,
                     Location.Get ()
                 )
                 |> TestExpectationFailure
@@ -58,9 +63,11 @@ let ``GeneralTestExpectationFailure should convert a message into a failure`` =
             else
                 (
                     {
-                        Expected = $"%A{expected}"
-                        Actual = $"%A{result}" 
-                    } |> ExpectationVerificationFailure,
+                        ExpectedValue = expected
+                        ActualValue = result 
+                    }|> toVerificationInfo
+                    |> ExpectationVerificationFailure,
+                    
                     Location.Get ()
                 )
                 |> TestExpectationFailure
@@ -78,9 +85,11 @@ let ``IgnoreFailure should take a message and return a failure`` =
             else
                 (
                     {
-                        Expected = $"%A{expected}"
-                        Actual = $"%A{result}" 
-                    } |> ExpectationVerificationFailure,
+                        ExpectedValue = expected
+                        ActualValue = result 
+                    }|> toVerificationInfo
+                    |> ExpectationVerificationFailure,
+                    
                     Location.Get ()
                 )
                 |> TestExpectationFailure
@@ -98,9 +107,10 @@ let ``IgnoreFailure should take Some (message) and return a failure`` =
             else
                 (
                     {
-                        Expected = $"%A{expected}"
-                        Actual = $"%A{result}" 
-                    } |> ExpectationVerificationFailure,
+                        ExpectedValue = expected
+                        ActualValue = result 
+                    }|> toVerificationInfo
+                    |> ExpectationVerificationFailure,
                     Location.Get ()
                 )
                 |> TestExpectationFailure
@@ -118,9 +128,11 @@ let ``IgnoreFailure should take None and return a failure`` =
             else
                 (
                     {
-                        Expected = $"%A{expected}"
-                        Actual = $"%A{result}" 
-                    } |> ExpectationVerificationFailure,
+                        ExpectedValue = expected
+                        ActualValue = result 
+                    }|> toVerificationInfo
+                    |> ExpectationVerificationFailure,
+                    
                     Location.Get ()
                 )
                 |> TestExpectationFailure
@@ -138,9 +150,11 @@ let ``IgnoreFailure should return a failure`` =
             else
                 (
                     {
-                        Expected = $"%A{expected}"
-                        Actual = $"%A{result}" 
-                    } |> ExpectationVerificationFailure,
+                        ExpectedValue = expected
+                        ActualValue = result 
+                    }|> toVerificationInfo
+                    |> ExpectationVerificationFailure,
+                    
                     Location.Get ()
                 )
                 |> TestExpectationFailure
@@ -159,9 +173,11 @@ let ``ExceptionFailure should convert an exception into a failure`` =
             else
                 (
                     {
-                        Expected = $"%A{expected}"
-                        Actual = $"%A{result}" 
-                    } |> ExpectationVerificationFailure,
+                        ExpectedValue = expected
+                        ActualValue = result 
+                    }|> toVerificationInfo
+                    |> ExpectationVerificationFailure,
+                    
                     Location.Get ()
                 )
                 |> TestExpectationFailure

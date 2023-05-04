@@ -27,7 +27,7 @@ let ``BeEqualTo should return a validation failure if they are different`` =
         let thing2 = obj ()
         
         let result = thing1 |> Should.BeEqualTo (thing2, "W:\\thingTest.tst", -24)
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{thing1}"; Actual = $"%A{thing2}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure ({ ExpectedValue = thing2; ActualValue =  thing1 } |> toVerificationInfo)), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
         
         if result = expected then
             TestSuccess
@@ -57,7 +57,7 @@ let ``BeEqualTo should return success if both are equivalent lists of strings`` 
 let ``NotBeEqualTo should return failure of both objects are the same string`` =
     feature.Test (fun _ ->
         let thing = "a thing"
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not thing}"; Actual = $"%A{thing}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = Not thing; ActualValue =  thing }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
         
         let result = 
             thing
@@ -70,7 +70,7 @@ let ``NotBeEqualTo should return failure of both objects are the same string`` =
 let ``NotBeEqualTo should return failure if both items are the same object`` =
     feature.Test (fun _ ->
         let thing = obj ()
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not thing}"; Actual = $"%A{thing}" }), { FilePath = "X:\\"; FileName = "wingTest.tst"; LineNumber = -86 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = Not thing; ActualValue =  thing }), { FilePath = "X:\\"; FileName = "wingTest.tst"; LineNumber = -86 }))
 
         let result =
             thing
@@ -103,7 +103,7 @@ let ``NotBeEqualTo should return failure if both are equivalent Booleans`` =
         let thing1 = true
         let thing2 = true
         
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not thing1}"; Actual = $"%A{thing2}" }), { FilePath = "R:\\"; FileName = "ringTest.tst"; LineNumber = 100 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = Not thing1; ActualValue =  thing1 }), { FilePath = "R:\\"; FileName = "ringTest.tst"; LineNumber = 100 }))
         let result =
             thing1
             |> Should.NotBeEqualTo (thing2, "R:\\ringTest.tst", 100)
@@ -135,7 +135,7 @@ let ``BeSameAs should return failure if both are different objects`` =
         let thing1 = obj()
         let thing2 = obj()
         
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{ReferenceOf thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = ReferenceOf thing2; ActualValue = thing1 }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
         
         let result =
             thing1
@@ -150,7 +150,7 @@ let ``BeSameAs should return failure if both are different strings`` =
         let thing1 = "Hello"
         let thing2 = "Good Bye"
         
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{ReferenceOf thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = ReferenceOf thing2; ActualValue = thing1 }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
         
         let result =
             thing1
@@ -165,7 +165,7 @@ let ``BeSameAs should return failure if both are equivalent Booleans`` =
         let thing1 = 5
         let thing2 = 5
         
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{ReferenceOf thing2}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = ReferenceOf thing2; ActualValue = thing1 }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
         
         let result =
             thing1
@@ -199,7 +199,7 @@ let ``NotBeSameAs should return failure if both are same object`` =
         let thing1 = obj ()
         let thing2 = thing1
         
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not (ReferenceOf thing2)}"; Actual = $"%A{thing1}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue =  Not (ReferenceOf thing2); ActualValue = thing2 }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
         
         let result =
             thing1
@@ -237,7 +237,7 @@ let ``BeOfType<obj> should return success if it is an object`` =
     
 let ``BeOfType<int> should return failure if it is a float`` =
     feature.Test (fun _ ->
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{typeof<int>}"; Actual = $"%A{(1.0).GetType ()}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = typeof<int>; ActualValue = (1.0).GetType () }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
         
         let result =
             Should.BeOfType<int> (1.0, "W:\\thingTest.tst", -24)
@@ -268,7 +268,7 @@ let ``NotBeOfType<string list> should return success if item is a char list`` =
     
 let ``NotBeOfType<int> should return failure if item is 5`` =
     feature.Test (fun _ ->
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not typeof<int>}"; Actual = $"%A{(5).GetType ()}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = Not typeof<int>; ActualValue =  (5).GetType () }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
         
         let result =
             Should.NotBeTypeOf<int> (5, "W:\\thingTest.tst", -24)
@@ -279,7 +279,7 @@ let ``NotBeOfType<int> should return failure if item is 5`` =
 
 let ``NotBeOfType<IEnumerable<char>> should return failure if item is a string`` =
     feature.Test (fun _ ->
-        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{Not typeof<System.Collections.Generic.IEnumerable<char>>}"; Actual = $"%A{typeof<string>}" }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
+        let expected = TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = Not typeof<System.Collections.Generic.IEnumerable<char>>; ActualValue =  typeof<string> }), { FilePath = "W:\\"; FileName = "thingTest.tst"; LineNumber = -24 }))
         
         let result =
             Should.NotBeTypeOf<System.Collections.Generic.IEnumerable<char>> ("hello", "W:\\thingTest.tst", -24)
@@ -361,9 +361,10 @@ let ``BeDefaultOf<int> should return failure for 100`` =
 // ------------------------------ NotBeDefaultOf ------------------------------
 let ``BeDefaultOf<string> should return failure for null`` =
     feature.Test (fun _ ->
-        let expected = failureBuilder.ValidationFailure(Not null, null, "F:\\ull\\Path.io", 98)
+        let defaultValue = Unchecked.defaultof<string>
+        let expected = failureBuilder.ValidationFailure(Not defaultValue, defaultValue, "F:\\ull\\Path.io", 98)
         let result = Should.NotBeDefaultOf<string> (null, "F:\\ull\Path.io", 98)
-        
+
         result
         |> Should.BeEqualTo expected
     )

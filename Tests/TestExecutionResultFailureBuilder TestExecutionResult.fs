@@ -12,8 +12,9 @@ let ``ValidationFailure should convert ExpectationInfo into a failure`` =
     feature.Test (
         fun builder ->
             let a = Ok "Its Good"
-            let result = builder.ValidationFailure ({ ExpectedValue = a; ActualValue = Called 33 }, "H:\\f.th", 25)
-            let expected = TestExecutionResult (TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{a}"; Actual = $"%A{Called 33}" }), { FilePath = "H:\\"; FileName = "f.th"; LineNumber = 25 })))
+            let b = Called 33
+            let result = builder.ValidationFailure ({ ExpectedValue = a; ActualValue = b }, "H:\\f.th", 25)
+            let expected = TestExecutionResult (TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = a; ActualValue = b }), { FilePath = "H:\\"; FileName = "f.th"; LineNumber = 25 })))
             
             if result = expected then
                 TestSuccess
@@ -26,7 +27,7 @@ let ``ValidationFailure should convert expected and actual into a failure`` =
         fun builder ->
             let a = ("are you good?", true)
             let result = builder.ValidationFailure (a, [], "L:\\456\\q.com", 99)
-            let expected = TestExecutionResult (TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { Expected = $"%A{a}"; Actual = $"%A{[]}" }), { FilePath = "L:\\456"; FileName = "q.com"; LineNumber = 99 })))
+            let expected = TestExecutionResult (TestFailure (TestExpectationFailure ((ExpectationVerificationFailure { ExpectedValue = a; ActualValue = [] }), { FilePath = "L:\\456"; FileName = "q.com"; LineNumber = 99 })))
             
             if result = expected then
                 TestSuccess

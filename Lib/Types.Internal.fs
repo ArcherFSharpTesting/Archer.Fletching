@@ -1,5 +1,6 @@
 ﻿module Archer.Fletching.Types.Internal
 
+open System
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 open Archer
@@ -26,20 +27,19 @@ type ExpectationInfo<'expected, 'actual> =
         ExpectedValue: 'expected
         ActualValue: 'actual
     }
-    member this.ToExpectation () =
-        {
-            Expected = $"%A{this.ExpectedValue}"
-            Actual = $"%A{this.ActualValue}" 
-        }
+    interface IVerificationInfo with
+        member this.Expected with get () = $"%A{this.ExpectedValue}"
+        member this.Actual with get () = $"%A{this.ActualValue}"
+        
 
-let toVerificationIno (expectation: ExpectationInfo<'expected, 'actual>) =
-    expectation.ToExpectation ()
+let toVerificationInfo (expectation: ExpectationInfo<'expected, 'actual>) =
+    expectation :> IVerificationInfo
     
 type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
     member _.ValidationFailure<'expected, 'actual> (expectationInfo: ExpectationInfo<'expected, 'actual>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         let failure =
             expectationInfo
-            |> toVerificationIno
+            |> toVerificationInfo
             |> ExpectationVerificationFailure
             
         let location = buildLocation fullPath lineNumber

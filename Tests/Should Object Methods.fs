@@ -4,7 +4,12 @@ open Archer
 open Archer.Arrows
 open Archer.Fletching.Types.Internal
 
-let private feature = Arrow.NewFeature ()
+let private feature = Arrow.NewFeature (
+    TestTags [
+        Category "Should"
+        Category "Object"
+    ]
+)
 
 // -------------------------------- BeEqualTo --------------------------------
 let ``BeEqualTo should return success if both items are the same string`` =

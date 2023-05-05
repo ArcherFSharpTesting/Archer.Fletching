@@ -5,6 +5,10 @@ open Archer.Arrows
 open Archer.Fletching.Types.Internal
 
 let private feature = Arrow.NewFeature (
+    TestTags [
+        Category "TestExecutionResultFailureBuilder"
+        Category "TeardownExecutionFailure"
+    ],
     Setup (fun _ -> TestExecutionResultFailureBuilder().TeardownExecutionFailure |> Ok)
 )
 

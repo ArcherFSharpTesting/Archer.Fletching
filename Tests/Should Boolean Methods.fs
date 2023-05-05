@@ -4,7 +4,12 @@ open Archer
 open Archer.Arrows
 open Archer.Fletching.Types.Internal
 
-let private feature = Arrow.NewFeature ()
+let private feature = Arrow.NewFeature (
+    TestTags [
+        Category "Should"
+        Category "Boolean"
+    ]
+)
 
 let ``BeTrue should succeed whe true is passed`` =
     feature.Test (

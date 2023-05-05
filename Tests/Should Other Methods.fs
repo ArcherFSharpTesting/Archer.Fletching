@@ -3,7 +3,12 @@
 open Archer
 open Archer.Arrows
 
-let private feature = Arrow.NewFeature ()
+let private feature = Arrow.NewFeature (
+    TestTags [
+        Category "Should"
+        Category "Other"
+    ]
+)
 
 let ``Fail should return a failure with specified message`` =
     feature.Test (

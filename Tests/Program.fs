@@ -39,5 +39,7 @@ framework
     ``Should Object Methods``.``Test Cases``
     ``Should Boolean Methods``.``Test Cases``
     ``Should Other Methods``.``Test Cases``
+    ``Seq Should``.``Test Cases``
+    ``List Should``.``Test Cases``
 ]
 |> runAndReport

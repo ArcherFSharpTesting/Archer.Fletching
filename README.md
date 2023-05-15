@@ -6,24 +6,6 @@ A test verification Framework for Archer
 - Dictionary
   - [ ] {dictionary} |> should.HaveKey {key}
   - [ ] {dictionary} |> should.NotHaveKey {key}
-- Collection
-  - [ ] {collection} |> should.Contain {value}
-  - [ ] {collection} |> should.NotContain {value}
-  - [ ] {collection} |> should.ContainAny {values}
-  - [ ] {collection} |> should.NotContainAny {values}
-  - [ ] {collection} |> should.ContainAll {values}
-  - [ ] {collection} |> should.NotContainAll {values}
-  - [ ] {collection} |> should.FindValueWith {predicate}
-  - [ ] {collection} |> should.NotFindValueWith {predicate}
-  - [ ] {collection} |> should.FindAllValuesWith {predicate}
-  - [ ] {collection} |> should.FindNoValuesWith {predicate}
-  - [ ] {collection} |> should.BeSorted
-  - [ ] {collection} |> should.NotBeSorted
-  - [ ] {collection} |> should.BeSortedBy {comparator}
-  - [ ] {collection} |> should.NotBeSortedBy {comparator}
-  - [ ] {collection} |> should.BeEmpty
-  - [ ] {collection} |> should.NotBeEmpty
-  - [ ] {collection} |> should.HaveLengthOf {integer}
 - Object
   - [x] {value} |> should.BeEqualTo {value}
   - [x] {value} |> should.NotBeEqualTo {value}
@@ -63,3 +45,43 @@ A test verification Framework for Archer
   - [x] {string} |> should.Fail
   - [x] {value} |> should.BeIgnored {string}
   - [x] {value} |> should.BeIgnored
+
+## ListShould
+
+- [x] {list} |> should.Contain {value}
+- [ ] {list} |> should.NotContain {value}
+- [ ] {list} |> should.ContainAny {values}
+- [ ] {list} |> should.NotContainAny {values}
+- [ ] {list} |> should.ContainAll {values}
+- [ ] {list} |> should.NotContainAll {values}
+- [ ] {list} |> should.FindValueWith {predicate}
+- [ ] {list} |> should.NotFindValueWith {predicate}
+- [ ] {list} |> should.FindAllValuesWith {predicate}
+- [ ] {list} |> should.FindNoValuesWith {predicate}
+- [ ] {list} |> should.BeSorted
+- [ ] {list} |> should.NotBeSorted
+- [ ] {list} |> should.BeSortedBy {comparator}
+- [ ] {list} |> should.NotBeSortedBy {comparator}
+- [ ] {list} |> should.BeEmpty
+- [ ] {list} |> should.NotBeEmpty
+- [ ] {list} |> should.HaveLengthOf {integer}
+
+## SeqShould
+
+- [x] {collection} |> should.Contain {value}
+- [ ] {collection} |> should.NotContain {value}
+- [ ] {collection} |> should.ContainAny {values}
+- [ ] {collection} |> should.NotContainAny {values}
+- [ ] {collection} |> should.ContainAll {values}
+- [ ] {collection} |> should.NotContainAll {values}
+- [ ] {collection} |> should.FindValueWith {predicate}
+- [ ] {collection} |> should.NotFindValueWith {predicate}
+- [ ] {collection} |> should.FindAllValuesWith {predicate}
+- [ ] {collection} |> should.FindNoValuesWith {predicate}
+- [ ] {collection} |> should.BeSorted
+- [ ] {collection} |> should.NotBeSorted
+- [ ] {collection} |> should.BeSortedBy {comparator}
+- [ ] {collection} |> should.NotBeSortedBy {comparator}
+- [ ] {collection} |> should.BeEmpty
+- [ ] {collection} |> should.NotBeEmpty
+- [ ] {collection} |> should.HaveLengthOf {integer}

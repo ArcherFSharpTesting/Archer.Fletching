@@ -19,6 +19,8 @@
     <Compile Include="Should Object Methods.fs" />
     <Compile Include="Should Boolean Methods.fs" />
     <Compile Include="Should Other Methods.fs" />
+    <Compile Include="Seq Should.fs" />
+    <Compile Include="List Should.fs" />
     <Compile Include="RunHelpers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

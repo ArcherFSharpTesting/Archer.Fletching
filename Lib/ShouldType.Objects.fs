@@ -1,10 +1,8 @@
 ﻿namespace Archer
 
-open System.Linq.Expressions
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 open Archer.Fletching.Types.Internal
-open Microsoft.FSharp.Linq.RuntimeHelpers
 open FSharp.Quotations.Evaluator
 open Swensen.Unquote
 
@@ -40,18 +38,18 @@ type Should =
     static member NotBeDefaultOf<'expectedType when 'expectedType: equality> (actual: 'expectedType, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         check ((<>) Unchecked.defaultof<'expectedType>) fullPath lineNumber id id (Not Unchecked.defaultof<'expectedType>) actual
         
-    static member PassTestOf (predicate: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member PassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         let checkIt actual =
-            let predicateString = decompile predicate
-            let predicate: 'a -> bool = predicate |> QuotationEvaluator.Evaluate
+            let predicateString = decompile predicateExpression
+            let predicate: 'a -> bool = predicateExpression |> QuotationEvaluator.Evaluate
             check predicate fullPath lineNumber id FailsTest (PassesTest predicateString) actual
             
         checkIt
         
-    static member NotPassTestOf (predicate: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member NotPassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         let checkIt actual =
-            let predicateString = decompile predicate
-            let predicate: 'a -> bool = predicate |> QuotationEvaluator.Evaluate
+            let predicateString = decompile predicateExpression
+            let predicate: 'a -> bool = predicateExpression |> QuotationEvaluator.Evaluate
             check (predicate >> not) fullPath lineNumber id PassesTest (FailsTest predicateString) actual
             
         checkIt

@@ -54,10 +54,10 @@ A test verification Framework for Archer
 - [ ] {list} |> should.NotContainAny {values}
 - [ ] {list} |> should.ContainAll {values}
 - [ ] {list} |> should.NotContainAll {values}
-- [ ] {list} |> should.FindValueWith {predicate}
-- [ ] {list} |> should.NotFindValueWith {predicate}
-- [ ] {list} |> should.FindAllValuesWith {predicate}
-- [ ] {list} |> should.FindNoValuesWith {predicate}
+- [ ] {list} |> should.FindValueWith {predicateExpression}
+- [ ] {list} |> should.NotFindValueWith {predicateExpression}
+- [x] {list} |> should.FindAllValuesWith {predicateExpression}
+- [x] {list} |> should.FindNoValuesWith {predicateExpression}
 - [ ] {list} |> should.BeSorted
 - [ ] {list} |> should.NotBeSorted
 - [ ] {list} |> should.BeSortedBy {comparator}
@@ -74,10 +74,10 @@ A test verification Framework for Archer
 - [ ] {collection} |> should.NotContainAny {values}
 - [ ] {collection} |> should.ContainAll {values}
 - [ ] {collection} |> should.NotContainAll {values}
-- [ ] {collection} |> should.FindValueWith {predicate}
-- [ ] {collection} |> should.NotFindValueWith {predicate}
-- [ ] {collection} |> should.FindAllValuesWith {predicate}
-- [ ] {collection} |> should.FindNoValuesWith {predicate}
+- [ ] {collection} |> should.FindValueWith {predicateExpression}
+- [ ] {collection} |> should.NotFindValueWith {predicateExpression}
+- [x] {collection} |> should.FindAllValuesWith {predicateExpression}
+- [x] {collection} |> should.FindNoValuesWith {predicateExpression}
 - [ ] {collection} |> should.BeSorted
 - [ ] {collection} |> should.NotBeSorted
 - [ ] {collection} |> should.BeSortedBy {comparator}

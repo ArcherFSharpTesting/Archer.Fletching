@@ -10,3 +10,9 @@ type SeqShould =
         
     static member NotContain (value: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         List.ofSeq >> ListShould.NotContain (value, fullPath, lineNumber)
+        
+    static member FindAllValuesWith (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        List.ofSeq >> ListShould.FindAllValuesWith (predicateExpression, fullPath, lineNumber)
+        
+    static member FindNoValuesWith (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        List.ofSeq >> ListShould.FindNoValuesWith (predicateExpression, fullPath, lineNumber)

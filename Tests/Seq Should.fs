@@ -44,5 +44,28 @@ let ``NotContain should return failure when searching seq{ "3"; "4"; "5" } for "
         result
         |> Should.BeEqualTo expected
     )
+    
+let ``FindAllValuesWith Should return success when searching seq{ 2; 4; 6; 8 } for even numbers`` =
+    feature.Test (fun _ ->
+        seq{ 2; 4; 6; 8 }
+        |> SeqShould.FindAllValuesWith <@ fun x -> x % 2 = 0 @>
+    )
+    
+let ``FindNoValuesWith should return success when searching seq{ 1; 3; 5; 7 } for even numbers`` =
+    feature.Test (fun _ ->
+        seq{ 1; 3; 5; 7 }
+        |> SeqShould.FindNoValuesWith <@ fun x -> x % 2 = 0 @> 
+    )
+    
+let ``FindNoValuesWith should return failure when searching seq { 1; 2; 3; 5; 7 } for even numbers`` =
+    feature.Test (fun _ ->
+        let expected = failureBuilder.ValidationFailure (FailsTest "fun x -> x % 2 = 0", PassesTest [1; 2; 3; 5; 7], "C:\\aw.crow", 201)
+        let result = 
+            seq { 1; 2; 3; 5; 7 }
+            |> SeqShould.FindNoValuesWith (<@ fun x -> x % 2 = 0 @>, "C:\\aw.crow", 201)
+            
+        result
+        |> Should.BeEqualTo expected
+    )
 
 let ``Test Cases`` = feature.GetTests ()

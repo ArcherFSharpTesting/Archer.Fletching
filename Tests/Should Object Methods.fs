@@ -392,32 +392,23 @@ let ``BeDefaultOf<int> should return success for 100`` =
 let ``PassTestOf should return successful if predicate returns true`` =
     feature.Test (fun _ ->
         "Hello"
-        |> Should.PassTestOf (fun _ -> true)
+        |> Should.PassTestOf <@fun _ -> true@>
     )
     
 let ``PassTestOf should pass the given item to the predicate`` =
     feature.Test (fun _ ->
         let thing = obj ()
-        let mutable testResult = failureBuilder.ValidationFailure ("To be changed", "Was not changed")
         
         thing
-        |> Should.PassTestOf (fun value ->
-            testResult <-
-                value
-                |> Should.BeSameAs thing
-            true
-        )
-        |> ignore
-        
-        testResult
+        |> Should.PassTestOf <@ (fun value -> obj.Equals (value, thing)) @>
     )
     
 let ``PassTestOf should fail if the item does not pass the test`` =
     feature.Test (fun _ ->
-        let expected = failureBuilder.ValidationFailure (PassesTest 5, FailsTest 5, "G:\\ood\\test.c", 28)
+        let expected = failureBuilder.ValidationFailure (PassesTest "fun x -> x = 6", FailsTest 5, "G:\\ood\\test.c", 28)
         let result =
             5
-            |> Should.PassTestOf ((fun _ -> false), "G:\\ood\\test.c", 28)
+            |> Should.PassTestOf (<@fun x -> x = 6@>, "G:\\ood\\test.c", 28)
             
         result
         |> Should.BeEqualTo expected

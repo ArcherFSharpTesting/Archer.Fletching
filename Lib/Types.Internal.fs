@@ -1,6 +1,7 @@
 ﻿module Archer.Fletching.Types.Internal
 
-open System
+open Microsoft.FSharp.Quotations.Patterns
+open Microsoft.FSharp.Quotations.DerivedPatterns
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 open Archer

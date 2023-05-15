@@ -49,7 +49,7 @@ A test verification Framework for Archer
 ## ListShould
 
 - [x] {list} |> should.Contain {value}
-- [ ] {list} |> should.NotContain {value}
+- [x] {list} |> should.NotContain {value}
 - [ ] {list} |> should.ContainAny {values}
 - [ ] {list} |> should.NotContainAny {values}
 - [ ] {list} |> should.ContainAll {values}
@@ -69,7 +69,7 @@ A test verification Framework for Archer
 ## SeqShould
 
 - [x] {collection} |> should.Contain {value}
-- [ ] {collection} |> should.NotContain {value}
+- [x] {collection} |> should.NotContain {value}
 - [ ] {collection} |> should.ContainAny {values}
 - [ ] {collection} |> should.NotContainAny {values}
 - [ ] {collection} |> should.ContainAll {values}

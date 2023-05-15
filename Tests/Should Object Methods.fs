@@ -418,7 +418,7 @@ let ``PassTestOf should fail if the item does not pass the test`` =
 let ``NotPassTestOf should pass if item does not satisfy the predicate`` =
     feature.Test (fun _ ->
         42
-        |> Should.NotPassTestOf (fun _ -> false)
+        |> Should.NotPassTestOf <@ fun _ -> false @>
     )
     
 let ``NotPassTestOf should pass the item to the predicate`` =
@@ -427,24 +427,17 @@ let ``NotPassTestOf should pass the item to the predicate`` =
         let thing = "A good thing"
         
         thing
-        |> Should.NotPassTestOf (fun value ->
-            testResult <-
-                value
-                |> Should.BeSameAs thing
-            true
-        )
-        |> ignore
-            
-        testResult
+        |> Should.NotPassTestOf <@ fun value -> obj.Equals(value, thing) |> not @>
     )
     
 let ``NotPassTestOf should fail if item satisfies predicate`` =
     feature.Test (fun _ ->
         let thing = obj ()
-        let expected = failureBuilder.ValidationFailure ((FailsTest thing), (PassesTest thing), "G:\\ood\\thin.gs", 77)
+        let expected = failureBuilder.ValidationFailure ((FailsTest "fun value -> Object.Equals(value, thing)"), (PassesTest thing), "G:\\ood\\thin.gs", 77)
+        
         let result =
             thing
-            |> Should.NotPassTestOf ((fun _ -> true), "G:\\ood\\thin.gs", 77)
+            |> Should.NotPassTestOf (<@ fun value -> obj.Equals(value, thing) @>, "G:\\ood\\thin.gs", 77)
             
         result
         |> Should.BeEqualTo expected

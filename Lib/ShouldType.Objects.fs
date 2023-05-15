@@ -48,9 +48,11 @@ type Should =
             
         checkIt
         
-    static member NotPassTestOf (predicate: 'a -> bool, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member NotPassTestOf (predicate: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         let checkIt actual =
-            check (predicate >> not) fullPath lineNumber id PassesTest (FailsTest actual) actual
+            let predicateString = decompile predicate
+            let predicate: 'a -> bool = predicate |> QuotationEvaluator.Evaluate
+            check (predicate >> not) fullPath lineNumber id PassesTest (FailsTest predicateString) actual
             
         checkIt
         

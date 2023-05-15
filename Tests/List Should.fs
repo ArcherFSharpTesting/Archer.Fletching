@@ -78,5 +78,39 @@ let ``FindNoValuesWith should return failure when searching [1; 2; 3; 5; 7] for 
         result
         |> Should.BeEqualTo expected
     )
+    
+let ``HaveLengthOf should return success when comparing the length of ['a'; 'b'; 'c'] with 3`` =
+    feature.Test (fun _ ->
+        ['a'; 'b'; 'c']
+        |> ListShould.HaveLengthOf 3
+    )
+    
+let ``HaveLengthOf should return failure when comparing the length of ['a'; 'b'; 'c'; 'd'] with 5`` =
+    feature.Test (fun _ ->
+        let expected = failureBuilder.ValidationFailure (Length 5, ['a'; 'b'; 'c'; 'd'], "H:\\oney.bee", -41)
+        let result = 
+            ['a'; 'b'; 'c'; 'd']
+            |> ListShould.HaveLengthOf (5, "H:\\oney.bee", -41)
+            
+        result
+        |> Should.BeEqualTo expected
+    )
+    
+let ``NotHaveLengthOf should return success when comparing the length of ['a'; 'b'; 'c'] with 2`` =
+    feature.Test (fun _ ->
+        ['a'; 'b'; 'c']
+        |> ListShould.NotHaveLengthOf 2
+    )
+    
+let ``NotHaveLengthOf should return failure when comparing the length of ['a'; 'b'; 'c'; 'd'] with 4`` =
+    feature.Test (fun _ ->
+        let expected = failureBuilder.ValidationFailure (Not (Length 4), ['a'; 'b'; 'c'; 'd'], "H:\\oney.bee", -41)
+        let result = 
+            ['a'; 'b'; 'c'; 'd']
+            |> ListShould.NotHaveLengthOf (4, "H:\\oney.bee", -41)
+            
+        result
+        |> Should.BeEqualTo expected
+    )
 
 let ``Test Cases`` = feature.GetTests ()

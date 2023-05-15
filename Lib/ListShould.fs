@@ -39,3 +39,9 @@ type ListShould =
             check (List.filter predicate >> List.length >> (=) 0) fullPath lineNumber FailsTest PassesTest predicateString actual
             
         checkIt
+        
+    static member HaveLengthOf (length: int, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        check (List.length >> ((=) length)) fullPath lineNumber Length id length
+        
+    static member NotHaveLengthOf (length: int, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        check (List.length >> ((<>) length)) fullPath lineNumber (Length >> Not) id length

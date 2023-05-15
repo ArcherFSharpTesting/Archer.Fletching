@@ -67,5 +67,39 @@ let ``FindNoValuesWith should return failure when searching seq { 1; 2; 3; 5; 7 
         result
         |> Should.BeEqualTo expected
     )
+    
+let ``HaveLengthOf should return success when comparing the length of seq{ 'a'; 'b'; 'c' } with 3`` =
+    feature.Test (fun _ ->
+        seq{ 'a'; 'b'; 'c' }
+        |> SeqShould.HaveLengthOf 3
+    )
+    
+let ``HaveLengthOf should return failure when comparing the length of seq{ 'a'; 'b'; 'c'; 'd' } with 5`` =
+    feature.Test (fun _ ->
+        let expected = failureBuilder.ValidationFailure (Length 5, ['a'; 'b'; 'c'; 'd'], "H:\\oney.bee", -41)
+        let result = 
+            seq{ 'a'; 'b'; 'c'; 'd' }
+            |> SeqShould.HaveLengthOf (5, "H:\\oney.bee", -41)
+            
+        result
+        |> Should.BeEqualTo expected
+    )
+    
+let ``NotHaveLengthOf should return success when comparing the length of seq{ 'a'; 'b'; 'c' } with 2`` =
+    feature.Test (fun _ ->
+        seq{ 'a'; 'b'; 'c' }
+        |> SeqShould.NotHaveLengthOf 2
+    )
+    
+let ``NotHaveLengthOf should return failure when comparing the length of seq{ 'a'; 'b'; 'c'; 'd' } with 4`` =
+    feature.Test (fun _ ->
+        let expected = failureBuilder.ValidationFailure (Not (Length 4), ['a'; 'b'; 'c'; 'd'], "H:\\oney.bee", -41)
+        let result = 
+            seq{ 'a'; 'b'; 'c'; 'd' }
+            |> SeqShould.NotHaveLengthOf (4, "H:\\oney.bee", -41)
+            
+        result
+        |> Should.BeEqualTo expected
+    )
 
 let ``Test Cases`` = feature.GetTests ()

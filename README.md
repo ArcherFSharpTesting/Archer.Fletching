@@ -4,84 +4,86 @@ A test verification Framework for Archer
 ## Should
 
 - Dictionary
-  - [ ] {dictionary} |> should.HaveKey {key}
-  - [ ] {dictionary} |> should.NotHaveKey {key}
+  - [ ] {dictionary} |> Should.HaveKey {key}
+  - [ ] {dictionary} |> Should.NotHaveKey {key}
 - Object
-  - [x] {value} |> should.BeEqualTo {value}
-  - [x] {value} |> should.NotBeEqualTo {value}
-  - [x] {value} |> should.BeSameAs {value}
-  - [x] {value} |> should.NotBeSameAs {value}
-  - [x] {value} |> should.BeOfType\<Type\>
-  - [x] {value} |> should.NotBeOfType\<Type\>
-  - [x] {value} |> should.BeNull
-  - [x] {value} |> should.NotBeNull
-  - [x] {value} |> should.BeDefaultOf\<Type\>
-  - [x] {value} |> should.NotBeDefaultOf\<Type\>
-  - [x] {value} |> should.PassTestOf {predicate}
-  - [x] {value} |> should.NotPassTestOf {predicate}
-  - [x] {value} |> should.PassAllOf [ {value -> TestResult} ]
+  - [x] {value} |> Should.BeEqualTo {value}
+  - [x] {value} |> Should.NotBeEqualTo {value}
+  - [x] {value} |> Should.BeSameAs {value}
+  - [x] {value} |> Should.NotBeSameAs {value}
+  - [x] {value} |> Should.BeOfType\<Type\>
+  - [x] {value} |> Should.NotBeOfType\<Type\>
+  - [x] {value} |> Should.BeNull
+  - [x] {value} |> Should.NotBeNull
+  - [x] {value} |> Should.BeDefaultOf\<Type\>
+  - [x] {value} |> Should.NotBeDefaultOf\<Type\>
+  - [x] {value} |> Should.PassTestOf {predicate}
+  - [x] {value} |> Should.NotPassTestOf {predicate}
+  - [x] {value} |> Should.PassAllOf [ {value -> TestResult} ]
 - Functions
-  - [ ] {action} |> should.Return {value}
-  - [ ] {action} |> should.NotReturnValue {value}
-  - [ ] let result: Result<ex, TestExecutionResult> = {action} |> should.ThrowException
-  - [ ] {action} |> should.NotThrowException
-  - [ ] {action} |> should.Call {action} |> withParameter {predicate} {initialParameter}
+  - [ ] {action} |> Should.Return {value}
+  - [ ] {action} |> Should.NotReturnValue {value}
+  - [ ] let result: Result<ex, TestExecutionResult> = {action} |> Should.ThrowException
+  - [ ] {action} |> Should.NotThrowException
+  - [ ] {action} |> Should.Call {action} |> withParameter {predicate} {initialParameter}
 - Events
-  - [ ] {IEvent} |> should.Trigger |> by {action}
-  - [ ] {IEvent} |> should.NotTrigger |> by {action}
+  - [ ] {IEvent} |> Should.Trigger |> by {action}
+  - [ ] {IEvent} |> Should.NotTrigger |> by {action}
 - String
-  - [ ] {string} |> should.Contain {string}
-  - [ ] {string} |> should.NotContain {string}
-  - [ ] {string} |> should.BeMatchedBy {regex}
-  - [ ] {string} |> should.NotBeMatchedBy {regex}
+  - [ ] {string} |> Should.Contain {string}
+  - [ ] {string} |> Should.NotContain {string}
+  - [ ] {string} |> Should.BeMatchedBy {regex}
+  - [ ] {string} |> Should.NotBeMatchedBy {regex}
 - Numbers
-  - [ ] {number} |> should.BeWithin ({number}, {number})
-  - [ ] {number} |> should.BeBetween ({number}, {number})
-  - [ ] {number} |> should.BeCloseTo {number} |> byDelta {number}
+  - [ ] {number} |> Should.BeWithin ({number}, {number})
+  - [ ] {number} |> Should.BeBetween ({number}, {number})
+  - [ ] {number} |> Should.BeCloseTo {number} |> byDelta {number}
 - Boolean
-  - [x] {bool} |> should.BeTrue
-  - [x] {bool} |> should.BeFalse
+  - [x] {bool} |> Should.BeTrue
+  - [x] {bool} |> Should.BeFalse
 - Other
-  - [x] {string} |> should.Fail
-  - [x] {value} |> should.BeIgnored {string}
-  - [x] {value} |> should.BeIgnored
+  - [x] {string} |> Should.Fail
+  - [x] {value} |> Should.BeIgnored {string}
+  - [x] {value} |> Should.BeIgnored
 
 ## ListShould
 
-- [x] {list} |> should.Contain {value}
-- [x] {list} |> should.NotContain {value}
-- [ ] {list} |> should.ContainAny {values}
-- [ ] {list} |> should.NotContainAny {values}
-- [ ] {list} |> should.ContainAll {values}
-- [ ] {list} |> should.NotContainAll {values}
-- [ ] {list} |> should.FindValueWith {predicateExpression}
-- [ ] {list} |> should.NotFindValueWith {predicateExpression}
-- [x] {list} |> should.FindAllValuesWith {predicateExpression}
-- [x] {list} |> should.FindNoValuesWith {predicateExpression}
-- [ ] {list} |> should.BeSorted
-- [ ] {list} |> should.NotBeSorted
-- [ ] {list} |> should.BeSortedBy {comparator}
-- [ ] {list} |> should.NotBeSortedBy {comparator}
-- [ ] {list} |> should.BeEmpty
-- [ ] {list} |> should.NotBeEmpty
-- [ ] {list} |> should.HaveLengthOf {integer}
+- [x] {list} |> ListShould.Contain {value}
+- [x] {list} |> ListShould.NotContain {value}
+- [ ] {list} |> ListShould.ContainAny {values}
+- [ ] {list} |> ListShould.NotContainAny {values}
+- [ ] {list} |> ListShould.ContainAll {values}
+- [ ] {list} |> ListShould.NotContainAll {values}
+- [ ] {list} |> ListShould.FindValueWith {predicateExpression}
+- [ ] {list} |> ListShould.NotFindValueWith {predicateExpression}
+- [x] {list} |> ListShould.FindAllValuesWith {predicateExpression}
+- [x] {list} |> ListShould.FindNoValuesWith {predicateExpression}
+- [ ] {list} |> ListShould.BeSorted
+- [ ] {list} |> ListShould.NotBeSorted
+- [ ] {list} |> ListShould.BeSortedBy {comparator}
+- [ ] {list} |> ListShould.NotBeSortedBy {comparator}
+- [ ] {list} |> ListShould.BeEmpty
+- [ ] {list} |> ListShould.NotBeEmpty
+- [x] {list} |> ListShould.HaveLengthOf {integer}
+- [x] {list} |> ListShould.NotHaveLengthOf {integer}
 
 ## SeqShould
 
-- [x] {collection} |> should.Contain {value}
-- [x] {collection} |> should.NotContain {value}
-- [ ] {collection} |> should.ContainAny {values}
-- [ ] {collection} |> should.NotContainAny {values}
-- [ ] {collection} |> should.ContainAll {values}
-- [ ] {collection} |> should.NotContainAll {values}
-- [ ] {collection} |> should.FindValueWith {predicateExpression}
-- [ ] {collection} |> should.NotFindValueWith {predicateExpression}
-- [x] {collection} |> should.FindAllValuesWith {predicateExpression}
-- [x] {collection} |> should.FindNoValuesWith {predicateExpression}
-- [ ] {collection} |> should.BeSorted
-- [ ] {collection} |> should.NotBeSorted
-- [ ] {collection} |> should.BeSortedBy {comparator}
-- [ ] {collection} |> should.NotBeSortedBy {comparator}
-- [ ] {collection} |> should.BeEmpty
-- [ ] {collection} |> should.NotBeEmpty
-- [ ] {collection} |> should.HaveLengthOf {integer}
+- [x] {collection} |> SeqShould.Contain {value}
+- [x] {collection} |> SeqShould.NotContain {value}
+- [ ] {collection} |> SeqShould.ContainAny {values}
+- [ ] {collection} |> SeqShould.NotContainAny {values}
+- [ ] {collection} |> SeqShould.ContainAll {values}
+- [ ] {collection} |> SeqShould.NotContainAll {values}
+- [ ] {collection} |> SeqShould.FindValueWith {predicateExpression}
+- [ ] {collection} |> SeqShould.NotFindValueWith {predicateExpression}
+- [x] {collection} |> SeqShould.FindAllValuesWith {predicateExpression}
+- [x] {collection} |> SeqShould.FindNoValuesWith {predicateExpression}
+- [ ] {collection} |> SeqShould.BeSorted
+- [ ] {collection} |> SeqShould.NotBeSorted
+- [ ] {collection} |> SeqShould.BeSortedBy {comparator}
+- [ ] {collection} |> SeqShould.NotBeSortedBy {comparator}
+- [ ] {collection} |> SeqShould.BeEmpty
+- [ ] {collection} |> SeqShould.NotBeEmpty
+- [x] {collection} |> SeqShould.HaveLengthOf {integer}
+- [x] {collection} |> SeqShould.NotHaveLengthOf {integer}

@@ -12,6 +12,7 @@ type Modifiers<'a> =
     | PassesTest of 'a
     | FailsTest of 'a
     | Contains of 'a list * 'a
+    | Length of 'a
 
 let buildLocation fullFileName lineNumber =
     let info = System.IO.FileInfo fullFileName

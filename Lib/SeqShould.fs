@@ -11,11 +11,11 @@ type SeqShould =
     static member NotContain (value: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         List.ofSeq >> ListShould.NotContain (value, fullPath, lineNumber)
         
-    static member FindAllValuesWith (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        List.ofSeq >> ListShould.FindAllValuesWith (predicateExpression, fullPath, lineNumber)
+    static member AllValuesPassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        List.ofSeq >> ListShould.AllValuesPassTestOf (predicateExpression, fullPath, lineNumber)
         
-    static member FindNoValuesWith (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
-        List.ofSeq >> ListShould.FindNoValuesWith (predicateExpression, fullPath, lineNumber)
+    static member NoValuesPassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+        List.ofSeq >> ListShould.NoValuesPassTestOf (predicateExpression, fullPath, lineNumber)
         
     static member HaveLengthOf (length: int, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         List.ofSeq >> ListShould.HaveLengthOf (length, fullPath, lineNumber)

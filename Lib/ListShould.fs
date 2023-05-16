@@ -20,7 +20,7 @@ type ListShould =
             
         checkIt
         
-    static member FindAllValuesWith (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member AllValuesPassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         let checkIt (actual: 'a list) =
             let predicateString = decompile predicateExpression
             let predicate: 'a -> bool = predicateExpression |> QuotationEvaluator.Evaluate
@@ -31,7 +31,7 @@ type ListShould =
 
         checkIt
         
-    static member FindNoValuesWith (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member NoValuesPassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
         let checkIt (actual: 'a list) =
             let predicateString = decompile predicateExpression
             let predicate: 'a -> bool = predicateExpression |> QuotationEvaluator.Evaluate

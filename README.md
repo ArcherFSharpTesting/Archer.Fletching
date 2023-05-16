@@ -56,8 +56,8 @@ A test verification Framework for Archer
 - [ ] {list} |> ListShould.NotContainAll {values}
 - [ ] {list} |> ListShould.FindValueWith {predicateExpression}
 - [ ] {list} |> ListShould.NotFindValueWith {predicateExpression}
-- [x] {list} |> ListShould.FindAllValuesWith {predicateExpression}
-- [x] {list} |> ListShould.FindNoValuesWith {predicateExpression}
+- [x] {list} |> ListShould.AllValuesPassTestOf {predicateExpression}
+- [x] {list} |> ListShould.NoValuesPassTestOf {predicateExpression}
 - [ ] {list} |> ListShould.BeSorted
 - [ ] {list} |> ListShould.NotBeSorted
 - [ ] {list} |> ListShould.BeSortedBy {comparator}
@@ -77,8 +77,8 @@ A test verification Framework for Archer
 - [ ] {collection} |> SeqShould.NotContainAll {values}
 - [ ] {collection} |> SeqShould.FindValueWith {predicateExpression}
 - [ ] {collection} |> SeqShould.NotFindValueWith {predicateExpression}
-- [x] {collection} |> SeqShould.FindAllValuesWith {predicateExpression}
-- [x] {collection} |> SeqShould.FindNoValuesWith {predicateExpression}
+- [x] {collection} |> SeqShould.AllValuesPassTestOf {predicateExpression}
+- [x] {collection} |> SeqShould.NoValuesPassTestOf {predicateExpression}
 - [ ] {collection} |> SeqShould.BeSorted
 - [ ] {collection} |> SeqShould.NotBeSorted
 - [ ] {collection} |> SeqShould.BeSortedBy {comparator}

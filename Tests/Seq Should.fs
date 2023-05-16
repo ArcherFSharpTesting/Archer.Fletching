@@ -45,24 +45,24 @@ let ``NotContain should return failure when searching seq{ "3"; "4"; "5" } for "
         |> Should.BeEqualTo expected
     )
     
-let ``AllValuesPassTestOf Should return success when searching seq{ 2; 4; 6; 8 } for even numbers`` =
+let ``HaveAllValuesPassTestOf Should return success when searching seq{ 2; 4; 6; 8 } for even numbers`` =
     feature.Test (fun _ ->
         seq{ 2; 4; 6; 8 }
-        |> SeqShould.AllValuesPassTestOf <@ fun x -> x % 2 = 0 @>
+        |> SeqShould.HaveAllValuesPassTestOf <@ fun x -> x % 2 = 0 @>
     )
     
-let ``NoValuesPassTestOf should return success when searching seq{ 1; 3; 5; 7 } for even numbers`` =
+let ``HaveNoValuesPassTestOf should return success when searching seq{ 1; 3; 5; 7 } for even numbers`` =
     feature.Test (fun _ ->
         seq{ 1; 3; 5; 7 }
-        |> SeqShould.NoValuesPassTestOf <@ fun x -> x % 2 = 0 @> 
+        |> SeqShould.HaveNoValuesPassTestOf <@ fun x -> x % 2 = 0 @> 
     )
     
-let ``NoValuesPassTestOf should return failure when searching seq { 1; 2; 3; 5; 7 } for even numbers`` =
+let ``HaveNoValuesPassTestOf should return failure when searching seq { 1; 2; 3; 5; 7 } for even numbers`` =
     feature.Test (fun _ ->
         let expected = failureBuilder.ValidationFailure (FailsTest "fun x -> x % 2 = 0", PassesTest [1; 2; 3; 5; 7], "C:\\aw.crow", 201)
         let result = 
             seq { 1; 2; 3; 5; 7 }
-            |> SeqShould.NoValuesPassTestOf (<@ fun x -> x % 2 = 0 @>, "C:\\aw.crow", 201)
+            |> SeqShould.HaveNoValuesPassTestOf (<@ fun x -> x % 2 = 0 @>, "C:\\aw.crow", 201)
             
         result
         |> Should.BeEqualTo expected

@@ -45,35 +45,35 @@ let ``NotContain should return failure when searching ["3"; "4"; "5"] for "4"`` 
         |> Should.BeEqualTo expected
     )
     
-let ``AllValuesPassTestOf Should return success when searching [2; 4; 6; 8] for even numbers`` =
+let ``HaveAllValuesPassTestOf Should return success when searching [2; 4; 6; 8] for even numbers`` =
     feature.Test (fun _ ->
         [2; 4; 6; 8]
-        |> ListShould.AllValuesPassTestOf <@ fun x -> x % 2 = 0 @>
+        |> ListShould.HaveAllValuesPassTestOf <@ fun x -> x % 2 = 0 @>
     )
     
-let ``AllValuesPassTestOf Should return failure when searching [1; 2; 3; 4] for even numbers`` =
+let ``HaveAllValuesPassTestOf Should return failure when searching [1; 2; 3; 4] for even numbers`` =
     feature.Test (fun _ ->
         let expected = failureBuilder.ValidationFailure (PassesTest "fun x -> x % 2 = 0", FailsTest [1; 2; 3; 4], "M:\\oo.cow", -78)
         let result =
             [1; 2; 3; 4]
-            |> ListShould.AllValuesPassTestOf (<@ fun x -> x % 2 = 0 @>, "M:\\oo.cow", -78)
+            |> ListShould.HaveAllValuesPassTestOf (<@ fun x -> x % 2 = 0 @>, "M:\\oo.cow", -78)
             
         result
         |> Should.BeEqualTo expected
     )
     
-let ``NoValuesPassTestOf should return success when searching [1; 3; 5; 7] for even numbers`` =
+let ``HaveNoValuesPassTestOf should return success when searching [1; 3; 5; 7] for even numbers`` =
     feature.Test (fun _ ->
         [1; 3; 5; 7]
-        |> ListShould.NoValuesPassTestOf <@ fun x -> x % 2 = 0 @> 
+        |> ListShould.HaveNoValuesPassTestOf <@ fun x -> x % 2 = 0 @> 
     )
     
-let ``NoValuesPassTestOf should return failure when searching [1; 2; 3; 5; 7] for even numbers`` =
+let ``HaveNoValuesPassTestOf should return failure when searching [1; 2; 3; 5; 7] for even numbers`` =
     feature.Test (fun _ ->
         let expected = failureBuilder.ValidationFailure (FailsTest "fun x -> x % 2 = 0", PassesTest [1; 2; 3; 5; 7], "C:\\aw.crow", 201)
         let result = 
             [1; 2; 3; 5; 7]
-            |> ListShould.NoValuesPassTestOf (<@ fun x -> x % 2 = 0 @>, "C:\\aw.crow", 201)
+            |> ListShould.HaveNoValuesPassTestOf (<@ fun x -> x % 2 = 0 @>, "C:\\aw.crow", 201)
             
         result
         |> Should.BeEqualTo expected

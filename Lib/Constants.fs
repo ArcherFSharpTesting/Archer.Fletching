@@ -1,5 +1,5 @@
 ﻿[<AutoOpen>]
-module Archer.Fletching.Constants
+module Archer.Constants
 
 open Archer.Fletching.Types.Internal
 

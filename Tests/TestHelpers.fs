@@ -8,7 +8,7 @@ open System.Runtime.InteropServices
 open Archer.Fletching.Types.Internal
 
 type Location =
-    static member Get([<CallerMemberName; Optional; DefaultParameterValue("")>] testName: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fileFullName: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member Get([<CallerMemberName; Optional; DefaultParameterValue("")>] testName: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fileFullName: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let fileInfo = FileInfo fileFullName
         let filePath = fileInfo.Directory.FullName
         let fileName = fileInfo.Name

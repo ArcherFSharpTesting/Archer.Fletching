@@ -39,7 +39,7 @@ let toVerificationInfo (expectation: ExpectationInfo<'expected, 'actual>) =
     expectation :> IVerificationInfo
     
 type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
-    member _.ValidationFailure<'expected, 'actual> (expectationInfo: ExpectationInfo<'expected, 'actual>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    member _.ValidationFailure<'expected, 'actual> (expectationInfo: ExpectationInfo<'expected, 'actual>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let failure =
             expectationInfo
             |> toVerificationInfo
@@ -55,10 +55,10 @@ type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
         |> TestFailure
         |> toResult
             
-    member this.ValidationFailure (expected, actual, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    member this.ValidationFailure (expected, actual, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         this.ValidationFailure ({ ExpectedValue = expected; ActualValue = actual }, fullPath, lineNumber)
             
-    member _.GeneralTestExpectationFailure (message, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    member _.GeneralTestExpectationFailure (message, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let location = buildLocation fullPath lineNumber
         (
             message |> ExpectationOtherFailure,
@@ -68,7 +68,7 @@ type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
         |> TestFailure
         |> toResult
         
-    member _.IgnoreFailure (message: string option, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    member _.IgnoreFailure (message: string option, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let location = buildLocation fullPath lineNumber
         (
             message,
@@ -78,10 +78,10 @@ type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
         |> TestFailure
         |> toResult
         
-    member this.IgnoreFailure (message: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    member this.IgnoreFailure (message: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         this.IgnoreFailure (message |> Some, fullPath, lineNumber)
         
-    member this.IgnoreFailure ([<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    member this.IgnoreFailure ([<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         this.IgnoreFailure (None, fullPath, lineNumber)
         
     member _.ExceptionFailure (ex: exn) =
@@ -94,7 +94,7 @@ type SetupTeardownResultFailureBuilder<'result> (toResult: SetupTeardownFailure 
     member _.CancelFailure () =
         SetupTeardownCanceledFailure |> toResult
         
-    member _.GeneralFailure (message: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    member _.GeneralFailure (message: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let location = buildLocation fullPath lineNumber
         
         (

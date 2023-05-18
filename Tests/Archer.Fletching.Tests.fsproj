@@ -19,8 +19,8 @@
     <Compile Include="Should Object Methods.fs" />
     <Compile Include="Should Boolean Methods.fs" />
     <Compile Include="Should Other Methods.fs" />
-    <Compile Include="Seq Should.fs" />
     <Compile Include="List Should.fs" />
+    <Compile Include="Seq Should.fs" />
     <Compile Include="RunHelpers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
@@ -30,10 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Archer.Arrow.Lib" Version="0.0.0.32" />
-    <PackageReference Include="Archer.Bow.Lib" Version="0.0.9.29" />
-    <PackageReference Include="Archer.CoreTypes.Lib" Version="0.0.13.37" />
-    <PackageReference Update="FSharp.Core" Version="7.0.200" />
+    <PackageReference Include="Archer.Arrow.Lib" Version="0.0.0.35" />
+    <PackageReference Include="Archer.Bow.Lib" Version="0.0.9.31" />
+    <PackageReference Include="Archer.CoreTypes.Lib" Version="0.0.13.38" />
+    <PackageReference Update="FSharp.Core" Version="7.0.300" />
   </ItemGroup>
 
 </Project>

@@ -8,19 +8,19 @@ open FSharp.Quotations.Evaluator
 open Swensen.Unquote
 
 type ListShould =
-    static member Contain (value: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member Contain (value: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let checkIt (items: 'a list) =
             check (List.contains value) fullPath lineNumber (fun a -> Contains (a, value)) (fun a -> (a, value) |> Contains |> Not) items items
             
         checkIt
         
-    static member NotContain (value: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member NotContain (value: 'a, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let checkIt (items: 'a list) =
             check (List.contains value >> not) fullPath lineNumber (fun a -> (a, value) |> Contains |> Not) (fun a -> Contains (a, value)) items items
             
         checkIt
         
-    static member HaveAllValuesPassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member HaveAllValuesPassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let checkIt (actual: 'a list) =
             let predicateString = decompile predicateExpression
             let predicate: 'a -> bool = predicateExpression |> QuotationEvaluator.Evaluate
@@ -31,7 +31,7 @@ type ListShould =
 
         checkIt
         
-    static member HaveNoValuesPassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member HaveNoValuesPassTestOf (predicateExpression: Quotations.Expr<'a -> bool>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let checkIt (actual: 'a list) =
             let predicateString = decompile predicateExpression
             let predicate: 'a -> bool = predicateExpression |> QuotationEvaluator.Evaluate
@@ -40,8 +40,16 @@ type ListShould =
             
         checkIt
         
-    static member HaveLengthOf (length: int, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member HaveLengthOf (length: int, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         check (List.length >> ((=) length)) fullPath lineNumber Length id length
         
-    static member NotHaveLengthOf (length: int, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>]lineNumber: int) =
+    static member NotHaveLengthOf (length: int, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         check (List.length >> ((<>) length)) fullPath lineNumber (Length >> Not) id length
+        
+    static member HaveAllValuesPassAllOf (tests: ('a -> TestResult) list, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
+        let checkIt (actual: 'a list) =
+            actual
+            |> List.map (Should.PassAllOf (tests, fullPath, lineNumber))
+            |> List.reduce (+)
+            
+        checkIt

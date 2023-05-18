@@ -112,5 +112,140 @@ let ``NotHaveLengthOf should return failure when comparing the length of ['a'; '
         result
         |> Should.BeEqualTo expected
     )
+    
+let ``HaveAllValuesPassAllOf should return a success when all items pass all tests`` =
+    feature.Test (fun _ ->
+        [
+            "Hello"
+            "Howdy"
+            "Hardy"
+        ]
+        |> ListShould.HaveAllValuesPassAllOf [
+            Seq.length >> Should.BeEqualTo 5
+            Seq.head >> Should.BeEqualTo 'H'
+            Seq.last >> Should.PassTestOf <@System.Char.IsLower@>
+        ]
+    )
+    
+let ``HaveAllValuesPassAllOf should return a failure when one item fails any test`` =
+    feature.Test (fun _ ->
+        let expected = 3 |> Should.BeEqualTo (5, "A:\\pe.g", 96)
+        let result = 
+            [
+                "Hello"
+                "How"
+                "Hardy"
+            ]
+            |> ListShould.HaveAllValuesPassAllOf ([
+                Seq.length >> Should.BeEqualTo (5, "A:\\pe.g", 96)
+                Seq.head >> Should.BeEqualTo ('H', "B:\\ird.c", 97)
+                Seq.last >> Should.PassTestOf (<@System.Char.IsLower@>, "C:\\at.p", 98)
+            ], "D:\\og.b", 99)
+            
+        result
+        |> Should.BeEqualTo expected
+    )
+    
+let ``HaveAllValuesPassAllOf should return all failure when one item fails multiple tests`` =
+    feature.Test (fun _ ->
+        let expected =
+            TestFailure (
+                CombinationFailure (
+                    (
+                        TestExpectationFailure (
+                            ExpectationVerificationFailure {
+                                ExpectedValue = 5
+                                ActualValue = 3
+                            },
+                            {
+                                FilePath = "A:\\"
+                                FileName = "pe.g"
+                                LineNumber = 96
+                            }
+                        ),
+                        None
+                    ),
+                    (
+                        TestExpectationFailure (
+                            ExpectationVerificationFailure {
+                                ExpectedValue = 'H'
+                                ActualValue = 'A'
+                            },
+                            {
+                                FilePath = "B:\\"
+                                FileName = "ird.c"
+                                LineNumber = 97
+                            }
+                        ),
+                        None
+                    )
+                )
+        )
+               
+        let result = 
+            [
+                "Hello"
+                "Are"
+                "Hardy"
+            ]
+            |> ListShould.HaveAllValuesPassAllOf ([
+                Seq.length >> Should.BeEqualTo (5, "A:\\pe.g", 96)
+                Seq.head >> Should.BeEqualTo ('H', "B:\\ird.c", 97)
+                Seq.last >> Should.PassTestOf (<@System.Char.IsLower@>, "C:\\at.p", 98)
+            ], "D:\\og.b", 99)
+            
+        result
+        |> Should.BeEqualTo expected
+    )
 
+    
+let ``HaveAllValuesPassAllOf should return all failures when multiple items fails any test`` =
+    feature.Test (fun _ ->
+        let expected = TestFailure (
+            CombinationFailure (
+                (
+                    TestExpectationFailure (
+                        ExpectationVerificationFailure {
+                            ExpectedValue = 5
+                            ActualValue = 3
+                        },
+                        {
+                            FilePath = "A:\\"
+                            FileName = "pe.g"
+                            LineNumber = 96
+                        }
+                    ),
+                    None
+                ),
+                (
+                    TestExpectationFailure (
+                        ExpectationVerificationFailure {
+                            ExpectedValue = 5
+                            ActualValue = 8
+                        },
+                        {
+                            FilePath = "A:\\"
+                            FileName = "pe.g"
+                            LineNumber = 96
+                        }), None
+                    )
+                )
+            )
+        
+        let result = 
+            [
+                "Hello"
+                "How"
+                "Howdy-do"
+            ]
+            |> ListShould.HaveAllValuesPassAllOf ([
+                Seq.length >> Should.BeEqualTo (5, "A:\\pe.g", 96)
+                Seq.head >> Should.BeEqualTo ('H', "B:\\ird.c", 97)
+                Seq.last >> Should.PassTestOf (<@System.Char.IsLower@>, "C:\\at.p", 98)
+            ], "D:\\og.b", 99)
+            
+        result
+        |> Should.BeEqualTo expected
+    )
+    
 let ``Test Cases`` = feature.GetTests ()

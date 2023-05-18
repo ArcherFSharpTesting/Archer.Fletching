@@ -14,6 +14,7 @@
     <Compile Include="SholdType.Other.fs" />
     <Compile Include="ListShould.fs" />
     <Compile Include="SeqShould.fs" />
+    <Compile Include="ArrayShould.fs" />
     <Compile Include="NotImplemented.fs" />
   </ItemGroup>
 

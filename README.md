@@ -93,22 +93,22 @@ A test verification Framework for Archer
 
 ## ArrayShould
 
-- [ ] {array} |> ArrayShould.Contain {value}
-- [ ] {array} |> ArrayShould.NotContain {value}
+- [x] {array} |> ArrayShould.Contain {value}
+- [x] {array} |> ArrayShould.NotContain {value}
 - [ ] {array} |> ArrayShould.ContainAny {values}
 - [ ] {array} |> ArrayShould.NotContainAny {values}
 - [ ] {array} |> ArrayShould.ContainAll {values}
 - [ ] {array} |> ArrayShould.NotContainAll {values}
 - [ ] {array} |> ArrayShould.FindValueWith {predicateExpression}
 - [ ] {array} |> ArrayShould.NotFindValueWith {predicateExpression}
-- [ ] {array} |> ArrayShould.HaveAllValuesPassTestOf {predicateExpression}
-- [ ] {array} |> ArrayShould.HaveNoValuesPassTestOf {predicateExpression}
+- [x] {array} |> ArrayShould.HaveAllValuesPassTestOf {predicateExpression}
+- [x] {array} |> ArrayShould.HaveNoValuesPassTestOf {predicateExpression}
 - [ ] {array} |> ArrayShould.BeSorted
 - [ ] {array} |> ArrayShould.NotBeSorted
 - [ ] {array} |> ArrayShould.BeSortedBy {comparator}
 - [ ] {array} |> ArrayShould.NotBeSortedBy {comparator}
 - [ ] {array} |> ArrayShould.BeEmpty
 - [ ] {array} |> ArrayShould.NotBeEmpty
-- [ ] {array} |> ArrayShould.HaveLengthOf {integer}
-- [ ] {array} |> ArrayShould.NotHaveLengthOf {integer}
-- [ ] {array} |> ArrayShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+- [x] {array} |> ArrayShould.HaveLengthOf {integer}
+- [x] {array} |> ArrayShould.NotHaveLengthOf {integer}
+- [x] {array} |> ArrayShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]

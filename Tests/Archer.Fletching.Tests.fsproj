@@ -21,6 +21,7 @@
     <Compile Include="Should Other Methods.fs" />
     <Compile Include="List Should.fs" />
     <Compile Include="Seq Should.fs" />
+    <Compile Include="Array Should.fs" />
     <Compile Include="RunHelpers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Types.Internal.fs" />
+    <Compile Include="Types.fs" />
     <Compile Include="GoldenMaster.fs" />
     <Compile Include="ShouldTypeHelpers.fs" />
     <Compile Include="ShouldType.Objects.fs" />

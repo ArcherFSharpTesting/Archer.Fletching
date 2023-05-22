@@ -69,12 +69,39 @@ let private getNamer (testInfo: ITestInfo) =
     let canonicalizedContainerName = testInfo.ContainerName
     let canonicalizedName = testInfo.TestName
     
-    {  new IApprovalNamer with
+    { new IGoldMasterNamer with
+        member _.CanonicalizedContainerRoot with get () = canonicalizedContainerRoot
+        member _.CanonicalizedContainerName with get () = canonicalizedContainerName
+        member _.CanonicalizedTestName with get () = canonicalizedName
         member _.SourcePath with get () = path
         member _.Name with get () = $"%s{canonicalizedContainerRoot}.%s{canonicalizedContainerName}.%s{canonicalizedName}"
     }
     
-let approve (testInfo:ITestInfo) (reporter:IApprovalFailureReporter) (approver:IApprovalApprover) fullPath lineNumber =
+let getStringFileApprover testInfo result =
+    ApprovalTests.Approvers.FileApprover (getStringFileWriter result, getNamer testInfo)
+    :> IApprovalApprover
+
+let getBinaryFileApprover testInfo extensionWithoutDot result =
+    ApprovalTests.Approvers.FileApprover (getBinaryFileWriter extensionWithoutDot result, getNamer testInfo)
+    :> IApprovalApprover
+        
+let getStreamFileApprover testInfo extensionWithoutDot (result:Stream) =
+    let goldMasterNamer = getNamer testInfo
+    let approver = ApprovalTests.Approvers.FileApprover (getBinaryStreamWriter extensionWithoutDot result, goldMasterNamer)
+    
+    { new IGoldMasterApprover with
+        member _.CanonicalizedContainerRoot with get () = goldMasterNamer.CanonicalizedContainerRoot
+        member _.CanonicalizedContainerName with get () = goldMasterNamer.CanonicalizedContainerName
+        member _.CanonicalizedTestName with get () = goldMasterNamer.CanonicalizedTestName
+        member _.SourcePath with get () = goldMasterNamer.SourcePath
+        member _.Name with get () = goldMasterNamer.Name
+        member _.Approve () = approver.Approve ()
+        member _.CleanUpAfterSuccess reporter = approver.CleanUpAfterSuccess reporter
+        member _.Fail () = approver.Fail ()
+        member _.ReportFailure reporter = approver.ReportFailure reporter
+    }    
+        
+let approve fullPath lineNumber (reporter: IApprovalFailureReporter) (approver: IGoldMasterApprover) =
     if approver.Approve ()
     then
         do approver.CleanUpAfterSuccess reporter 
@@ -89,6 +116,5 @@ let approve (testInfo:ITestInfo) (reporter:IApprovalFailureReporter) (approver:I
             ()
         | _ -> ()
         
-        let namer = getNamer testInfo
         let fb = TestResultFailureBuilder id
-        fb.ValidationFailure ({ ExpectedValue = $"%s{namer.Name}.approved"; ActualValue = $"%s{namer.Name}.received" }, fullPath, lineNumber)
+        fb.ValidationFailure ({ ExpectedValue = $"%s{approver.Name}.approved"; ActualValue = $"%s{approver.Name}.received" }, fullPath, lineNumber)

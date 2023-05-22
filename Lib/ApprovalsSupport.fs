@@ -26,3 +26,6 @@ let unWrapReporter findReporterResult =
     | FoundReporter reporter -> 
         reporter
     | _ -> createReporter<QuietReporter> ()
+    
+type Should with
+    static member MeetStandard () = ()

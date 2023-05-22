@@ -1,15 +1,6 @@
 # Archer.Fletching
 A test verification Framework for Archer
 
-## SpecifiactionDetails
-
-```F#
-type SpecifiactionDetails = {
-  TestInfo: ITestInfo
-  Reporters: Reporter list
-}
-```
-
 ## Should
 
 - Dictionary
@@ -43,7 +34,7 @@ type SpecifiactionDetails = {
   - [ ] {string} |> Should.NotContain {string}
   - [ ] {string} |> Should.BeMatchedBy {regex}
   - [ ] {string} |> Should.NotBeMatchedBy {regex}
-  - [ ] {string} |> Should.MeetSpecification {SpecifiactionDetails}
+  - [ ] {string} |> Should.MatchStandard {ITestInfo} {reporter}
 - Numbers
   - [ ] {number} |> Should.BeWithin ({number}, {number})
   - [ ] {number} |> Should.BeBetween ({number}, {number})

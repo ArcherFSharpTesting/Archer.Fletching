@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Types.Internal.fs" />
+    <Compile Include="GoldenMaster.fs" />
     <Compile Include="ShouldTypeHelpers.fs" />
     <Compile Include="ShouldType.Objects.fs" />
     <Compile Include="ShouldType.Boolean.fs" />
@@ -16,10 +17,12 @@
     <Compile Include="SeqShould.fs" />
     <Compile Include="ArrayShould.fs" />
     <Compile Include="NotImplemented.fs" />
+    <Compile Include="ApprovalsSupport.fs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Archer.CoreTypes.Lib" Version="0.0.13.38" />
+    <PackageReference Include="ApprovalTests" Version="5.8.0" />
+    <PackageReference Include="Archer.CoreTypes.Lib" Version="0.0.13.41" />
     <PackageReference Update="FSharp.Core" Version="7.0.300" />
     <PackageReference Include="FSharp.Quotations.Evaluator" Version="2.1.0" />
     <PackageReference Include="Unquote" Version="6.1.0" />

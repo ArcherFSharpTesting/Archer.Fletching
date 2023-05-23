@@ -42,5 +42,6 @@ framework
     ``Seq Should``.``Test Cases``
     ``List Should``.``Test Cases``
     ``Array Should``.``Test Cases``
+    ``Should Meet Standard``.``Test Cases``
 ]
 |> runAndReport

@@ -21,7 +21,7 @@ let private writeTextTo fullPath result =
     let writer path toWrite = File.WriteAllText (path, toWrite, System.Text.Encoding.UTF8)
     result |> writeTo fullPath writer
     
-let private getStringFileWriter result = 
+let getStringFileWriter result = 
     { new IApprovalWriter with 
         member _.GetApprovalFilename(baseName) = $"%s{baseName}.approved.txt"
         member _.GetReceivedFilename(baseName) = $"%s{baseName}.received.txt"
@@ -29,7 +29,7 @@ let private getStringFileWriter result =
             result |> writeTextTo fullPathForReceivedFile
     }
 
-let private getBinaryFileWriter extensionWithoutDot result =
+let getBinaryFileWriter extensionWithoutDot result =
     { new IApprovalWriter with
         member _.GetApprovalFilename(baseName) = $"%s{baseName}.approved.%s{extensionWithoutDot}"
         member _.GetReceivedFilename(baseName) = $"%s{baseName}.received.%s{extensionWithoutDot}"
@@ -37,7 +37,7 @@ let private getBinaryFileWriter extensionWithoutDot result =
             result |> writeBinaryTo fullPathForReceivedFile
     }
 
-let private getBinaryStreamWriter extensionWithoutDot (result:Stream) =
+let getBinaryStreamWriter extensionWithoutDot (result:Stream) =
     let length = int result.Length
     let data : byte array = Array.zeroCreate length
 
@@ -66,29 +66,18 @@ let canonicalizeString (value: string) =
 let private getNamer (testInfo: ITestInfo) = 
     let path = testInfo.Location.FilePath
     let canonicalizedContainerRoot = testInfo.ContainerPath |> canonicalizeString
-    let canonicalizedContainerName = testInfo.ContainerName
-    let canonicalizedName = testInfo.TestName
+    let canonicalizedContainerName = testInfo.ContainerName |> canonicalizeString
+    let canonicalizedName = testInfo.TestName |> canonicalizeString
     
     { new IGoldMasterNamer with
         member _.CanonicalizedContainerRoot with get () = canonicalizedContainerRoot
         member _.CanonicalizedContainerName with get () = canonicalizedContainerName
         member _.CanonicalizedTestName with get () = canonicalizedName
         member _.SourcePath with get () = path
-        member _.Name with get () = $"%s{canonicalizedContainerRoot}.%s{canonicalizedContainerName}.%s{canonicalizedName}"
+        member _.Name with get () = $"%s{canonicalizedContainerName}.%s{canonicalizedName}"
     }
     
-let getStringFileApprover testInfo result =
-    ApprovalTests.Approvers.FileApprover (getStringFileWriter result, getNamer testInfo)
-    :> IApprovalApprover
-
-let getBinaryFileApprover testInfo extensionWithoutDot result =
-    ApprovalTests.Approvers.FileApprover (getBinaryFileWriter extensionWithoutDot result, getNamer testInfo)
-    :> IApprovalApprover
-        
-let getStreamFileApprover testInfo extensionWithoutDot (result:Stream) =
-    let goldMasterNamer = getNamer testInfo
-    let approver = ApprovalTests.Approvers.FileApprover (getBinaryStreamWriter extensionWithoutDot result, goldMasterNamer)
-    
+let private getGoldMasterApprover (goldMasterNamer: IGoldMasterNamer) (approver: IApprovalApprover) =  
     { new IGoldMasterApprover with
         member _.CanonicalizedContainerRoot with get () = goldMasterNamer.CanonicalizedContainerRoot
         member _.CanonicalizedContainerName with get () = goldMasterNamer.CanonicalizedContainerName
@@ -99,7 +88,26 @@ let getStreamFileApprover testInfo extensionWithoutDot (result:Stream) =
         member _.CleanUpAfterSuccess reporter = approver.CleanUpAfterSuccess reporter
         member _.Fail () = approver.Fail ()
         member _.ReportFailure reporter = approver.ReportFailure reporter
-    }    
+    }
+    
+let getStringFileApprover testInfo result =
+    let goldMasterNamer = getNamer testInfo
+    let approver = ApprovalTests.Approvers.FileApprover (getStringFileWriter result, goldMasterNamer)
+    
+    getGoldMasterApprover goldMasterNamer approver
+
+let getBinaryFileApprover testInfo extensionWithoutDot result =
+    let goldMasterNamer = getNamer testInfo
+    let approver = ApprovalTests.Approvers.FileApprover (getBinaryFileWriter extensionWithoutDot result, goldMasterNamer)
+    
+    getGoldMasterApprover goldMasterNamer approver
+    
+        
+let getStreamFileApprover testInfo extensionWithoutDot (result:Stream) =
+    let goldMasterNamer = getNamer testInfo
+    let approver = ApprovalTests.Approvers.FileApprover (getBinaryStreamWriter extensionWithoutDot result, goldMasterNamer)
+    
+    getGoldMasterApprover goldMasterNamer approver
         
 let approve fullPath lineNumber (reporter: IApprovalFailureReporter) (approver: IGoldMasterApprover) =
     if approver.Approve ()

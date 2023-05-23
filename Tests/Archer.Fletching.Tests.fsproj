@@ -19,6 +19,7 @@
     <Compile Include="Should Object Methods.fs" />
     <Compile Include="Should Boolean Methods.fs" />
     <Compile Include="Should Other Methods.fs" />
+    <Compile Include="Should Meet Standard.fs" />
     <Compile Include="List Should.fs" />
     <Compile Include="Seq Should.fs" />
     <Compile Include="Array Should.fs" />
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ApprovalTests" Version="5.8.0" />
     <PackageReference Include="Archer.Arrow.Lib" Version="0.0.0.39" />
     <PackageReference Include="Archer.Bow.Lib" Version="0.0.9.35" />
     <PackageReference Include="Archer.CoreTypes.Lib" Version="0.0.13.41" />

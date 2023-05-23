@@ -40,7 +40,7 @@ let unWrapReporter findReporterResult =
 type Should with
     static member MeetStandard (reporter: IApprovalFailureReporter, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let checkIt (testInfo: ITestInfo) (result: string) =
-            let result = result.Replace("\r\n", "\n").Replace("\n", "\rn")
+            let result = result.Replace("\r\n", "\n").Replace("\n", "\r\n")
             let approver = getStringFileApprover testInfo result
             
             approve fullPath lineNumber reporter approver

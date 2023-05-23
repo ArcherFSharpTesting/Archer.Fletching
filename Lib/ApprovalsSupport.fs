@@ -19,6 +19,17 @@ let buildReporter (reporters: IApprovalFailureReporter List) =
     then QuietReporter() :> IApprovalFailureReporter
     else
         MultiReporter(reporters |> List.toSeq) :> IApprovalFailureReporter
+        
+let findFirstWith (getter: unit -> 'a when 'a :> IApprovalFailureReporter) findReporterResult =
+    match findReporterResult with
+    | FoundReporter _ -> findReporterResult
+    | _ ->
+        try
+            let reporter = getter ()
+            FoundReporter(reporter)
+        with
+        | _ ->
+            Searching
     
 let findFirstReporter<'a when 'a :> IApprovalFailureReporter> findReporterResult =
     match findReporterResult with

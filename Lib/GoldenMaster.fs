@@ -92,7 +92,7 @@ let private getGoldMasterApprover (goldMasterNamer: IGoldMasterNamer) (approver:
     
 let getStringFileApprover testInfo result =
     let goldMasterNamer = getNamer testInfo
-    let approver = ApprovalTests.Approvers.FileApprover (getStringFileWriter result, goldMasterNamer)
+    let approver = ApprovalTests.Approvers.FileApprover (getStringFileWriter result, goldMasterNamer, true)
     
     getGoldMasterApprover goldMasterNamer approver
 

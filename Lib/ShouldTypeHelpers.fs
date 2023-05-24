@@ -21,3 +21,11 @@ let check fCheck fullPath lineNumber expectedModifier actualModifier expected ac
         TestSuccess
     else
         failureBuilder.ValidationFailure (expectedModifier expected, actualModifier actual, fullPath, lineNumber)
+        
+let withFailureComment (message: string) (result: TestResult) =
+    match result with
+    | TestFailure (TestExpectationFailure (failure, location)) ->
+        (FailureWithMessage (message, failure), location)
+        |> TestExpectationFailure
+        |> TestFailure
+    | _ -> result

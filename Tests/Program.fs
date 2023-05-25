@@ -6,22 +6,24 @@ open Archer.CoreTypes.InternalTypes
 open Archer.CoreTypes.InternalTypes.RunnerTypes
 open Archer.Fletching.Tests
 open Archer.Fletching.Tests.RunHelpers
+open Archer.Logger.Summaries
 
 let framework = bow.Runner ()
 
 framework.RunnerLifecycleEvent
 |> Event.add (fun args ->
     match args with
-    | RunnerStartExecution _ -> ()
+    | RunnerStartExecution _ ->
+        printfn ""
     | RunnerTestLifeCycle (test, testEventLifecycle, _) ->
         match testEventLifecycle with
         | TestEndExecution testExecutionResult ->
-            let successMsg =
-                match testExecutionResult with
-                | TestExecutionResult TestSuccess -> "success"
-                | _ -> "fail"
-                
-            printfn $"%A{test}: (%s{successMsg})"
+            match testExecutionResult with
+            | TestExecutionResult TestSuccess -> ()
+            | result ->
+                let transformedResult = defaultTestExecutionResultSummaryTransformer result test
+                printfn $"%s{transformedResult}"
+            
         | _ -> ()
     | RunnerEndExecution ->
         printfn "\n"

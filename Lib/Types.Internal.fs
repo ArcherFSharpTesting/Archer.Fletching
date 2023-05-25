@@ -1,7 +1,5 @@
 ﻿module Archer.Fletching.Types.Internal
 
-open Microsoft.FSharp.Quotations.Patterns
-open Microsoft.FSharp.Quotations.DerivedPatterns
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 open Archer
@@ -38,7 +36,7 @@ type ExpectationInfo<'expected, 'actual> =
 let toVerificationInfo (expectation: ExpectationInfo<'expected, 'actual>) =
     expectation :> IVerificationInfo
     
-type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
+type TestFailureBuilder<'result> (toResult: TestFailure -> 'result) =
     member _.ValidationFailure<'expected, 'actual> (expectationInfo: ExpectationInfo<'expected, 'actual>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         let failure =
             expectationInfo
@@ -52,7 +50,6 @@ type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
             location
         )
         |> TestExpectationFailure
-        |> TestFailure
         |> toResult
             
     member this.ValidationFailure (expected, actual, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
@@ -65,7 +62,6 @@ type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
             location
         )
         |> TestExpectationFailure
-        |> TestFailure
         |> toResult
         
     member _.IgnoreFailure (message: string option, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
@@ -75,7 +71,6 @@ type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
             location
         )
         |> TestIgnored
-        |> TestFailure
         |> toResult
         
     member this.IgnoreFailure (message: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
@@ -85,7 +80,30 @@ type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
         this.IgnoreFailure (None, fullPath, lineNumber)
         
     member _.ExceptionFailure (ex: exn) =
-        ex |> TestExceptionFailure |> TestFailure |> toResult
+        ex |> TestExceptionFailure |> toResult
+    
+type TestResultFailureBuilder<'result> (toResult: TestResult -> 'result) =
+    let testFailureBuilder = TestFailureBuilder TestFailure
+    member _.ValidationFailure<'expected, 'actual> (expectationInfo: ExpectationInfo<'expected, 'actual>, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
+        testFailureBuilder.ValidationFailure (expectationInfo, fullPath, lineNumber) |> toResult
+            
+    member this.ValidationFailure (expected, actual, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
+        testFailureBuilder.ValidationFailure (expected, actual, fullPath, lineNumber) |> toResult
+            
+    member _.GeneralTestExpectationFailure (message, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
+        testFailureBuilder.GeneralTestExpectationFailure (message, fullPath, lineNumber) |> toResult
+        
+    member _.IgnoreFailure (message: string option, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
+        testFailureBuilder.IgnoreFailure (message, fullPath, lineNumber) |> toResult
+        
+    member this.IgnoreFailure (message: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
+        testFailureBuilder.IgnoreFailure (message, fullPath, lineNumber) |> toResult
+        
+    member this.IgnoreFailure ([<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
+        testFailureBuilder.IgnoreFailure (fullPath, lineNumber) |> toResult
+        
+    member _.ExceptionFailure (ex: exn) =
+        testFailureBuilder.ExceptionFailure ex |> toResult
         
 type SetupTeardownResultFailureBuilder<'result> (toResult: SetupTeardownFailure -> 'result) =
     member _.ExceptionFailure (ex: exn) =

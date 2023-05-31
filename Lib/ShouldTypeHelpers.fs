@@ -29,3 +29,9 @@ let withFailureComment (message: string) (result: TestResult) =
         |> TestExpectationFailure
         |> TestFailure
     | _ -> result
+
+let safeTry f v =
+    try
+        f v
+    with ex ->
+        failureBuilder.ExceptionFailure ex

@@ -5,8 +5,8 @@ open Archer.Bow
 open Archer.CoreTypes.InternalTypes
 open Archer.CoreTypes.InternalTypes.RunnerTypes
 open Archer.Fletching.Tests
-open Archer.Fletching.Tests.RunHelpers
 open Archer.Logger.Summaries
+open MicroLang.Lang
 
 let framework = bow.Runner ()
 

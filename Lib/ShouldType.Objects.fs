@@ -6,6 +6,7 @@ open Archer.Fletching.Types.Internal
 open FSharp.Quotations.Evaluator
 open Swensen.Unquote
 
+
 type Should =
     // --- Object Checks ---------------------------------------------------------------------------------------------
     static member BeEqualTo (expected, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
@@ -58,7 +59,7 @@ type Should =
         let checkIt actual =
             if 0 < tests.Length then
                 tests
-                |> List.map (fun f -> f actual)
+                |> List.map (fun f -> safeTry f actual)
                 |> List.reduce (+)
             else
                 failureBuilder.GeneralTestExpectationFailure ("Should.PassAllOf needs to be passed at least one verification function", fullPath, lineNumber)

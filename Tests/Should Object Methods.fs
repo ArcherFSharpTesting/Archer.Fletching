@@ -1,8 +1,14 @@
 ﻿module Archer.Fletching.Tests.``Should Object Methods``
 
+open System.Reflection
 open Archer
 open Archer.Arrows
+open Archer.CoreTypes.InternalTypes.RunnerTypes
 open Archer.Fletching.Types.Internal
+open Archer.Logger.Detail
+open Archer.Logger.Indent
+open Archer.Logger.LocationHelpers
+open Archer.Logger.TestFailContainerTransformer
 
 let private feature = Arrow.NewFeature (
     TestTags [
@@ -552,6 +558,40 @@ let ``PassAllOf should fail if no verification functions are passed`` =
             
         result
         |> Should.BeEqualTo expected
+    )
+    
+let ``PassAllOf should fail if one verification function raises an exception`` =
+    feature.Test (fun _ environment ->
+        let original = "Bye"
+        let stringExplode = System.Int32.Parse >> Should.BeEqualTo 4
+        
+        let assembly = Assembly.GetAssembly typeof<IndentTransformer>
+        let indenter = IndentTransformer ()
+    
+        let baseTransformer result =
+            detailedTestItemTransformer getTitleTimingString shortTestTitleFormatter getRelativeFilePath getWrappedTestFailureMessage assembly indenter environment.TestInfo None result
+
+
+        let expectedA = failureBuilder.ValidationFailure (Not original, original)
+        let expectedB = safeTry stringExplode original
+        
+        let (TestFailure expected) = expectedA + expectedB
+        
+        let result =
+            original
+            |> Should.PassAllOf [
+               Should.NotBeEqualTo "Bye"
+               stringExplode
+               List.ofSeq >> ListShould.HaveLengthOf 3
+           ]
+            
+        let (TestFailure actual) = result
+        
+        let a = actual |> baseTransformer
+        let b = expected |> baseTransformer
+            
+        a
+        |> Should.BeEqualTo b
     )
 
 let ``Test Cases`` = feature.GetTests ()

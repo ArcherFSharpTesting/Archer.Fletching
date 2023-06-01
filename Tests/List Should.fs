@@ -248,4 +248,31 @@ let ``HaveAllValuesPassAllOf should return all failures when multiple items fail
         |> Should.BeEqualTo expected
     )
     
+let ``HaveAllValuesBe should return success when list has ['a'; 'a'; 'a'] and looking for 'a'`` =
+    feature.Test (fun _ ->
+        ['a'; 'a'; 'a']
+        |> ListShould.HaveAllValuesBe 'a'
+    )
+    
+let ``HaveAllValuesBe should return success when list has ['a'; 'b'; 'c'] and looking for 'b'`` =
+    feature.Test (fun _ ->
+        let values = ['b'; 'b'; 'b']
+        
+        values
+        |> ListShould.HaveAllValuesBe 'b'
+    )
+    
+let ``HaveAllValuesBe should return failure when list has ['a'; 'a'; 'b'] and looking for 'a'`` =
+    feature.Test (fun _ ->
+        let values = ['a'; 'a'; 'b']
+        
+        let expected = failureBuilder.ValidationFailure (HasOnlyValue 'a', values, "D:\\ummy\\fil.e", 29)
+        let actual = 
+            values
+            |> ListShould.HaveAllValuesBe ('a', "D:\\ummy\\fil.e", 29)
+             
+        actual
+        |> Should.BeEqualTo expected
+    )
+    
 let ``Test Cases`` = feature.GetTests ()

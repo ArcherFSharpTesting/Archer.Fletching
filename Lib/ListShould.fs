@@ -53,3 +53,16 @@ type ListShould =
             |> List.reduce (+)
             
         checkIt
+        
+    static member HaveAllValuesBe (value: 'a when 'a : equality, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) = 
+        let checkIt (actual: 'a list) =
+            let isCorrect =
+                actual
+                |> List.map ((=) value)
+                |> List.reduce (&&)
+            
+            if isCorrect then TestSuccess
+            else
+                failureBuilder.ValidationFailure (HasOnlyValue value, actual, fullPath, lineNumber)
+        
+        checkIt

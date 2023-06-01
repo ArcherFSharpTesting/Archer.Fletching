@@ -25,3 +25,6 @@ type SeqShould =
         
     static member HaveAllValuesPassAllOf (tests: ('a -> TestResult) list, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
         List.ofSeq >> ListShould.HaveAllValuesPassAllOf (tests, fullPath, lineNumber)
+        
+    static member HaveAllValuesBe (value: 'a when 'a : equality, [<CallerFilePath; Optional; DefaultParameterValue("")>] fullPath: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =
+        List.ofSeq >> ListShould.HaveAllValuesBe (value, fullPath, lineNumber)

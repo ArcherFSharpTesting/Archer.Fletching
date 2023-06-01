@@ -10,6 +10,7 @@ type Modifiers<'a> =
     | PassesTest of 'a
     | FailsTest of 'a
     | Contains of 'a list * 'a
+    | HasOnlyValue of 'a
     | Length of 'a
 
 let buildLocation fullFileName lineNumber =

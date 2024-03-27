@@ -18,6 +18,7 @@
     <Compile Include="TestExecutionResultFailureBuilder GeneralExecutionFailure.fs" />
     <Compile Include="Should Object Methods.fs" />
     <Compile Include="Should Boolean Methods.fs" />
+    <Compile Include="Should Result Methods.fs" />
     <Compile Include="Should Other Methods.fs" />
     <Compile Include="Should Meet Standard.fs" />
     <Compile Include="List Should.fs" />

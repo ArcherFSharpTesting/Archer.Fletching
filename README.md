@@ -517,6 +517,8 @@ A test verification Framework for Archer
 - Boolean
   - [x] {bool} |> Should.BeTrue
   - [x] {bool} |> Should.BeFalse
+- Approvals
+  - [x] {testInfo} |> Should.MeetStandard {reporter} {string}
 - Other
   - [x] {string} |> Should.Fail
   - [x] {value} |> Should.BeIgnored {string}
@@ -587,6 +589,10 @@ A test verification Framework for Archer
 - [x] {array} |> ArrayShould.HaveLengthOf {integer}
 - [x] {array} |> ArrayShould.NotHaveLengthOf {integer}
 - [x] {array} |> ArrayShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+
+### Not ###
+
+- [x] Not.Implemented ()
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->

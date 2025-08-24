@@ -1,3 +1,13 @@
+<!-- GENERATED DOCUMENT DO NOT EDIT! -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- Compiled with doculisp https://www.npmjs.com/package/doculisp -->
+
+# Fletcher Test Validations for the Archer Test Framework #
+
+
+
 # Archer.Fletching
 A test verification Framework for Archer
 
@@ -20,6 +30,9 @@ A test verification Framework for Archer
   - [x] {value} |> Should.PassTestOf {predicate}
   - [x] {value} |> Should.NotPassTestOf {predicate}
   - [x] {value} |> Should.PassAllOf [ {value -> TestResult} ]
+- Result
+  - [x] {result} |> Should.BeOk {value}
+  - [x] {result} |> Should.BeError {value}
 - Functions
   - [ ] {action} |> Should.Return {value}
   - [ ] {action} |> Should.NotReturnValue {value}
@@ -91,7 +104,6 @@ A test verification Framework for Archer
 - [x] {collection} |> SeqShould.NotHaveLengthOf {integer}
 - [x] {collection} |> SeqShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
 
-
 ## ArrayShould
 
 - [x] {array} |> ArrayShould.Contain {value}
@@ -113,3 +125,7 @@ A test verification Framework for Archer
 - [x] {array} |> ArrayShould.HaveLengthOf {integer}
 - [x] {array} |> ArrayShould.NotHaveLengthOf {integer}
 - [x] {array} |> ArrayShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- GENERATED DOCUMENT DO NOT EDIT! -->

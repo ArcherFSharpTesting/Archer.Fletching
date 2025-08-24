@@ -1,14 +1,21 @@
-# ListShould List Validation Functions
+
+<!-- (dl
+(section-meta
+  (title ListShould List Validation Functions)
+)
+) -->
 
 This document describes the list validation functions provided by the `ListShould` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
 
-## Overview
+
+<!-- (dl (# Overview)) -->
 
 The `ListShould` type provides static members for validating F# lists (`'a list`). These validations include containment, length, and predicate-based checks.
 
 ---
 
-## List Validation Methods
+
+<!-- (dl (# List Validation Methods)) -->
 
 - **Contain ( value )**
   - Passes if the list contains the specified value.
@@ -29,7 +36,8 @@ The `ListShould` type provides static members for validating F# lists (`'a list`
 
 ---
 
-## Usage Example
+
+<!-- (dl (# Usage Example)) -->
 
 ```fsharp
 open Archer.Fletching.Lib

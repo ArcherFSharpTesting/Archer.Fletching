@@ -1,0 +1,41 @@
+# Should Other Validation Functions
+
+This document describes the miscellaneous ("other") validation functions provided by the `Should` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+
+## Overview
+
+The `Should` type provides static members for miscellaneous test outcomes, such as marking a test as failed or ignored.
+
+---
+
+## Other Validation Methods
+
+- **Fail ( message )**
+  - Marks the test as failed with the provided message.
+- **BeIgnored**
+  - Marks the test as ignored. Can be called with or without a message.
+  - **BeIgnored ( )**: Ignores the test without a message.
+  - **BeIgnored ( message )**: Ignores the test with a custom message.
+
+---
+
+## Usage Example
+
+```fsharp
+open Archer.Fletching.Lib
+
+// Mark a test as failed
+let result1 = Should.Fail ( "This test should fail." )
+
+// Ignore a test without a message
+let result2 = Should.BeIgnored ( ) "any value"
+
+// Ignore a test with a message
+let result3 = Should.BeIgnored ( "This test is ignored for now." ) "any value"
+```
+
+Each function returns a `TestResult` indicating the outcome, which can be composed or further processed in your test suite.
+
+---
+
+For more details, see the source in `Lib/SholdType.Other.fs`.

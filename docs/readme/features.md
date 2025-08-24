@@ -7,64 +7,65 @@ A test verification Framework for Archer
 
 <!-- (dl (# Complete Features)) -->
 
-- Object
-  - [x] {value} |> Should.BeEqualTo {value}
-  - [x] {value} |> Should.NotBeEqualTo {value}
-  - [x] {value} |> Should.BeSameAs {value}
-  - [x] {value} |> Should.NotBeSameAs {value}
-  - [x] {value} |> Should.BeOfType\<Type\>
-  - [x] {value} |> Should.NotBeOfType\<Type\>
-  - [x] {value} |> Should.BeNull
-  - [x] {value} |> Should.NotBeNull
-  - [x] {value} |> Should.BeDefaultOf\<Type\>
-  - [x] {value} |> Should.NotBeDefaultOf\<Type\>
-  - [x] {value} |> Should.PassTestOf {predicate}
-  - [x] {value} |> Should.NotPassTestOf {predicate}
-  - [x] {value} |> Should.PassAllOf [ {value -> TestResult} ]
-- Result
-  - [x] {result} |> Should.BeOk {value}
-  - [x] {result} |> Should.BeError {value}
-- Boolean
-  - [x] {bool} |> Should.BeTrue
-  - [x] {bool} |> Should.BeFalse
-- Approvals
-  - [x] {testInfo} |> Should.MeetStandard {reporter} {string}
-- Other
-  - [x] {string} |> Should.Fail
-  - [x] {value} |> Should.BeIgnored {string}
-  - [x] {value} |> Should.BeIgnored
+- Should
+  - Object
+    - {value} |> Should.BeEqualTo {value}
+    - {value} |> Should.NotBeEqualTo {value}
+    - {value} |> Should.BeSameAs {value}
+    - {value} |> Should.NotBeSameAs {value}
+    - {value} |> Should.BeOfType<Type>
+    - {value} |> Should.NotBeOfType<Type>
+    - {value} |> Should.BeNull
+    - {value} |> Should.NotBeNull
+    - {value} |> Should.BeDefaultOf<Type>
+    - {value} |> Should.NotBeDefaultOf<Type>
+    - {value} |> Should.PassTestOf {predicate}
+    - {value} |> Should.NotPassTestOf {predicate}
+    - {value} |> Should.PassAllOf [ {value -> TestResult} ]
+  - Result
+    - {result} |> Should.BeOk {value}
+    - {result} |> Should.BeError {value}
+  - Boolean
+    - {bool} |> Should.BeTrue
+    - {bool} |> Should.BeFalse
+  - Approvals
+    - {testInfo} |> Should.MeetStandard {reporter} {string}
+  - Other
+    - {string} |> Should.Fail
+    - {value} |> Should.BeIgnored {string}
+    - {value} |> Should.BeIgnored
 - ListShould
-  - [x] {list} |> ListShould.Contain {value}
-  - [x] {list} |> ListShould.NotContain {value}
-  - [x] {list} |> ListShould.HaveAllValuesPassTestOf {predicateExpression}
-  - [x] {list} |> ListShould.HaveNoValuesPassTestOf {predicateExpression}
-  - [x] {list} |> ListShould.HaveLengthOf {integer}
-  - [x] {list} |> ListShould.NotHaveLengthOf {integer}
-  - [x] {list} |> ListShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
-  - [x] {list} |> ListShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
-  - [x] {list} |> ListShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
+  - {list} |> ListShould.Contain {value}
+  - {list} |> ListShould.NotContain {value}
+  - {list} |> ListShould.HaveAllValuesPassTestOf {predicateExpression}
+  - {list} |> ListShould.HaveNoValuesPassTestOf {predicateExpression}
+  - {list} |> ListShould.HaveLengthOf {integer}
+  - {list} |> ListShould.NotHaveLengthOf {integer}
+  - {list} |> ListShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+  - {list} |> ListShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
+  - {list} |> ListShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
 - SeqShould
-  - [x] {collection} |> SeqShould.Contain {value}
-  - [x] {collection} |> SeqShould.NotContain {value}
-  - [x] {collection} |> SeqShould.HaveAllValuesPassTestOf {predicateExpression}
-  - [x] {collection} |> SeqShould.HaveNoValuesPassTestOf {predicateExpression}
-  - [x] {collection} |> SeqShould.HaveLengthOf {integer}
-  - [x] {collection} |> SeqShould.NotHaveLengthOf {integer}
-  - [x] {collection} |> SeqShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
-  - [x] {collection} |> SeqShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
-  - [x] {collection} |> SeqShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
+  - {collection} |> SeqShould.Contain {value}
+  - {collection} |> SeqShould.NotContain {value}
+  - {collection} |> SeqShould.HaveAllValuesPassTestOf {predicateExpression}
+  - {collection} |> SeqShould.HaveNoValuesPassTestOf {predicateExpression}
+  - {collection} |> SeqShould.HaveLengthOf {integer}
+  - {collection} |> SeqShould.NotHaveLengthOf {integer}
+  - {collection} |> SeqShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+  - {collection} |> SeqShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
+  - {collection} |> SeqShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
 - ArrayShould
-  - [x] {array} |> ArrayShould.Contain {value}
-  - [x] {array} |> ArrayShould.NotContain {value}
-  - [x] {array} |> ArrayShould.HaveAllValuesPassTestOf {predicateExpression}
-  - [x] {array} |> ArrayShould.HaveNoValuesPassTestOf {predicateExpression}
-  - [x] {array} |> ArrayShould.HaveLengthOf {integer}
-  - [x] {array} |> ArrayShould.NotHaveLengthOf {integer}
-  - [x] {array} |> ArrayShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
-  - [x] {array} |> ArrayShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
-  - [x] {array} |> ArrayShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
+  - {array} |> ArrayShould.Contain {value}
+  - {array} |> ArrayShould.NotContain {value}
+  - {array} |> ArrayShould.HaveAllValuesPassTestOf {predicateExpression}
+  - {array} |> ArrayShould.HaveNoValuesPassTestOf {predicateExpression}
+  - {array} |> ArrayShould.HaveLengthOf {integer}
+  - {array} |> ArrayShould.NotHaveLengthOf {integer}
+  - {array} |> ArrayShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+  - {array} |> ArrayShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
+  - {array} |> ArrayShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
 - Not
-  - [x] Not.Implemented ()
+  - Not.Implemented ()
 
 
 <!-- (dl (# Feature status)) -->

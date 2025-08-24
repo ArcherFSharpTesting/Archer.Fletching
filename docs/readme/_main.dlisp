@@ -10,6 +10,7 @@
         (Feature ./listshould-features.md)
         (Feature ./seqshould-features.md)
         (Feature ./arrayshould-features.md)
+        (Feature ./not-features.md)
         (Review ./features.md)
     )
 )

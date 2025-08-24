@@ -1,14 +1,20 @@
-# Not Validation Helper
+<!-- (dl
+(section-meta
+  (title Not Validation Helper)
+)
+) -->
 
 This document describes the `Not` validation helper provided in the Archer framework, specifically within the Fletching library. This helper is used to mark tests or features as "not yet implemented" in a way that integrates with the test result system.
 
-## Overview
+
+<!-- (dl (# Overview)) -->
 
 The `Not` type provides a static member for marking a test as not yet implemented. Instead of throwing an exception, it returns a `TestResult` indicating the test is ignored, which can be useful for test-driven development or feature planning.
 
 ---
 
-## Not Validation Method
+
+<!-- (dl (# Not Validation Method)) -->
 
 - **Implemented ( )**
   - Marks the test as ignored with the message "Not Yet Implemented".
@@ -16,7 +22,8 @@ The `Not` type provides a static member for marking a test as not yet implemente
 
 ---
 
-## Usage Example
+
+<!-- (dl (# Usage Example)) -->
 
 ```fsharp
 open Archer.Fletching.Lib

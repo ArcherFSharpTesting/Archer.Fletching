@@ -10,6 +10,10 @@ A test verification Framework for Archer
 - Dictionary
   - [ ] {dictionary} |> Should.HaveKey {key}
   - [ ] {dictionary} |> Should.NotHaveKey {key}
+  - [ ] {dictionary} |> Should.HaveValue {value}
+  - [ ] {dictionary} |> Should.HavePair ({key}, {value})
+  - [ ] {dictionary} |> Should.BeEmpty
+  - [ ] {dictionary} |> Should.NotBeEmpty
 - Object
   - [x] {value} |> Should.BeEqualTo {value}
   - [x] {value} |> Should.NotBeEqualTo {value}
@@ -30,15 +34,19 @@ A test verification Framework for Archer
 - Functions
   - [ ] {action} |> Should.Return {value}
   - [ ] {action} |> Should.NotReturnValue {value}
-  - [ ] let result: Result<ex, TestExecutionResult> = {action} |> Should.ThrowException
+  - [ ] {action} |> Should.ThrowException
   - [ ] {action} |> Should.NotThrowException
   - [ ] {action} |> Should.Call {action} |> withParameter {predicate} {initialParameter}
 - Events
   - [ ] {IEvent} |> Should.Trigger |> by {action}
   - [ ] {IEvent} |> Should.NotTrigger |> by {action}
+  - [ ] {IEvent} |> Should.TriggerWith {expectedArgs} |> by {action}
 - String
   - [ ] {string} |> Should.Contain {string}
   - [ ] {string} |> Should.NotContain {string}
+  - [ ] {string} |> Should.StartsWith {prefix}
+  - [ ] {string} |> Should.EndWith {suffix}
+  - [ ] {string} |> Should.HaveLengthOf {integer}
   - [ ] {string} |> Should.BeMatchedBy {regex}
   - [ ] {string} |> Should.NotBeMatchedBy {regex}
   - [ ] {string} |> Should.MatchStandard {ITestInfo} {reporter}
@@ -46,6 +54,9 @@ A test verification Framework for Archer
   - [ ] {number} |> Should.BeWithin ({number}, {number})
   - [ ] {number} |> Should.BeBetween ({number}, {number})
   - [ ] {number} |> Should.BeCloseTo {number} |> byDelta {number}
+  - [ ] {number} |> Should.BeEqualTo {number}
+  - [ ] {number} |> Should.BePositive
+  - [ ] {number} |> Should.BeNegative
 - Boolean
   - [x] {bool} |> Should.BeTrue
   - [x] {bool} |> Should.BeFalse
@@ -77,6 +88,14 @@ A test verification Framework for Archer
 - [x] {list} |> ListShould.HaveLengthOf {integer}
 - [x] {list} |> ListShould.NotHaveLengthOf {integer}
 - [x] {list} |> ListShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+- [ ] {list} |> ListShould.HaveAnyPassTestOf {predicateExpression}
+- [ ] {list} |> ListShould.BeEmpty
+- [ ] {list} |> ListShould.NotBeEmpty
+- [ ] {list} |> ListShould.FindValueWith {indexedPredicateExpression}
+- [ ] {list} |> ListShould.NotFindValueWith {indexedPredicateExpression}
+- [x] {list} |> ListShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
+- [x] {list} |> ListShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
+- [ ] {list} |> ListShould.HaveAnyPassTestOf {indexedPredicateExpression}
 
 <!-- (dl (# SeqShould)) -->
 
@@ -99,7 +118,14 @@ A test verification Framework for Archer
 - [x] {collection} |> SeqShould.HaveLengthOf {integer}
 - [x] {collection} |> SeqShould.NotHaveLengthOf {integer}
 - [x] {collection} |> SeqShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
-
+- [ ] {collection} |> SeqShould.HaveAnyPassTestOf {predicateExpression}
+- [ ] {collection} |> SeqShould.BeEmpty
+- [ ] {collection} |> SeqShould.NotBeEmpty
+- [ ] {collection} |> SeqShould.FindValueWith {indexedPredicateExpression}
+- [ ] {collection} |> SeqShould.NotFindValueWith {indexedPredicateExpression}
+- [x] {collection} |> SeqShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
+- [x] {collection} |> SeqShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
+- [ ] {collection} |> SeqShould.HaveAnyPassTestOf {indexedPredicateExpression}
 
 <!-- (dl (# ArrayShould)) -->
 
@@ -122,6 +148,14 @@ A test verification Framework for Archer
 - [x] {array} |> ArrayShould.HaveLengthOf {integer}
 - [x] {array} |> ArrayShould.NotHaveLengthOf {integer}
 - [x] {array} |> ArrayShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+- [ ] {array} |> ArrayShould.HaveAnyPassTestOf {predicateExpression}
+- [ ] {array} |> ArrayShould.BeEmpty
+- [ ] {array} |> ArrayShould.NotBeEmpty
+- [ ] {array} |> ArrayShould.FindValueWith {indexedPredicateExpression}
+- [ ] {array} |> ArrayShould.NotFindValueWith {indexedPredicateExpression}
+- [x] {array} |> ArrayShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
+- [x] {array} |> ArrayShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
+- [ ] {array} |> ArrayShould.HaveAnyPassTestOf {indexedPredicateExpression}
 
 <!-- (dl (# Not)) -->
 

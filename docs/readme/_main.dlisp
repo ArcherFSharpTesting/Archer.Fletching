@@ -2,6 +2,7 @@
     (title Fletcher Test Validations for the Archer Test Framework)
     (include
         (Feature ./should-object-features.md)
+        (Feature ./should-result-features.md)
         (Review ./features.md)
     )
 )

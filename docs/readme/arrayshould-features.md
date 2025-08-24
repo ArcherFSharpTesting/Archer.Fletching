@@ -1,14 +1,21 @@
-# ArrayShould Array Validation Functions
+
+<!-- (dl
+(section-meta
+  (title ArrayShould Array Validation Functions)
+)
+) -->
 
 This document describes the array validation functions provided by the `ArrayShould` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
 
-## Overview
+
+<!-- (dl (# Overview)) -->
 
 The `ArrayShould` type provides static members for validating F# arrays (`'a[]`). These validations include containment, length, and predicate-based checks.
 
 ---
 
-## Array Validation Methods
+
+<!-- (dl (# Array Validation Methods)) -->
 
 - **Contain ( value )**
   - Passes if the array contains the specified value.
@@ -29,7 +36,8 @@ The `ArrayShould` type provides static members for validating F# arrays (`'a[]`)
 
 ---
 
-## Usage Example
+
+<!-- (dl (# Usage Example)) -->
 
 ```fsharp
 open Archer.Fletching.Lib

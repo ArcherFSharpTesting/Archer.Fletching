@@ -5,6 +5,7 @@
         (Feature ./should-object-features.md)
         (Feature ./should-result-features.md)
         (Feature ./should-boolean-features.md)
+        (Feature ./should-other-features.md)
         (Feature ./listshould-features.md)
         (Feature ./seqshould-features.md)
         (Feature ./arrayshould-features.md)

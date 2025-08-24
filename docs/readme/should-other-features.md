@@ -1,14 +1,20 @@
-# Should Other Validation Functions
+<!-- (dl
+(section-meta
+  (title Should Other Validation Functions)
+)
+) -->
 
 This document describes the miscellaneous ("other") validation functions provided by the `Should` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
 
-## Overview
+
+<!-- (dl (# Overview)) -->
 
 The `Should` type provides static members for miscellaneous test outcomes, such as marking a test as failed or ignored.
 
 ---
 
-## Other Validation Methods
+
+<!-- (dl (# Other Validation Methods)) -->
 
 - **Fail ( message )**
   - Marks the test as failed with the provided message.
@@ -19,7 +25,8 @@ The `Should` type provides static members for miscellaneous test outcomes, such 
 
 ---
 
-## Usage Example
+
+<!-- (dl (# Usage Example)) -->
 
 ```fsharp
 open Archer.Fletching.Lib

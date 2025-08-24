@@ -5,7 +5,73 @@
 ) -->
 A test verification Framework for Archer
 
-<!-- (dl (# Should)) -->
+<!-- (dl (# Complete Features)) -->
+
+- Object
+  - [x] {value} |> Should.BeEqualTo {value}
+  - [x] {value} |> Should.NotBeEqualTo {value}
+  - [x] {value} |> Should.BeSameAs {value}
+  - [x] {value} |> Should.NotBeSameAs {value}
+  - [x] {value} |> Should.BeOfType\<Type\>
+  - [x] {value} |> Should.NotBeOfType\<Type\>
+  - [x] {value} |> Should.BeNull
+  - [x] {value} |> Should.NotBeNull
+  - [x] {value} |> Should.BeDefaultOf\<Type\>
+  - [x] {value} |> Should.NotBeDefaultOf\<Type\>
+  - [x] {value} |> Should.PassTestOf {predicate}
+  - [x] {value} |> Should.NotPassTestOf {predicate}
+  - [x] {value} |> Should.PassAllOf [ {value -> TestResult} ]
+- Result
+  - [x] {result} |> Should.BeOk {value}
+  - [x] {result} |> Should.BeError {value}
+- Boolean
+  - [x] {bool} |> Should.BeTrue
+  - [x] {bool} |> Should.BeFalse
+- Approvals
+  - [x] {testInfo} |> Should.MeetStandard {reporter} {string}
+- Other
+  - [x] {string} |> Should.Fail
+  - [x] {value} |> Should.BeIgnored {string}
+  - [x] {value} |> Should.BeIgnored
+- ListShould
+  - [x] {list} |> ListShould.Contain {value}
+  - [x] {list} |> ListShould.NotContain {value}
+  - [x] {list} |> ListShould.HaveAllValuesPassTestOf {predicateExpression}
+  - [x] {list} |> ListShould.HaveNoValuesPassTestOf {predicateExpression}
+  - [x] {list} |> ListShould.HaveLengthOf {integer}
+  - [x] {list} |> ListShould.NotHaveLengthOf {integer}
+  - [x] {list} |> ListShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+  - [x] {list} |> ListShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
+  - [x] {list} |> ListShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
+- SeqShould
+  - [x] {collection} |> SeqShould.Contain {value}
+  - [x] {collection} |> SeqShould.NotContain {value}
+  - [x] {collection} |> SeqShould.HaveAllValuesPassTestOf {predicateExpression}
+  - [x] {collection} |> SeqShould.HaveNoValuesPassTestOf {predicateExpression}
+  - [x] {collection} |> SeqShould.HaveLengthOf {integer}
+  - [x] {collection} |> SeqShould.NotHaveLengthOf {integer}
+  - [x] {collection} |> SeqShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+  - [x] {collection} |> SeqShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
+  - [x] {collection} |> SeqShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
+- ArrayShould
+  - [x] {array} |> ArrayShould.Contain {value}
+  - [x] {array} |> ArrayShould.NotContain {value}
+  - [x] {array} |> ArrayShould.HaveAllValuesPassTestOf {predicateExpression}
+  - [x] {array} |> ArrayShould.HaveNoValuesPassTestOf {predicateExpression}
+  - [x] {array} |> ArrayShould.HaveLengthOf {integer}
+  - [x] {array} |> ArrayShould.NotHaveLengthOf {integer}
+  - [x] {array} |> ArrayShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
+  - [x] {array} |> ArrayShould.HaveAllValuesPassTestOf {indexedPredicateExpression}
+  - [x] {array} |> ArrayShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
+- Not
+  - [x] Not.Implemented ()
+
+
+<!-- (dl (# Feature status)) -->
+
+This is a list of feature ideas. All features on this list _may_ or _may not_ end up in the final product.
+
+<!-- (dl (## Should)) -->
 
 - Dictionary
   - [ ] {dictionary} |> Should.HaveKey {key}
@@ -67,7 +133,7 @@ A test verification Framework for Archer
   - [x] {value} |> Should.BeIgnored {string}
   - [x] {value} |> Should.BeIgnored
 
-<!-- (dl (# ListShould)) -->
+<!-- (dl (## ListShould)) -->
 
 - [x] {list} |> ListShould.Contain {value}
 - [x] {list} |> ListShould.NotContain {value}
@@ -97,7 +163,7 @@ A test verification Framework for Archer
 - [x] {list} |> ListShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
 - [ ] {list} |> ListShould.HaveAnyPassTestOf {indexedPredicateExpression}
 
-<!-- (dl (# SeqShould)) -->
+<!-- (dl (## SeqShould)) -->
 
 - [x] {collection} |> SeqShould.Contain {value}
 - [x] {collection} |> SeqShould.NotContain {value}
@@ -127,7 +193,7 @@ A test verification Framework for Archer
 - [x] {collection} |> SeqShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
 - [ ] {collection} |> SeqShould.HaveAnyPassTestOf {indexedPredicateExpression}
 
-<!-- (dl (# ArrayShould)) -->
+<!-- (dl (## ArrayShould)) -->
 
 - [x] {array} |> ArrayShould.Contain {value}
 - [x] {array} |> ArrayShould.NotContain {value}
@@ -157,7 +223,7 @@ A test verification Framework for Archer
 - [x] {array} |> ArrayShould.HaveNoValuesPassTestOf {indexedPredicateExpression}
 - [ ] {array} |> ArrayShould.HaveAnyPassTestOf {indexedPredicateExpression}
 
-<!-- (dl (# Not)) -->
+<!-- (dl (## Not)) -->
 
 - [x] Not.Implemented ()
 

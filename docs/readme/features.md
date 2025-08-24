@@ -6,7 +6,7 @@
 ) -->
 A test verification Framework for Archer
 
-## Should
+<!-- (dl (# Should)) -->
 
 - Dictionary
   - [ ] {dictionary} |> Should.HaveKey {key}
@@ -55,7 +55,7 @@ A test verification Framework for Archer
   - [x] {value} |> Should.BeIgnored {string}
   - [x] {value} |> Should.BeIgnored
 
-## ListShould
+<!-- (dl (# ListShould)) -->
 
 - [x] {list} |> ListShould.Contain {value}
 - [x] {list} |> ListShould.NotContain {value}
@@ -77,7 +77,7 @@ A test verification Framework for Archer
 - [x] {list} |> ListShould.NotHaveLengthOf {integer}
 - [x] {list} |> ListShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
 
-## SeqShould
+<!-- (dl (# SeqShould)) -->
 
 - [x] {collection} |> SeqShould.Contain {value}
 - [x] {collection} |> SeqShould.NotContain {value}
@@ -100,7 +100,7 @@ A test verification Framework for Archer
 - [x] {collection} |> SeqShould.HaveAllValuesPassAllOf [ {value -> TestResult} ]
 
 
-## ArrayShould
+<!-- (dl (# ArrayShould)) -->
 
 - [x] {array} |> ArrayShould.Contain {value}
 - [x] {array} |> ArrayShould.NotContain {value}

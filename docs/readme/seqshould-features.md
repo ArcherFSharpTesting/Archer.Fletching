@@ -53,8 +53,7 @@ let result3 = numbers |> SeqShould.NotContain ( 4 )
 let result4 = numbers |> SeqShould.HaveAllValuesPassTestOf ( <@ fun x -> x > 0 @> )
 ```
 
-Each function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
 
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/SeqShould.fs`.

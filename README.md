@@ -7,16 +7,17 @@
 # Fletcher Test Validations for the Archer Test Framework #
 
 1. Overview: [Philosophy of Fletcher Test Validations](#philosophy-of-fletcher-test-validations)
-2. Feature: [Should Object Validation Functions](#should-object-validation-functions)
-3. Feature: [Should Result Validation Functions](#should-result-validation-functions)
-4. Feature: [Should Boolean Validation Functions](#should-boolean-validation-functions)
-5. Feature: [Should Other Validation Functions](#should-other-validation-functions)
-6. Feature: [Should MeetStandard Validation Functions](#should-meetstandard-validation-functions)
-7. Feature: [ListShould List Validation Functions](#listshould-list-validation-functions)
-8. Feature: [SeqShould Sequence Validation Functions](#seqshould-sequence-validation-functions)
-9. Feature: [ArrayShould Array Validation Functions](#arrayshould-array-validation-functions)
-10. Feature: [Not Validation Helper](#not-validation-helper)
-11. Review: [Archer.Fletching](#archerfletching)
+2. HowTo: [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations)
+3. Feature: [Should Object Validation Functions](#should-object-validation-functions)
+4. Feature: [Should Result Validation Functions](#should-result-validation-functions)
+5. Feature: [Should Boolean Validation Functions](#should-boolean-validation-functions)
+6. Feature: [Should Other Validation Functions](#should-other-validation-functions)
+7. Feature: [Should MeetStandard Validation Functions](#should-meetstandard-validation-functions)
+8. Feature: [ListShould List Validation Functions](#listshould-list-validation-functions)
+9. Feature: [SeqShould Sequence Validation Functions](#seqshould-sequence-validation-functions)
+10. Feature: [ArrayShould Array Validation Functions](#arrayshould-array-validation-functions)
+11. Feature: [Not Validation Helper](#not-validation-helper)
+12. Review: [Archer.Fletching](#archerfletching)
 
 ## Philosophy of Fletcher Test Validations ##
 
@@ -29,6 +30,36 @@ Fletcher test validations are designed to provide a functional, composable, and 
 - **Non-Exception Flow:** By avoiding exceptions for control flow, tests remain predictable and side-effect free.
 
 The philosophy is to empower developers to write robust, maintainable, and expressive tests that fit naturally into functional programming workflows.
+
+## How to Use Fletcher Test Validations ##
+
+Fletcher test validations are designed to be functional, composable, and expressive. The following usage patterns and return value conventions apply to all validation helpers:
+
+## Usage Patterns
+
+- **Direct Invocation:**
+  ```fsharp
+  let result = Should.BeTrue true
+  let result = ListShould.Contain 2 [1;2;3]
+  ```
+
+- **Pipe Notation:**
+  ```fsharp
+  let result = true |> Should.BeTrue
+  let result = [1;2;3] |> ListShould.Contain 2
+  ```
+
+- **Custom Predicates:**
+  Many validations accept F# quotations or functions for custom checks.
+
+## Return Values
+
+All validation helpers return a `TestResult` value, not an exception. This enables:
+- Composability: Combine results, pipe through further checks, or aggregate outcomes.
+- Predictability: No exceptions for control flow; failures are explicit values.
+- Integration: Results can be used in custom test runners or reporting tools.
+
+For more on the philosophy, see the [Philosophy](#overview) section.
 
 ## Should Object Validation Functions ##
 
@@ -102,9 +133,7 @@ let result7 = "test" |> Should.BeOfType<string>
 let result8 = 15 |> Should.PassTestOf ( <@ fun x -> x > 10 @> )
 ```
 
-Each function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
-
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/ShouldType.Objects.fs`.
 
@@ -141,9 +170,7 @@ let result3 = Ok 42 |> Should.BeOk ( 42 )
 let result4 = Error "fail" |> Should.BeError ( "fail" )
 ```
 
-Each function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
-
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/ShouldType.Result.fs`.
 
@@ -180,9 +207,7 @@ let result3 = true |> Should.BeTrue
 let result4 = false |> Should.BeFalse
 ```
 
-Each function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
-
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/ShouldType.Boolean.fs`.
 
@@ -222,9 +247,7 @@ let result2 = Should.BeIgnored ( ) "any value"
 let result3 = Should.BeIgnored ( "This test is ignored for now." ) "any value"
 ```
 
-Each function returns a `TestResult` indicating the outcome, which can be composed or further processed in your test suite.
-
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/SholdType.Other.fs`.
 
@@ -259,9 +282,7 @@ let result = "output to verify"
 let testResult = Should.MeetStandard ( reporter ) testInfo result
 ```
 
-This function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
-
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/ApprovalsSupport.fs`.
 
@@ -312,9 +333,7 @@ let result3 = numbers |> ListShould.NotContain ( 4 )
 let result4 = numbers |> ListShould.HaveAllValuesPassTestOf ( <@ fun x -> x > 0 @> )
 ```
 
-Each function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
-
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/ListShould.fs`.
 
@@ -365,9 +384,7 @@ let result3 = numbers |> SeqShould.NotContain ( 4 )
 let result4 = numbers |> SeqShould.HaveAllValuesPassTestOf ( <@ fun x -> x > 0 @> )
 ```
 
-Each function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
-
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/SeqShould.fs`.
 
@@ -418,9 +435,7 @@ let result3 = numbers |> ArrayShould.NotContain ( 4 )
 let result4 = numbers |> ArrayShould.HaveAllValuesPassTestOf ( <@ fun x -> x > 0 @> )
 ```
 
-Each function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
-
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/ArrayShould.fs`.
 
@@ -450,9 +465,7 @@ open Archer.Fletching.Lib
 let result = Not.Implemented ( )
 ```
 
-This function returns a `TestResult` indicating the test is ignored, which can be composed or further processed in your test suite.
-
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/NotImplemented.fs`.
 

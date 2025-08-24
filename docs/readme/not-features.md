@@ -31,8 +31,7 @@ open Archer.Fletching.Lib
 let result = Not.Implemented ( )
 ```
 
-This function returns a `TestResult` indicating the test is ignored, which can be composed or further processed in your test suite.
 
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/NotImplemented.fs`.

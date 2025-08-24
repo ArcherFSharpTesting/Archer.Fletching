@@ -41,8 +41,7 @@ let result2 = Should.BeIgnored ( ) "any value"
 let result3 = Should.BeIgnored ( "This test is ignored for now." ) "any value"
 ```
 
-Each function returns a `TestResult` indicating the outcome, which can be composed or further processed in your test suite.
 
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/SholdType.Other.fs`.

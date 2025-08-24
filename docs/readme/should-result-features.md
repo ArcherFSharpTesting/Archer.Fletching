@@ -39,8 +39,7 @@ let result3 = Ok 42 |> Should.BeOk ( 42 )
 let result4 = Error "fail" |> Should.BeError ( "fail" )
 ```
 
-Each function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
 
----
+See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
 For more details, see the source in `Lib/ShouldType.Result.fs`.

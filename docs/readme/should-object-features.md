@@ -1,16 +1,23 @@
-# Should Object Validation Functions
+<!-- (dl
+(section-meta
+  (title Should Object Validation Functions)
+)
+) -->
 
 This document describes the object-related validation functions provided by the `Should` helper in the `Archer` framework, specifically within the `Fletching` library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
 
-## Overview
+
+<!-- (dl (# Overview)) -->
 
 The `Should` type provides static members for validating objects in various ways. These validations include equality, reference checks, type checks, null/default checks, and predicate-based custom checks.
 
 ---
 
-## Object Validation Methods
 
-### Equality and Reference
+<!-- (dl (# Object Validation Methods)) -->
+
+
+<!-- (dl (## Equality and Reference)) -->
 
 - **BeEqualTo ( expected )**
   - Passes if the actual value is equal to `expected` (`=`).
@@ -21,14 +28,16 @@ The `Should` type provides static members for validating objects in various ways
 - **NotBeSameAs ( expected )**
   - Passes if the actual value is not the same reference as `expected`.
 
-### Type Checks
+
+<!-- (dl (## Type Checks)) -->
 
 - **BeOfType<'expectedType> ( actual )**
   - Passes if `actual` is an instance of `'expectedType`.
 - **NotBeTypeOf<'expectedType> ( actual )**
   - Passes if `actual` is not an instance of `'expectedType`.
 
-### Null and Default Checks
+
+<!-- (dl (## Null and Default Checks)) -->
 
 - **BeNull<'T when 'T : null> ( actual )**
   - Passes if `actual` is `null`.
@@ -39,7 +48,8 @@ The `Should` type provides static members for validating objects in various ways
 - **NotBeDefaultOf<'T when 'T : equality> ( actual )**
   - Passes if `actual` is not the default value for type `'T`.
 
-### Predicate and Custom Checks
+
+<!-- (dl (## Predicate and Custom Checks)) -->
 
 - **PassTestOf ( predicateExpression )**
   - Passes if the provided predicate expression returns `true` for the actual value.
@@ -52,7 +62,8 @@ The `Should` type provides static members for validating objects in various ways
 
 ---
 
-## Usage Example
+
+<!-- (dl (# Usage Example)) -->
 
 ```fsharp
 open Archer.Fletching.Lib

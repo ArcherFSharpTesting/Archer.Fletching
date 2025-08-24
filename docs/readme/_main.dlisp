@@ -1,6 +1,7 @@
 (section-meta
     (title Fletcher Test Validations for the Archer Test Framework)
     (include
+        (Feature ./should-object-features.md)
         (Review ./features.md)
     )
 )

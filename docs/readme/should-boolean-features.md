@@ -5,7 +5,8 @@
 )
 ) -->
 
-This document describes the boolean validation functions provided by the `Should` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+
+Boolean validations check if a value is `true` or `false` using the `Should` helper.
 
 
 <!-- (dl (# Overview)) -->

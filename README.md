@@ -63,7 +63,7 @@ For more on the philosophy, see the [Philosophy](#overview) section.
 
 ## Should Object Validation Functions ##
 
-This document describes the object-related validation functions provided by the `Should` helper in the `Archer` framework, specifically within the `Fletching` library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+Object validations check equality, reference, type, and custom predicates using the `Should` helper.
 
 ### Overview ###
 
@@ -139,7 +139,7 @@ For more details, see the source in `Lib/ShouldType.Objects.fs`.
 
 ## Should Result Validation Functions ##
 
-This document describes the result validation functions provided by the `Should` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+Result validations check if a value is `Ok` or `Error` using the `Should` helper.
 
 ### Overview ###
 
@@ -176,7 +176,7 @@ For more details, see the source in `Lib/ShouldType.Result.fs`.
 
 ## Should Boolean Validation Functions ##
 
-This document describes the boolean validation functions provided by the `Should` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+Boolean validations check if a value is `true` or `false` using the `Should` helper.
 
 ### Overview ###
 
@@ -213,7 +213,7 @@ For more details, see the source in `Lib/ShouldType.Boolean.fs`.
 
 ## Should Other Validation Functions ##
 
-This document describes the miscellaneous ("other") validation functions provided by the `Should` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+Other validations include marking tests as failed or ignored using the `Should` helper.
 
 ### Overview ###
 
@@ -253,7 +253,7 @@ For more details, see the source in `Lib/SholdType.Other.fs`.
 
 ## Should MeetStandard Validation Functions ##
 
-This document describes the MeetStandard functions provided by the `Should` validation helper in the Archer framework, specifically within the Fletching library. These functions are used for approval-style testing, where the output of a test is compared against a previously approved standard (golden master).
+MeetStandard validations enable approval-style testing by comparing output to an approved standard (golden master).
 
 ### Overview ###
 
@@ -288,7 +288,7 @@ For more details, see the source in `Lib/ApprovalsSupport.fs`.
 
 ## ListShould List Validation Functions ##
 
-This document describes the list validation functions provided by the `ListShould` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+List validations check containment, length, and predicates using the `ListShould` helper.
 
 ### Overview ###
 
@@ -339,7 +339,7 @@ For more details, see the source in `Lib/ListShould.fs`.
 
 ## SeqShould Sequence Validation Functions ##
 
-This document describes the sequence validation functions provided by the `SeqShould` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+Sequence validations check containment, length, and predicates using the `SeqShould` helper.
 
 ### Overview ###
 
@@ -390,7 +390,7 @@ For more details, see the source in `Lib/SeqShould.fs`.
 
 ## ArrayShould Array Validation Functions ##
 
-This document describes the array validation functions provided by the `ArrayShould` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+Array validations check containment, length, and predicates using the `ArrayShould` helper.
 
 ### Overview ###
 
@@ -441,7 +441,7 @@ For more details, see the source in `Lib/ArrayShould.fs`.
 
 ## Not Validation Helper ##
 
-This document describes the `Not` validation helper provided in the Archer framework, specifically within the Fletching library. This helper is used to mark tests or features as "not yet implemented" in a way that integrates with the test result system.
+The `Not` helper marks tests or features as "not yet implemented" in a way that integrates with the test result system.
 
 ### Overview ###
 

@@ -4,7 +4,8 @@
 )
 ) -->
 
-This document describes the `Not` validation helper provided in the Archer framework, specifically within the Fletching library. This helper is used to mark tests or features as "not yet implemented" in a way that integrates with the test result system.
+
+The `Not` helper marks tests or features as "not yet implemented" in a way that integrates with the test result system.
 
 
 <!-- (dl (# Overview)) -->

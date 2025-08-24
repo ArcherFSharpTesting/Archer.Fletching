@@ -4,7 +4,8 @@
 )
 ) -->
 
-This document describes the object-related validation functions provided by the `Should` helper in the `Archer` framework, specifically within the `Fletching` library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+
+Object validations check equality, reference, type, and custom predicates using the `Should` helper.
 
 
 <!-- (dl (# Overview)) -->

@@ -4,7 +4,8 @@
 )
 ) -->
 
-This document describes the MeetStandard functions provided by the `Should` validation helper in the Archer framework, specifically within the Fletching library. These functions are used for approval-style testing, where the output of a test is compared against a previously approved standard (golden master).
+
+MeetStandard validations enable approval-style testing by comparing output to an approved standard (golden master).
 
 
 <!-- (dl (# Overview)) -->

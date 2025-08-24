@@ -5,7 +5,8 @@
 )
 ) -->
 
-This document describes the result validation functions provided by the `Should` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+
+Result validations check if a value is `Ok` or `Error` using the `Should` helper.
 
 
 <!-- (dl (# Overview)) -->

@@ -5,7 +5,8 @@
 )
 ) -->
 
-This document describes the sequence validation functions provided by the `SeqShould` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+
+Sequence validations check containment, length, and predicates using the `SeqShould` helper.
 
 
 <!-- (dl (# Overview)) -->

@@ -1,0 +1,38 @@
+# Should Boolean Validation Functions
+
+This document describes the boolean validation functions provided by the `Should` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
+
+## Overview
+
+The `Should` type provides static members for validating boolean values. These validations check whether a value is `true` or `false`.
+
+---
+
+## Boolean Validation Methods
+
+- **BeTrue ( actual )**
+  - Passes if the actual value is `true`.
+- **BeFalse ( actual )**
+  - Passes if the actual value is `false`.
+
+---
+
+## Usage Example
+
+```fsharp
+open Archer.Fletching.Lib
+
+// Direct invocation
+let result1 = Should.BeTrue ( true )
+let result2 = Should.BeFalse ( false )
+
+// Using pipe notation
+let result3 = true |> Should.BeTrue
+let result4 = false |> Should.BeFalse
+```
+
+Each function returns a `TestResult` indicating pass or failure, which can be composed or further processed in your test suite.
+
+---
+
+For more details, see the source in `Lib/ShouldType.Boolean.fs`.

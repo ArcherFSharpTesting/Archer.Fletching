@@ -1,3 +1,4 @@
+
 # Archer.Fletching
 A test verification Framework for Archer
 
@@ -20,6 +21,9 @@ A test verification Framework for Archer
   - [x] {value} |> Should.PassTestOf {predicate}
   - [x] {value} |> Should.NotPassTestOf {predicate}
   - [x] {value} |> Should.PassAllOf [ {value -> TestResult} ]
+- Result
+  - [x] {result} |> Should.BeOk {value}
+  - [x] {result} |> Should.BeError {value}
 - Functions
   - [ ] {action} |> Should.Return {value}
   - [ ] {action} |> Should.NotReturnValue {value}

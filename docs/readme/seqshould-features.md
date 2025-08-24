@@ -1,14 +1,21 @@
-# SeqShould Sequence Validation Functions
+
+<!-- (dl
+(section-meta
+  (title SeqShould Sequence Validation Functions)
+)
+) -->
 
 This document describes the sequence validation functions provided by the `SeqShould` helper in the Archer framework, specifically within the Fletching library. These functions are similar to `Assert` methods in other frameworks, but instead of throwing exceptions, they return a `TestResult` value, enabling functional and composable test flows.
 
-## Overview
+
+<!-- (dl (# Overview)) -->
 
 The `SeqShould` type provides static members for validating F# sequences (`seq<'a>`). These validations include containment, length, and predicate-based checks.
 
 ---
 
-## Sequence Validation Methods
+
+<!-- (dl (# Sequence Validation Methods)) -->
 
 - **Contain ( value )**
   - Passes if the sequence contains the specified value.
@@ -29,7 +36,8 @@ The `SeqShould` type provides static members for validating F# sequences (`seq<'
 
 ---
 
-## Usage Example
+
+<!-- (dl (# Usage Example)) -->
 
 ```fsharp
 open Archer.Fletching.Lib

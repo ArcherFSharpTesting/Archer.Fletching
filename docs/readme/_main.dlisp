@@ -6,6 +6,7 @@
         (Feature ./should-result-features.md)
         (Feature ./should-boolean-features.md)
         (Feature ./listshould-features.md)
+        (Feature ./seqshould-features.md)
         (Review ./features.md)
     )
 )

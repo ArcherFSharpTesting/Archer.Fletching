@@ -14,7 +14,7 @@
     <Compile Include="ShouldType.Objects.fs" />
     <Compile Include="ShouldType.Boolean.fs" />
     <Compile Include="ShouldType.Result.fs" />
-    <Compile Include="SholdType.Other.fs" />
+    <Compile Include="ShouldType.Other.fs" />
     <Compile Include="ListShould.fs" />
     <Compile Include="SeqShould.fs" />
     <Compile Include="ArrayShould.fs" />

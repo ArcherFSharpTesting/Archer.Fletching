@@ -249,7 +249,7 @@ let result3 = Should.BeIgnored ( "This test is ignored for now." ) "any value"
 
 See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations) for usage patterns and return value details.
 
-For more details, see the source in `Lib/SholdType.Other.fs`.
+For more details, see the source in `Lib/ShouldType.Other.fs`.
 
 ## Should MeetStandard Validation Functions ##
 

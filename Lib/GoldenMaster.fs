@@ -9,7 +9,8 @@ open Archer.Fletching.Types.Internal
 let thanksUrl = "https://github.com/approvals/ApprovalTests.Net/"
 
 let private writeTo fullPath writer result =
-    Directory.CreateDirectory (Path.GetDirectoryName fullPath) |> ignore
+// Use explicit type annotation for older frameworks, and let type inference work for newer ones
+    Directory.CreateDirectory (Path.GetDirectoryName (fullPath : string)) |> ignore
     do writer fullPath result
     fullPath
 

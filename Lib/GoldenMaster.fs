@@ -1,15 +1,20 @@
-﻿module Archer.Fletching.GoldenMaster
+﻿
+/// <summary>
+/// Provides helpers for golden master (approval) testing, including file writers, namers, and approvers.
+/// </summary>
+module Archer.Fletching.GoldenMaster
 
 open System.IO
 open ApprovalTests.Core
-open ApprovalTests.Reporters
 open Archer
 open Archer.Fletching.Types.Internal
 
+/// <summary>
+/// URL for ApprovalTests.Net project, used for attribution.
+/// </summary>
 let thanksUrl = "https://github.com/approvals/ApprovalTests.Net/"
 
 let private writeTo fullPath writer result =
-// Use explicit type annotation for older frameworks, and let type inference work for newer ones
     Directory.CreateDirectory (Path.GetDirectoryName (fullPath : string)) |> ignore
     do writer fullPath result
     fullPath
@@ -22,6 +27,11 @@ let private writeTextTo fullPath result =
     let writer path toWrite = File.WriteAllText (path, toWrite, System.Text.Encoding.UTF8)
     result |> writeTo fullPath writer
     
+/// <summary>
+/// Gets an <c>IApprovalWriter</c> for writing string results to text files.
+/// </summary>
+/// <param name="result">The string result to write.</param>
+/// <returns>An <c>IApprovalWriter</c> for string results.</returns>
 let getStringFileWriter result = 
     { new IApprovalWriter with 
         member _.GetApprovalFilename(baseName) = $"%s{baseName}.approved.txt"
@@ -30,6 +40,12 @@ let getStringFileWriter result =
             result |> writeTextTo fullPathForReceivedFile
     }
 
+/// <summary>
+/// Gets an <c>IApprovalWriter</c> for writing binary results to files with a custom extension.
+/// </summary>
+/// <param name="extensionWithoutDot">The file extension (without dot).</param>
+/// <param name="result">The binary data to write.</param>
+/// <returns>An <c>IApprovalWriter</c> for binary results.</returns>
 let getBinaryFileWriter extensionWithoutDot result =
     { new IApprovalWriter with
         member _.GetApprovalFilename(baseName) = $"%s{baseName}.approved.%s{extensionWithoutDot}"
@@ -38,6 +54,12 @@ let getBinaryFileWriter extensionWithoutDot result =
             result |> writeBinaryTo fullPathForReceivedFile
     }
 
+/// <summary>
+/// Gets an <c>IApprovalWriter</c> for writing a stream as binary data to a file with a custom extension.
+/// </summary>
+/// <param name="extensionWithoutDot">The file extension (without dot).</param>
+/// <param name="result">The stream to write.</param>
+/// <returns>An <c>IApprovalWriter</c> for the stream data.</returns>
 let getBinaryStreamWriter extensionWithoutDot (result:Stream) =
     let length = int result.Length
     let data : byte array = Array.zeroCreate length
@@ -45,6 +67,11 @@ let getBinaryStreamWriter extensionWithoutDot (result:Stream) =
     result.Read(data, 0, data.Length) |> ignore
     getBinaryFileWriter extensionWithoutDot data
     
+/// <summary>
+/// Canonicalizes a string for use in file names by removing or replacing invalid characters.
+/// </summary>
+/// <param name="value">The string to canonicalize.</param>
+/// <returns>The canonicalized string.</returns>
 let canonicalizeString (value: string) =
     let toString : char seq -> string = Seq.map string >> String.concat ""
     let canonicalized =
@@ -91,12 +118,25 @@ let private getGoldMasterApprover (goldMasterNamer: IGoldMasterNamer) (approver:
         member _.ReportFailure reporter = approver.ReportFailure reporter
     }
     
+/// <summary>
+/// Gets a gold master approver for string results.
+/// </summary>
+/// <param name="testInfo">The test information.</param>
+/// <param name="result">The string result to approve.</param>
+/// <returns>An <c>IGoldMasterApprover</c> for string results.</returns>
 let getStringFileApprover testInfo result =
     let goldMasterNamer = getNamer testInfo
     let approver = ApprovalTests.Approvers.FileApprover (getStringFileWriter result, goldMasterNamer, true)
     
     getGoldMasterApprover goldMasterNamer approver
 
+/// <summary>
+/// Gets a gold master approver for binary results.
+/// </summary>
+/// <param name="testInfo">The test information.</param>
+/// <param name="extensionWithoutDot">The file extension (without dot).</param>
+/// <param name="result">The binary data to approve.</param>
+/// <returns>An <c>IGoldMasterApprover</c> for binary results.</returns>
 let getBinaryFileApprover testInfo extensionWithoutDot result =
     let goldMasterNamer = getNamer testInfo
     let approver = ApprovalTests.Approvers.FileApprover (getBinaryFileWriter extensionWithoutDot result, goldMasterNamer)
@@ -104,12 +144,27 @@ let getBinaryFileApprover testInfo extensionWithoutDot result =
     getGoldMasterApprover goldMasterNamer approver
     
         
+/// <summary>
+/// Gets a gold master approver for stream results.
+/// </summary>
+/// <param name="testInfo">The test information.</param>
+/// <param name="extensionWithoutDot">The file extension (without dot).</param>
+/// <param name="result">The stream to approve.</param>
+/// <returns>An <c>IGoldMasterApprover</c> for stream results.</returns>
 let getStreamFileApprover testInfo extensionWithoutDot (result:Stream) =
     let goldMasterNamer = getNamer testInfo
     let approver = ApprovalTests.Approvers.FileApprover (getBinaryStreamWriter extensionWithoutDot result, goldMasterNamer)
     
     getGoldMasterApprover goldMasterNamer approver
         
+/// <summary>
+/// Approves a test result using the provided reporter and approver, returning a test result.
+/// </summary>
+/// <param name="fullPath">The file path where the approval is performed.</param>
+/// <param name="lineNumber">The line number where the approval is performed.</param>
+/// <param name="reporter">The approval failure reporter.</param>
+/// <param name="approver">The gold master approver.</param>
+/// <returns><c>TestSuccess</c> if approved; otherwise, a validation failure result.</returns>
 let approve fullPath lineNumber (reporter: IApprovalFailureReporter) (approver: IGoldMasterApprover) =
     if approver.Approve ()
     then

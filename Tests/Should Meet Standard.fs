@@ -1,9 +1,9 @@
-﻿module Archer.Fletching.Tests.``Should Meet Standard``
+﻿module Archer.Validations.Tests.``Should Meet Standard``
 
 open Archer
 open Archer.Arrows
 open Archer.ApprovalsSupport
-open Archer.Fletching.Types.Internal
+open Archer.Validations.Types.Internal
 open ApprovalTests
 
 let private feature = Arrow.NewFeature (

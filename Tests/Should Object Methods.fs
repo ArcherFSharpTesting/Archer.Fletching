@@ -1,10 +1,10 @@
-﻿module Archer.Fletching.Tests.``Should Object Methods``
+﻿module Archer.Validations.Tests.``Should Object Methods``
 
 open System.Reflection
 open Archer
 open Archer.Arrows
 open Archer.CoreTypes.InternalTypes.RunnerTypes
-open Archer.Fletching.Types.Internal
+open Archer.Validations.Types.Internal
 open Archer.Logger.Detail
 open Archer.Logger.Indent
 open Archer.Logger.LocationHelpers

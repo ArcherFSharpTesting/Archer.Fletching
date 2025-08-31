@@ -1,8 +1,8 @@
 ﻿
 /// <summary>
-/// Internal types and helpers for Archer.Fletching test verification and failure handling.
+/// Internal types and helpers for Archer.Validations test verification and failure handling.
 /// </summary>
-module Archer.Fletching.Types.Internal
+module Archer.Validations.Types.Internal
 
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices

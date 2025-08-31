@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>netcoreapp3.1;net9.0</TargetFrameworks>
-    <RootNamespace>Archer.Fletching.Tests</RootNamespace>
+    <RootNamespace>Archer.Validations.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

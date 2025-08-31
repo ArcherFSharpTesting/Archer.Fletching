@@ -1,9 +1,9 @@
 ﻿
 /// <summary>
-/// Contains public types for Archer.Fletching verification and approval integration.
+/// Contains public types for Archer.Validations verification and approval integration.
 /// </summary>
 [<AutoOpen>]
-module Archer.Fletching.Public
+module Archer.Validations.Public
 
 /// <summary>
 /// Represents a namer for Gold Master (approval) tests, providing canonicalized names for containers and tests.

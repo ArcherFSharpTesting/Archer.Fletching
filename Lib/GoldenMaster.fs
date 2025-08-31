@@ -2,12 +2,12 @@
 /// <summary>
 /// Provides helpers for golden master (approval) testing, including file writers, namers, and approvers.
 /// </summary>
-module Archer.Fletching.GoldenMaster
+module Archer.Validations.GoldenMaster
 
 open System.IO
 open ApprovalTests.Core
 open Archer
-open Archer.Fletching.Types.Internal
+open Archer.Validations.Types.Internal
 
 /// <summary>
 /// URL for ApprovalTests.Net project, used for attribution.

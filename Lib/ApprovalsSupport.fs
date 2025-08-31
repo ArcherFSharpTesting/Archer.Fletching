@@ -8,7 +8,7 @@ open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 open ApprovalTests.Core
 open ApprovalTests.Reporters
-open Archer.Fletching.GoldenMaster
+open Archer.Validations.GoldenMaster
 
 let private createReporter<'a when 'a:> IApprovalFailureReporter> () =
     System.Activator.CreateInstance<'a> () :> IApprovalFailureReporter

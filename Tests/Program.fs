@@ -1,10 +1,10 @@
-﻿module Archer.Fletching.Tests.Program
+﻿module Archer.Validations.Tests.Program
 
 open Archer
 open Archer.Bow
 open Archer.CoreTypes.InternalTypes
 open Archer.CoreTypes.InternalTypes.RunnerTypes
-open Archer.Fletching.Tests
+open Archer.Validations.Tests
 open Archer.Logger.Summaries
 open MicroLang.Lang
 

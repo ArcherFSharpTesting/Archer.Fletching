@@ -1,4 +1,4 @@
-﻿module Archer.Fletching.Tests.``Should Other Methods``
+﻿module Archer.Validations.Tests.``Should Other Methods``
 
 open Archer
 open Archer.Arrows

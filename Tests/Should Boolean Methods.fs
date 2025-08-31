@@ -1,8 +1,8 @@
-﻿module Archer.Fletching.Tests.``Should Boolean Methods``
+﻿module Archer.Validations.Tests.``Should Boolean Methods``
 
 open Archer
 open Archer.Arrows
-open Archer.Fletching.Types.Internal
+open Archer.Validations.Types.Internal
 
 let private feature = Arrow.NewFeature (
     TestTags [

@@ -17,7 +17,7 @@
 9. Feature: [SeqShould Sequence Validation Functions](#seqshould-sequence-validation-functions)
 10. Feature: [ArrayShould Array Validation Functions](#arrayshould-array-validation-functions)
 11. Feature: [Not Validation Helper](#not-validation-helper)
-12. Review: [Archer.Fletching](#archerfletching)
+12. Review: [Archer.Validations](#archervalidations)
 
 ## Philosophy of Fletcher Test Validations ##
 
@@ -118,7 +118,7 @@ The `Should` type provides static members for validating objects in various ways
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 // Direct invocation
 let result1 = Should.BeEqualTo ( 42 ) 42
@@ -469,7 +469,7 @@ See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations
 
 For more details, see the source in `Lib/NotImplemented.fs`.
 
-## Archer.Fletching ##
+## Archer.Validations ##
 
 A test verification Framework for Archer
 

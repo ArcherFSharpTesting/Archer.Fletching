@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lib\Archer.Fletching.Lib.fsproj" />
+    <ProjectReference Include="..\Lib\Archer.Validations.Lib.fsproj" />
   </ItemGroup>
 
   <ItemGroup>

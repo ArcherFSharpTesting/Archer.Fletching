@@ -1,11 +1,11 @@
 ﻿[<AutoOpen>]
-module Archer.Fletching.Tests.TestHelpers
+module Archer.Validations.Tests.TestHelpers
 
 open Archer
 open System.IO
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
-open Archer.Fletching.Types.Internal
+open Archer.Validations.Types.Internal
 
 type Location =
     static member Get([<CallerMemberName; Optional; DefaultParameterValue("")>] testName: string, [<CallerFilePath; Optional; DefaultParameterValue("")>] fileFullName: string, [<CallerLineNumber; Optional; DefaultParameterValue(-1)>] lineNumber: int) =

@@ -1,7 +1,7 @@
 ﻿module Archer.Validations.Tests.``Should Result Methods``
 
 open Archer
-open Archer.Arrows
+open Archer.Core
 open Archer.Validations.Types.Internal
 
 let private feature = Arrow.Ignore (

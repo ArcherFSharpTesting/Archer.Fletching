@@ -1,8 +1,8 @@
-﻿module Archer.Fletching.Tests.TestResultFailureBuilder
+﻿module Archer.Validations.Tests.TestResultFailureBuilder
 
 open Archer
-open Archer.Arrows
-open Archer.Fletching.Types.Internal
+open Archer.Core
+open Archer.Validations.Types.Internal
 
 let private feature = Arrow.NewFeature (
     TestTags [

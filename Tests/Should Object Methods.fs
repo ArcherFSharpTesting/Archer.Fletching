@@ -2,11 +2,11 @@
 
 open System.Reflection
 open Archer
-open Archer.Arrows
-open Archer.CoreTypes.InternalTypes.RunnerTypes
+open Archer.Core
+open Archer.Types.InternalTypes.RunnerTypes
 open Archer.Validations.Types.Internal
-open Archer.Logger.Detail
-open Archer.Logger.Indent
+open Archer.Reporting.Detail
+open Archer.Reporting.Indent
 open Archer.Logger.LocationHelpers
 open Archer.Logger.TestFailContainerTransformer
 

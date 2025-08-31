@@ -1,7 +1,7 @@
 ﻿module Archer.Validations.Tests.``Should Other Methods``
 
 open Archer
-open Archer.Arrows
+open Archer.Core
 
 let private feature = Arrow.NewFeature (
     TestTags [

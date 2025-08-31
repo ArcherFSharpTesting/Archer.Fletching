@@ -41,7 +41,7 @@ The `SeqShould` type provides static members for validating F# sequences (`seq<'
 <!-- (dl (# Usage Example)) -->
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 let numbers = seq { 1; 2; 3 }
 

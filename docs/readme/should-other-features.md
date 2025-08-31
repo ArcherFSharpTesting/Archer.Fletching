@@ -30,7 +30,7 @@ The `Should` type provides static members for miscellaneous test outcomes, such 
 <!-- (dl (# Usage Example)) -->
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 // Mark a test as failed
 let result1 = Should.Fail ( "This test should fail." )

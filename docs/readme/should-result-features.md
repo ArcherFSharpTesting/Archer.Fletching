@@ -29,7 +29,7 @@ The `Should` type provides static members for validating F# `Result` values. The
 <!-- (dl (# Usage Example)) -->
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 // Direct invocation
 let result1 = Should.BeOk ( 42 ) ( Ok 42 )

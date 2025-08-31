@@ -41,7 +41,7 @@ The `ArrayShould` type provides static members for validating F# arrays (`'a[]`)
 <!-- (dl (# Usage Example)) -->
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 let numbers = [| 1; 2; 3 |]
 

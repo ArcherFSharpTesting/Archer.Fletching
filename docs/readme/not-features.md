@@ -27,7 +27,7 @@ The `Not` type provides a static member for marking a test as not yet implemente
 <!-- (dl (# Usage Example)) -->
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 let result = Not.Implemented ( )
 ```

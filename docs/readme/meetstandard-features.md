@@ -27,7 +27,7 @@ The `Should.MeetStandard` function enables approval testing by comparing a test 
 <!-- (dl (# Usage Example)) -->
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 open ApprovalTests.Reporters
 
 let reporter = DiffReporter() :> ApprovalTests.Core.IApprovalFailureReporter

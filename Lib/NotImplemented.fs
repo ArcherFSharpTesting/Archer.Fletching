@@ -2,7 +2,7 @@
 
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
-open Archer.Fletching.Types.Internal
+open Archer.Validations.Types.Internal
 
 /// <summary>
 /// Provides a method to indicate that a test or feature is not yet implemented.

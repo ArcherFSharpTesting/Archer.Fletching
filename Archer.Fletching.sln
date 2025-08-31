@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Archer.Fletching.Lib", "Lib\Archer.Fletching.Lib.fsproj", "{6CC34BC5-5252-45CF-9616-166EFF46F586}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Archer.Validations.Lib", "Lib\Archer.Validations.Lib.fsproj", "{6CC34BC5-5252-45CF-9616-166EFF46F586}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Archer.Fletching.Tests", "Tests\Archer.Fletching.Tests.fsproj", "{B3E7C0FD-E054-4FC0-95AF-0E029DB025D3}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Archer.Validations.Tests", "Tests\Archer.Validations.Tests.fsproj", "{B3E7C0FD-E054-4FC0-95AF-0E029DB025D3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0772B520-33F2-4A78-930C-5717B7FD4A9A}"
 	ProjectSection(SolutionItems) = preProject

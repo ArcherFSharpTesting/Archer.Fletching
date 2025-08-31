@@ -1,14 +1,14 @@
-﻿module Archer.Fletching.Tests.Program
+﻿module Archer.Validations.Tests.Program
 
 open Archer
-open Archer.Bow
-open Archer.CoreTypes.InternalTypes
-open Archer.CoreTypes.InternalTypes.RunnerTypes
-open Archer.Fletching.Tests
-open Archer.Logger.Summaries
+open Archer.Runner
+open Archer.Types.InternalTypes
+open Archer.Types.InternalTypes.RunnerTypes
+open Archer.Validations.Tests
+open Archer.Reporting.Summaries
 open MicroLang.Lang
 
-let framework = bow.Runner ()
+let framework = runnerFactory.Runner ()
 
 framework.RunnerLifecycleEvent
 |> Event.add (fun args ->

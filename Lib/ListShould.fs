@@ -6,7 +6,7 @@ module Archer.ShouldList
 
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
-open Archer.Fletching.Types.Internal
+open Archer.Validations.Types.Internal
 open FSharp.Quotations.Evaluator
 open Swensen.Unquote
 

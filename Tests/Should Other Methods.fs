@@ -1,9 +1,9 @@
-﻿module Archer.Fletching.Tests.``Should Other Methods``
+﻿module Archer.Validations.Tests.``Should Other Methods``
 
 open Archer
-open Archer.Arrows
+open Archer.Core
 
-let private feature = Arrow.NewFeature (
+let private feature = FeatureFactory.NewFeature (
     TestTags [
         Category "Should"
         Category "Other"

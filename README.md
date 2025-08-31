@@ -17,7 +17,7 @@
 9. Feature: [SeqShould Sequence Validation Functions](#seqshould-sequence-validation-functions)
 10. Feature: [ArrayShould Array Validation Functions](#arrayshould-array-validation-functions)
 11. Feature: [Not Validation Helper](#not-validation-helper)
-12. Review: [Archer.Fletching](#archerfletching)
+12. Review: [Archer.Validations](#archerfletching)
 
 ## Philosophy of Fletcher Test Validations ##
 
@@ -118,7 +118,7 @@ The `Should` type provides static members for validating objects in various ways
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 // Direct invocation
 let result1 = Should.BeEqualTo ( 42 ) 42
@@ -159,7 +159,7 @@ The `Should` type provides static members for validating F# `Result` values. The
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 // Direct invocation
 let result1 = Should.BeOk ( 42 ) ( Ok 42 )
@@ -196,7 +196,7 @@ The `Should` type provides static members for validating boolean values. These v
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 // Direct invocation
 let result1 = Should.BeTrue ( true )
@@ -235,7 +235,7 @@ The `Should` type provides static members for miscellaneous test outcomes, such 
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 // Mark a test as failed
 let result1 = Should.Fail ( "This test should fail." )
@@ -272,7 +272,7 @@ The `Should.MeetStandard` function enables approval testing by comparing a test 
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 open ApprovalTests.Reporters
 
 let reporter = DiffReporter() :> ApprovalTests.Core.IApprovalFailureReporter
@@ -320,7 +320,7 @@ The `ListShould` type provides static members for validating F# lists (`'a list`
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 let numbers = [ 1; 2; 3 ]
 
@@ -371,7 +371,7 @@ The `SeqShould` type provides static members for validating F# sequences (`seq<'
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 let numbers = seq { 1; 2; 3 }
 
@@ -422,7 +422,7 @@ The `ArrayShould` type provides static members for validating F# arrays (`'a[]`)
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 let numbers = [| 1; 2; 3 |]
 
@@ -460,7 +460,7 @@ The `Not` type provides a static member for marking a test as not yet implemente
 ### Usage Example ###
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 let result = Not.Implemented ( )
 ```
@@ -469,7 +469,7 @@ See [How to Use Fletcher Test Validations](#how-to-use-fletcher-test-validations
 
 For more details, see the source in `Lib/NotImplemented.fs`.
 
-## Archer.Fletching ##
+## Archer.Validations ##
 
 A test verification Framework for Archer
 

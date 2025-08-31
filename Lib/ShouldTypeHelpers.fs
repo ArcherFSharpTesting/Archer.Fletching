@@ -5,7 +5,7 @@
 module Archer.ShouldTypeHelpers
 
 open System
-open Archer.Fletching.Types.Internal
+open Archer.Validations.Types.Internal
 
 /// <summary>
 /// A default test result failure builder using the identity function.

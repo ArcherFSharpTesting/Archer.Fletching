@@ -1,16 +1,16 @@
-﻿module Archer.Fletching.Tests.``Should Object Methods``
+﻿module Archer.Validations.Tests.``Should Object Methods``
 
 open System.Reflection
 open Archer
-open Archer.Arrows
-open Archer.CoreTypes.InternalTypes.RunnerTypes
-open Archer.Fletching.Types.Internal
-open Archer.Logger.Detail
-open Archer.Logger.Indent
-open Archer.Logger.LocationHelpers
-open Archer.Logger.TestFailContainerTransformer
+open Archer.Core
+open Archer.Types.InternalTypes.RunnerTypes
+open Archer.Validations.Types.Internal
+open Archer.Reporting.Detail
+open Archer.Reporting.Indent
+open Archer.Reporting.LocationHelpers
+open Archer.Reporting.TestFailContainerTransformer
 
-let private feature = Arrow.NewFeature (
+let private feature = FeatureFactory.NewFeature (
     TestTags [
         Category "Should"
         Category "Object"

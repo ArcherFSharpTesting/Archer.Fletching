@@ -67,7 +67,7 @@ The `Should` type provides static members for validating objects in various ways
 <!-- (dl (# Usage Example)) -->
 
 ```fsharp
-open Archer.Fletching.Lib
+open Archer.Validations.Lib
 
 // Direct invocation
 let result1 = Should.BeEqualTo ( 42 ) 42

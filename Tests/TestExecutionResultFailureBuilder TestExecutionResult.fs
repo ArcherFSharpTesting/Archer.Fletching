@@ -1,10 +1,10 @@
-﻿module Archer.Fletching.Tests.``TestExecutionResultFailureBuilder TestExecutionResult``
+﻿module Archer.Validations.Tests.``TestExecutionResultFailureBuilder TestExecutionResult``
 
 open Archer
-open Archer.Arrows
-open Archer.Fletching.Types.Internal
+open Archer.Core
+open Archer.Validations.Types.Internal
 
-let private feature = Arrow.NewFeature (
+let private feature = FeatureFactory.NewFeature (
     TestTags [
         Category "TestExecutionResultFailureBuilder"
         Category "TestExecutionResult"

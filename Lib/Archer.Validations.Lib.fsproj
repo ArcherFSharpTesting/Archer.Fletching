@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;netstandard2.1;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>Archer.Validations</RootNamespace>
-    <AssemblyName>Archer.Fletching.Lib</AssemblyName>
+    <AssemblyName>Archer.Validations</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
